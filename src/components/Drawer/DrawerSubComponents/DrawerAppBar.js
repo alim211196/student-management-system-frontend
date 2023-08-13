@@ -3,7 +3,6 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import { Avatar, Tooltip } from "@mui/material";
 import { AppBar, StyledBadge } from "../../../Utils/stylingMethods.js";
 import { avatarName } from "../../../Utils/AvatarName";
@@ -15,6 +14,7 @@ import AfterLoginMenuBody from "./AfterLoginMenuBody";
 import ModeComp from "../../../Utils/ModeComp.js";
 import DialogBox from "../../../Utils/DialogBox.js";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
+import WidgetsIcon from "@mui/icons-material/Widgets";
 const DrawerAppBar = ({
   open,
   handleDrawerOpen,
@@ -86,7 +86,7 @@ const DrawerAppBar = ({
             edge="start"
             sx={styles.toolbarIconBtn}
           >
-            <MenuIcon sx={styles.toolbarIconBtnAvatar} />
+            <WidgetsIcon sx={styles.toolbarIconBtnAvatar} />
           </IconButton>
 
           <Box sx={styles.innerBox3}>

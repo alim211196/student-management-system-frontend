@@ -35,7 +35,16 @@ const RecentMessageList = ({
 
   return (
     <Grid item xs={12} sm={12} md={8} lg={8}>
-      <Box sx={{ borderTopLeftRadius: "5px", borderTopRightRadius: "5px" }}>
+      <Box
+        sx={{
+          borderTopLeftRadius: "5px",
+          borderTopRightRadius: "5px",
+          transition: "transform 500ms ease",
+          "&:hover": {
+            transform: `scale(1.05)`,
+          },
+        }}
+      >
         <Box
           sx={{
             display: "flex",
@@ -60,16 +69,16 @@ const RecentMessageList = ({
               borderBottomRightRadius: "5px",
               background: Dark00FF(cookies),
               border: CardBorder(cookies, bgColor),
-              overflowY: "scroll", 
-              scrollbarWidth: "none", 
-              "-ms-overflow-style": "none", 
+              overflowY: "scroll",
+              scrollbarWidth: "none",
+              "-ms-overflow-style": "none",
               "&::-webkit-scrollbar": {
                 width: "2px",
-                background: Dark00FF(cookies), 
+                background: Dark00FF(cookies),
               },
               "&::-webkit-scrollbar-thumb": {
-                background: bgColor, 
-                borderRadius: "10px", 
+                background: bgColor,
+                borderRadius: "10px",
               },
               "&::-webkit-scrollbar-thumb:hover": {
                 background: "#555",

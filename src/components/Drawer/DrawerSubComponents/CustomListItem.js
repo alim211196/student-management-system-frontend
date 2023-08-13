@@ -14,7 +14,9 @@ const CustomListItem = ({ item, open, styles }) => {
         selected={item.path===window.location.pathname}
       >
         <Tooltip title={!open && item.title} placement="right">
-          <ListItemIcon sx={styles.innerAvatar}>{item.icon}</ListItemIcon>
+          <ListItemIcon sx={styles.innerAvatar}>
+          {item.icon}
+          </ListItemIcon>
         </Tooltip>
         <ListItemText primary={item.title} sx={styles.listItemText} />
       </ListItemButton>

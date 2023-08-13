@@ -70,35 +70,44 @@ const CustomCard = ({
         background: Dark00FF(cookies),
         color: "#fff",
         border: CardBorder(cookies, "#2C497F"),
+        transition: "transform 500ms ease",
+        "&:hover": {
+          transform: `scale(1.05)`,
+        },
+      };
+    } else {
+      return {
+        transition: "transform 500ms ease",
+        "&:hover": {
+          transform: `scale(1.05)`,
+        },
       };
     }
   };
 
-const ManageAtt = {
-  Image: item?.teacherProfile,
-  FullName: item?.teacherName,
-  row1: `${item?.course} (${item?.courseYear})`,
-  row2: item?.date,
-};
+  const ManageAtt = {
+    Image: item?.teacherProfile,
+    FullName: item?.teacherName,
+    row1: `${item?.course} (${item?.courseYear})`,
+    row2: item?.date,
+  };
 
-const OtherComp = {
-  Image: item?.profileImage,
-  FullName: item?.fullName,
-  row1: item?.email,
-  row2: item?.phone,
-};
+  const OtherComp = {
+    Image: item?.profileImage,
+    FullName: item?.fullName,
+    row1: item?.email,
+    row2: item?.phone,
+  };
 
-const data = parentComp === "Manage Attendance" ? ManageAtt : OtherComp;
+  const data = parentComp === "Manage Attendance" ? ManageAtt : OtherComp;
 
-const handleRedirect =()=>{
-  if(["View Records", "Manage Teachers"].includes(parentComp)){
-    return  handleEdit(item._id);
-  }
-  else if (["Manage Attendance"].includes(parentComp)){
-      return  handleEdit(item._id,item?.active);
-  }
-
-}
+  const handleRedirect = () => {
+    if (["View Records", "Manage Teachers"].includes(parentComp)) {
+      return handleEdit(item._id);
+    } else if (["Manage Attendance"].includes(parentComp)) {
+      return handleEdit(item._id, item?.active);
+    }
+  };
   return (
     <Card elevation={0} sx={cookieCondition()}>
       <CardActionArea onClick={() => handleRedirect()}>
@@ -116,7 +125,7 @@ const handleRedirect =()=>{
             src={data.Image}
             sx={{
               background: Dark00(cookies),
-              color: "#2C497F",
+              color: IconColor(cookies),
               width: 80,
               height: 80,
               fontSize: "40px",
@@ -202,12 +211,12 @@ const handleRedirect =()=>{
               aria-expanded={expanded}
               aria-label="show more"
             >
-              <ExpandMoreIcon sx={{ color: "#2C497F" }} />
+              <ExpandMoreIcon sx={{ color: IconColor(cookies) }} />
             </ExpandMore>
             {isAdmin && (
               <Tooltip title={"Reply"} placement="top">
                 <IconButton onClick={() => handleClickOpen(item._id)}>
-                  <ReplyIcon sx={{ color: "#2C497F" }} />
+                  <ReplyIcon sx={{ color: IconColor(cookies) }} />
                 </IconButton>
               </Tooltip>
             )}

@@ -47,7 +47,7 @@ const BoxWrapper = ({
             height: "100%",
             transition: "all .85s ease-in-out",
             opacity: 0.92,
-            backgroundColor: "#2C497F",
+            backgroundColor: "#000",
           }}
         >
           <Container component="main" maxWidth={maxWidth} sx={{ pl: 1, pr: 1 }}>
@@ -62,6 +62,10 @@ const BoxWrapper = ({
                 boxShadow: "0px 0px 16px 9px rgba(0, 0, 0, 0.07)",
                 background: "rgba(255, 255, 255, .13)",
                 opacity: 1,
+                transition: "transform 500ms ease",
+                "&:hover": {
+                  transform: `scale(1.05)`,
+                },
               }}
             >
               <Typography

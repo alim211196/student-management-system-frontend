@@ -267,7 +267,7 @@ export const AntSwitch = styled(Switch)(({ theme }) => ({
 export const StyledTableCell = styled(TableCell)(({ cookies, theme }) => ({
   color: DarkFFF(cookies),
   [`&.${tableCellClasses.head}`]: {
-    background: "#292929",
+    background: "#000",
     color: "#fff",
   },
   [`&.${tableCellClasses.body}`]: {
@@ -292,8 +292,8 @@ export const BootstrapButton = styled(Button)(({ cookies }) =>({
   padding: "5px",
   minWidth:'40px !important',
   border: "1px solid",
-  background: cookies.theme === "dark" ? "#292929" : "#2C497F",
-  borderColor: cookies.theme === "dark" ? "#2C497F" : "#292929",
+  background: cookies.theme === "dark" ? "#000" : "#2C497F",
+  borderColor: cookies.theme === "dark" ? "#2C497F" : "#000",
   "&:hover": {
     backgroundColor: "#0069d9",
     borderColor: "#0062cc",

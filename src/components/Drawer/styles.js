@@ -33,7 +33,7 @@ export const DrawerStyle = (cookies, matches, upDown, open) => {
       display: "flex",
     },
     drawerHeader1 = {
-      background: cookies.theme === "dark" ? "#292929" : "#2C497F",
+      background: cookies.theme === "dark" ? "#000" : "#2C497F",
     },
     innerBox1 = {
       width: "100%",
@@ -56,7 +56,7 @@ export const DrawerStyle = (cookies, matches, upDown, open) => {
       flexDirection: "column",
       justifyContent: "space-between",
       height: "100vh",
-      background: cookies.theme === "dark" ? "#4f4f4f" : "#fff",
+      background: cookies.theme === "dark" ? "#292929" : "#fff",
       // borderRight: cookies.theme === "dark" && "1px solid #2C497F",
     },
     dynamicListBox = {
@@ -71,20 +71,25 @@ export const DrawerStyle = (cookies, matches, upDown, open) => {
       marginTop: "1rem",
       paddingBottom: "10px",
       backgroundColor: Dark00(cookies),
-      height: "97.9vh",
-      overflowY: "scroll",
-      scrollbarWidth: "none",
-      "-ms-overflow-style": "none",
+      width: "100%",
+      overflow: "scroll",
+      overflowY: "auto",
+      height: "100vh",
       "&::-webkit-scrollbar": {
-        width: "10px",
-        background: cookies.theme === "dark" ? "#292929" : "#E7EBF0",
+        display: "none",
+      },
+      "&::-webkit-scrollbar-track": {
+        boxShadow: "inset 0 0 6px rgba(0,0,0,0.00)",
+        webkitBoxShadow: "inset 0 0 6px rgba(0,0,0,0.00)",
       },
       "&::-webkit-scrollbar-thumb": {
-        background: cookies.theme === "dark" ? "#4F4F4F" : "#CCCCCC",
-        borderRadius: "10px",
+        backgroundColor: "#2C497F",
+        outline: "1px solid slategrey",
       },
-      "&::-webkit-scrollbar-thumb:hover": {
-        background: cookies.theme === "dark" ? "#4F4F4F" : "#CCCCCC",
+
+      "& .MuiContainer-root": {
+        paddingLeft: 0,
+        paddingRight: 0,
       },
     },
     listItemBtn = {
@@ -92,9 +97,9 @@ export const DrawerStyle = (cookies, matches, upDown, open) => {
       justifyContent: open ? "initial" : "center",
       px: 2.5,
       "&.Mui-selected": {
-        background: cookies.theme === "dark" ? "#292929" : "#E7EBF0",
+        background: cookies.theme === "dark" ? "#000" : "#E7EBF0",
         ":hover": {
-          background: cookies.theme === "dark" ? "#292929" : "#E7EBF0",
+          background: cookies.theme === "dark" ? "#000" : "#E7EBF0",
         },
       },
     },
@@ -106,6 +111,11 @@ export const DrawerStyle = (cookies, matches, upDown, open) => {
       height: 30,
       color: cookies.theme === "dark" ? "#fff" : "#2C497F",
       alignItems: "center",
+      cursor: "pointer",
+      transition: "transform 500ms ease",
+      ":hover": {
+        transform: `scale(1.3)`,
+      },
     },
     listItemText = {
       opacity: open ? 1 : 0,
@@ -113,7 +123,7 @@ export const DrawerStyle = (cookies, matches, upDown, open) => {
       pb: 0,
     },
     appBar = {
-      background: cookies.theme === "dark" ? "#292929" : "#2C497F",
+      background: cookies.theme === "dark" ? "#000" : "#2C497F",
       boxShadow: "none",
     },
     toolbarIconBtn = {

@@ -153,7 +153,7 @@ const ManageTeacher = () => {
                     color: cookies.theme === "dark" && "#fff",
                     "&.Mui-selected": {
                       color: cookies.theme === "dark" ? "#fff" : "#2C497F",
-                      background: cookies.theme === "dark" && "#4f4f4f",
+                      background: cookies.theme === "dark" && "#292929",
                       border: cookies.theme === "dark" && "1px solid #2C497F",
                       borderRadius: "5px",
                     },
@@ -178,7 +178,7 @@ const ManageTeacher = () => {
                     color: cookies.theme === "dark" && "#fff",
                     "&.Mui-selected": {
                       color: cookies.theme === "dark" ? "#fff" : "#2C497F",
-                      background: cookies.theme === "dark" && "#4f4f4f",
+                      background: cookies.theme === "dark" && "#292929",
                       border: cookies.theme === "dark" && "1px solid #2C497F",
                       borderRadius: "5px",
                     },

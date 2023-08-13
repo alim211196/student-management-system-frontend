@@ -1,5 +1,4 @@
 import {
-  Dashboard,
   People,
   ManageAccounts,
   Sms,
@@ -9,12 +8,13 @@ import {
   AccountBalance,
   Equalizer,
   Person,
+  DisplaySettings,
 } from "@mui/icons-material";
 export const navLinks = [
   {
     title: "Dashboard",
     path: "/dashboard",
-    icon: <Dashboard />,
+    icon: <DisplaySettings />,
     LoggedIn: true,
     access: "both",
   },

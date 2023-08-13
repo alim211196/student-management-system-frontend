@@ -85,16 +85,17 @@ const AddCourses = ({
               background: gradientBackground("#2C497F"),
               color: "#fff",
               borderColor: "#fff",
+              minHeight: 32,
               ":hover": {
                 color: "#fff",
                 borderColor: "#fff",
                 background: gradientBackground("#2C497F"),
-              }
+              },
             }}
             disabled={loading}
             loading={loading}
           >
-            <span> {courseCondition}</span>
+            {loading ? null : <span>{courseCondition}</span>}
           </LoadingButton>
         </DialogActions>
       </PaperWrapper>

@@ -27,7 +27,7 @@ const PageNotFound = () => {
         variant="contained"
         sx={{
           px: 6,
-          background: "#4f4f4f",
+          background: "#292929",
           "&:hover": {
             backgroundColor: "#3f3f3f",
           },

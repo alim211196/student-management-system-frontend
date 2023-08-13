@@ -27,7 +27,7 @@ const CustomTheme = ({ children }) => {
     if (dark) {
       return "#D3D3D3 ";
     } else {
-      return "#4f4f4f ";
+      return "#292929 ";
     }
   };
 
@@ -100,7 +100,7 @@ const CustomTheme = ({ children }) => {
                 transition:
                   "transform 0.35s cubic-bezier(0.36, 1, 0.62, 0.98) 0.085s, opacity 0.3s ease-in-out 0.2s, background 0.15s ease-in-out, border 0.3s ease-in-out",
                 opacity: 1,
-                color: dark ? colorCondition() : "#4f4f4f!important",
+                color: dark ? colorCondition() : "#292929!important",
                 fontSize: 16,
                 padding: "14px 10px",
                 background: "rgba(255, 255, 255, 0.25)",
@@ -116,10 +116,10 @@ const CustomTheme = ({ children }) => {
               color: colorCondition(),
             },
             "& .MuiInputLabel-root": {
-              color: dark ? colorCondition() : "#4f4f4f!important",
+              color: dark ? colorCondition() : "#292929!important",
             },
             "& .MuiInputLabel-root.Mui-focused": {
-              color: dark ? colorCondition() : "#4f4f4f!important",
+              color: dark ? colorCondition() : "#292929!important",
             },
           },
         },

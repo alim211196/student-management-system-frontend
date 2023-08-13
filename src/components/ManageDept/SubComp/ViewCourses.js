@@ -16,7 +16,7 @@ const ViewCourses = ({ cookies, Courses, handleEdit, handleActive }) => {
         <Grid container spacing={2} sx={{ p: 2, mb: 1 }}>
           {Courses.map((item, index) => {
             return (
-              <Grid item xs={12} sm={6} md={4} key={index}>
+              <Grid item xs={12} sm={6} md={3} key={index}>
                 <CourseCard
                   cookies={cookies}
                   item={item}

@@ -11,6 +11,7 @@ const CustomButton = ({ text, loading }) => {
         mt: 1,
         width: "100%",
         textTransform: "capitalize",
+        minHeight: 38,
         background: gradientBackground("#ED6A5E"),
         color: "#fff",
         borderColor: "#fff",
@@ -19,14 +20,11 @@ const CustomButton = ({ text, loading }) => {
           borderColor: "#fff",
           background: gradientBackground("#ED6A5E"),
         },
-        ":disabled": {
-          background: gradientBackground("#ED6A5E"),
-        },
       }}
       disabled={loading}
       loading={loading}
     >
-      <span> {text}</span>
+      {loading ? null : <span>{text}</span>}
     </LoadingButton>
   );
 };

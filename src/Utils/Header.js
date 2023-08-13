@@ -6,7 +6,7 @@ import Link from "@mui/material/Link";
 import IconButton from "@mui/material/IconButton";
 import { useNavigate } from "react-router-dom";
 import CustomTheme from "./CustomTheme";
-import MenuIcon from "@mui/icons-material/Menu";
+import WidgetsIcon from "@mui/icons-material/Widgets";
 import { useMediaQuery } from "@mui/material";
 import ModeComp from "./ModeComp";
 import BeforeLoginMenuBody from "./BeforeLoginMenuBody";
@@ -54,7 +54,7 @@ const Header = () => {
     <AppBar
       position="fixed"
       sx={{
-        background: cookies.theme === "dark" ? "#292929" : "#2C497F",
+        background: cookies.theme === "dark" ? "#000" : "#2C497F",
         color: "#fff",
       }}
       elevation={0}
@@ -88,7 +88,7 @@ const Header = () => {
                   aria-haspopup="true"
                   aria-expanded={open ? "true" : undefined}
                 >
-                  <MenuIcon
+                  <WidgetsIcon
                     sx={{
                       width: 24,
                       height: 24,

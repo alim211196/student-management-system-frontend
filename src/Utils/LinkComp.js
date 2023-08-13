@@ -1,17 +1,13 @@
 import { Link } from "@mui/material";
 import React, { memo } from "react";
 import { useNavigate } from "react-router-dom";
-import { DarkFFF } from "./CommonCookies";
 
-const LinkComp = ({ path, text, cookies }) => {
-  const pathname = ["/sign_in", "/forgot-password", "/reset-password"].includes(
-    window.location.pathname
-  );
+const LinkComp = ({ path, text }) => {
   const navigate = useNavigate();
   return (
     <Link
       sx={{
-        color: pathname ? "#FFF !important" : DarkFFF(cookies),
+        color:"#FFF",
       }}
       component="button"
       variant="body2"

@@ -13,7 +13,7 @@ const StudentSearch = ({ setQuery, query, cookies, matches }) => {
         p: 1,
       }}
     >
-      <Grid item xs={12} sm={4} md={4} sx={{ background:'#4f4f4f',borderRadius:'5px' }}>
+      <Grid item xs={12} sm={4} md={4} sx={{ background:'#292929',borderRadius:'5px' }}>
         <SearchAppBar
           setQuery={setQuery}
           query={query}

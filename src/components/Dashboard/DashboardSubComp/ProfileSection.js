@@ -50,7 +50,16 @@ const ProfileSection = ({
   return (
     <>
       <Grid item xs={12} sm={6} md={4} lg={4}>
-        <Box sx={{ borderTopLeftRadius: "5px", borderTopRightRadius: "5px" }}>
+        <Box
+          sx={{
+            borderTopLeftRadius: "5px",
+            borderTopRightRadius: "5px",
+            transition: "transform 500ms ease",
+            "&:hover": {
+              transform: `scale(1.05)`,
+            },
+          }}
+        >
           <Box
             sx={{
               display: "flex",
@@ -113,31 +122,34 @@ const ProfileSection = ({
                       />
                     </StyledBadge>
                   </ListItemAvatar>
-                  <ListItemText
-                    sx={{ ml: 1 }}
-                    primary={
-                      <Typography
-                        sx={{
-                          textTransform: "capitalize",
-                          fontSize: "16px",
-                          fontWeight: "bold",
-                          color: DarkFFF(cookies),
-                        }}
-                      >
-                        {userData?.fullName}
-                      </Typography>
-                    }
-                    secondary={
-                      <Typography
-                        sx={{
-                          fontSize: "14px",
-                          color: DarkFFF(cookies),
-                        }}
-                      >
-                        {userData?.email}
-                      </Typography>
-                    }
-                  />
+                  <Box sx={{ pl: 2, pr: 2, pt: 0, pb: 0 }}>
+                    <Typography
+                      sx={{
+                        textTransform: "capitalize",
+                        fontSize: "14px",
+                        fontWeight: "bold",
+                        color: DarkFFF(cookies),
+                      }}
+                    >
+                      {userData?.fullName}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        fontSize: "13px",
+                        color: DarkFFF(cookies),
+                      }}
+                    >
+                      {userData?.email}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        fontSize: "13px",
+                        color: DarkFFF(cookies),
+                      }}
+                    >
+                      {userData?.phone}
+                    </Typography>
+                  </Box>
                 </ListItem>
                 <Divider variant="inset" component="li" />
               </Box>
@@ -149,7 +161,9 @@ const ProfileSection = ({
                   background: gradientBackground("#0288D1"),
                   mb: 1,
                   color: "#fff",
+                  transition: "transform 500ms ease",
                   "&:hover": {
+                    transform: `scale(1.05)`,
                     background: gradientBackground("#0288D1"),
                     mb: 1,
                     color: "#fff",
@@ -166,8 +180,10 @@ const ProfileSection = ({
                 sx={{
                   borderRadius: 1,
                   background: gradientBackground("#00796B"),
+                  transition: "transform 500ms ease",
                   color: "#fff",
                   "&:hover": {
+                    transform: `scale(1.05)`,
                     background: gradientBackground("#00796B"),
                     color: "#fff",
                   },

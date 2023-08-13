@@ -166,7 +166,16 @@ const BirthDayList = ({ cookies, icon, title, bgColor, userData }) => {
 
   return (
     <Grid item xs={12} sm={6} md={4} lg={4}>
-      <Box sx={{ borderTopLeftRadius: "5px", borderTopRightRadius: "5px" }}>
+      <Box
+        sx={{
+          borderTopLeftRadius: "5px",
+          borderTopRightRadius: "5px",
+          transition: "transform 500ms ease",
+          "&:hover": {
+            transform: `scale(1.05)`,
+          },
+        }}
+      >
         <Box
           sx={{
             display: "flex",

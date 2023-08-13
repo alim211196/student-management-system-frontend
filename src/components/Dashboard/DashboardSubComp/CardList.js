@@ -24,6 +24,10 @@ const CardList = ({
         sx={{
           background: topColor,
           border: CardBorder(cookies, bottomColor),
+          transition: "transform 500ms ease",
+          "&:hover": {
+           transform: `scale(1.05)`
+          },
         }}
         elevation={0}
       >

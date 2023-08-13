@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import CustomTheme from "../../Utils/CustomTheme";
 import MiniDrawer from "../Drawer/index";
 import { Container, Grid, useMediaQuery } from "@mui/material";
-import DashboardIcon from "@mui/icons-material/Dashboard";
 import {
   School,
   SupervisedUserCircle,
@@ -10,7 +9,8 @@ import {
   RecentActors,
   Celebration,
   Sms,
-  Person
+  Person,
+  DisplaySettings,
 } from "@mui/icons-material/";
 import CardList from "./DashboardSubComp/CardList";
 import ProfileSection from "./DashboardSubComp/ProfileSection";
@@ -72,7 +72,7 @@ const Dashboard = () => {
         <Container maxWidth="xl" sx={ContainerStyle}>
           <TitleBox
             icon={
-              <DashboardIcon
+              <DisplaySettings
                 sx={{ color: cookies.theme === "dark" ? "#fff" : "#2C497F" }}
               />
             }

@@ -20,11 +20,19 @@ const CourseCard = ({ item, cookies, handleEdit, handleActive }) => {
       return {
         background: Dark00FF(cookies),
         color: "#fff",
-        border: "1px solid #2C497F",
+        border: `1px solid ${IconColor(cookies)}`,
+        transition: "transform 500ms ease",
+        "&:hover": {
+          transform: `scale(1.05)`,
+        },
       };
     } else {
       return {
-        border: "1px solid #2C497F",
+        border: `1px solid ${IconColor(cookies)}`,
+        transition: "transform 500ms ease",
+        "&:hover": {
+          transform: `scale(1.05)`,
+        },
       };
     }
   };
