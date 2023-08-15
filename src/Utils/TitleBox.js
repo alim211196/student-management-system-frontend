@@ -1,12 +1,20 @@
 import React, { memo } from "react";
-import { Typography, Grid, Paper, Box, Button, useMediaQuery, Tooltip, IconButton } from "@mui/material";
+import {
+  Typography,
+  Grid,
+  Paper,
+  Box,
+  Button,
+  useMediaQuery,
+  Tooltip,
+  IconButton,
+} from "@mui/material";
 import { Dark00FF } from "./CommonCookies";
 import { useCookies } from "react-cookie";
 import ExcelExport from "./ExcelExport";
 import { useSelector } from "react-redux";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useNavigate } from "react-router-dom";
-import { gradientBackground } from "./stylingMethods";
 const TitleBox = ({ icon, text, data, fileName, id }) => {
   const { userData } = useSelector((state) => state.getUserProfile);
   const [cookies] = useCookies(["theme"]);
@@ -147,12 +155,6 @@ const TitleBox = ({ icon, text, data, fileName, id }) => {
               <Button
                 variant="text"
                 startIcon={<ArrowBackIcon />}
-                sx={{
-                  textTransform: "capitalize",
-                  color: cookies.theme === "dark" ? "#fff" : "#2C497F",
-                  background:
-                    cookies.theme === "dark" && gradientBackground("#2C497F"),
-                }}
                 onClick={() => BackFunction()}
               >
                 Back

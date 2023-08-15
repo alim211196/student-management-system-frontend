@@ -17,7 +17,6 @@ import { errorHandler } from "../../../ApiFunctions/ErrorHandler";
 import {
   AntSwitch,
   StyledTableCell,
-  gradientBackground,
 } from "../../../Utils/stylingMethods";
 import { CardName } from "../../../Utils/CardName";
 import { Dark00FF, DarkFFF } from "../../../Utils/CommonCookies";
@@ -239,10 +238,10 @@ const AddAttendance = ({
                 minWidth: "120px",
                 textTransform: "capitalize",
                 color: "#fff",
-                background: gradientBackground("#2C497F"),
+                background:"#2C497F",
                 "&:hover": {
                   color: "#fff",
-                  background: gradientBackground("#2C497F"),
+                  background:"#2C497F",
                 },
               }}
               onClick={handleSubmit}

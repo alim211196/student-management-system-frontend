@@ -1,11 +1,8 @@
 import { Button, IconButton, Tooltip, useMediaQuery } from "@mui/material";
 import React, { memo } from "react";
 import { utils, writeFile } from "xlsx";
-import { useCookies } from "react-cookie";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
-import { gradientBackground } from "./stylingMethods";
 const ExcelExport = ({ userData, data, fileName }) => {
-  const [cookies] = useCookies(["theme"]);
   const matches = useMediaQuery("(min-width:600px)");
   const getYear = (yearNumber) => {
     switch (yearNumber) {
@@ -73,11 +70,6 @@ const ExcelExport = ({ userData, data, fileName }) => {
     <Button
       variant="text"
       startIcon={<FileDownloadIcon />}
-      sx={{
-        textTransform: "capitalize",
-        color: cookies.theme === "dark" ? "#fff" : "#2C497F",
-        background: cookies.theme === "dark" && gradientBackground("#2C497F"),
-      }}
       onClick={exportToExcel}
     >
       Export

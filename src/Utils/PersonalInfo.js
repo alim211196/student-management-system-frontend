@@ -10,7 +10,6 @@ import Avatar from "@mui/material/Avatar";
 import { Box, IconButton, Tooltip } from "@mui/material";
 import { PhotoCamera, HighlightOff } from "@mui/icons-material";
 import { Dark00 } from "./CommonCookies";
-import { useSelector } from "react-redux";
 
 const PersonalInfo = ({
   handleFileInputChange,
@@ -20,35 +19,8 @@ const PersonalInfo = ({
   formData,
   setFormData,
 }) => {
-  const { userData } = useSelector((state) => state.getUserProfile);
-  const isAdmin = userData.role === "Admin";
-  const pathname = window.location.pathname;
+  const pathname = window.location.pathname !== "/manage-profile";
 
-  const HiddenCondition = () => {
-    if (isAdmin) {
-      const pathArray = [
-        "/manage-students-account",
-        "/manage-students-account/:id",
-      ];
-      const hasManageUsers = pathArray.includes(pathname);
-
-      const condition1 =
-        pathname.startsWith("/manage-students-account/") &&
-        pathname !== "/manage-students-account/";
-
-      return hasManageUsers || condition1;
-    } else if (!isAdmin) {
-      const pathArray = ["/manage-students", "/manage-students/:id"];
-      const hasManageUsers = pathArray.includes(pathname);
-      const condition3 =
-        pathname.startsWith("/manage-students/") &&
-        pathname !== "/manage-students/";
-
-      return hasManageUsers || condition3;
-    } else {
-      return false;
-    }
-  };
   return (
     <PaperWrapper
       cookies={cookies}
@@ -151,7 +123,7 @@ const PersonalInfo = ({
               disabled={false}
             />
           </Grid>
-          {HiddenCondition() && (
+          {pathname && (
             <Grid item xs={12} sm={6} md={6}>
               <CustomDateTextField
                 label={"date of birth"}
@@ -161,7 +133,7 @@ const PersonalInfo = ({
               />
             </Grid>
           )}
-          {HiddenCondition() && (
+          {pathname && (
             <Grid item xs={12} sm={6} md={6}>
               <CustomDropDown
                 label={"gender"}

@@ -280,10 +280,6 @@ export const ContainerStyle = {
   paddingRight: "0px !important",
 };
 
-
-export const gradientBackground = (color) =>{
- return `radial-gradient(circle at center, ${color} , ${color})`;
-}
  
 export const BootstrapButton = styled(Button)(({ cookies }) =>({
   boxShadow: "none",

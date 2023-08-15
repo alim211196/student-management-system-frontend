@@ -19,7 +19,7 @@ import { openSnackbar } from "../../app/reducer/Snackbar";
 import { errorHandler } from "../../ApiFunctions/ErrorHandler";
 import ViewCourses from "./SubComp/ViewCourses";
 import DialogBox from "../../Utils/DialogBox";
-import { ContainerStyle, gradientBackground } from "../../Utils/stylingMethods";
+import { ContainerStyle } from "../../Utils/stylingMethods";
 const ManageDepartment = () => {
   const [cookies] = useCookies(["loggedIn", "UserId", "theme"]);
   const [open, setOpen] = React.useState(false);
@@ -261,7 +261,7 @@ const ManageDepartment = () => {
                   color: cookies.theme === "dark" ? "#fff" : "#2C497F",
                   background:
                     cookies.theme === "dark" &&
-                   gradientBackground("#2C497F"),
+                   "#2C497F",
                 }}
                 onClick={handleClickOpen}
               >

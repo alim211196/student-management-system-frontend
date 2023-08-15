@@ -2,7 +2,7 @@ import React, { useState, memo } from "react";
 import { Grid, Paper, Box, Divider, Typography } from "@mui/material";
 import { Settings, PowerSettingsNew } from "@mui/icons-material/";
 import Avatar from "@mui/material/Avatar";
-import { StyledBadge, gradientBackground } from "../../../Utils/stylingMethods";
+import { StyledBadge } from "../../../Utils/stylingMethods";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import { ListItemText, List, ListItem, ListItemAvatar } from "@mui/material";
@@ -10,11 +10,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import DialogBox from "../../../Utils/DialogBox";
 import { fetchData } from "../../../app/reducer/getUserProfile";
-import {
-  CardBorder,
-  Dark00FF,
-  DarkFFF,
-} from "../../../Utils/CommonCookies";
+import { CardBorder, Dark00FF, DarkFFF } from "../../../Utils/CommonCookies";
 const ProfileSection = ({
   removeCookie,
   cookies,
@@ -64,7 +60,7 @@ const ProfileSection = ({
             sx={{
               display: "flex",
               padding: "10px",
-              background: gradientBackground(bgColor),
+              background:bgColor,
               color: "#fff",
               borderTopLeftRadius: "5px",
               borderTopRightRadius: "5px",
@@ -106,50 +102,85 @@ const ProfileSection = ({
             >
               <Box>
                 <ListItem>
-                  <ListItemAvatar>
-                    <StyledBadge
-                      overlap="circular"
-                      anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-                      variant="dot"
-                    >
-                      <Avatar
-                        sx={{
-                          border: `1px solid ${bgColor}`,
-                          width: 60,
-                          height: 60,
-                        }}
-                        src={userData?.profileImage}
-                      />
-                    </StyledBadge>
-                  </ListItemAvatar>
-                  <Box sx={{ pl: 2, pr: 2, pt: 0, pb: 0 }}>
-                    <Typography
+                  <Grid
+                    container
+                    direction="row"
+                    justifyContent="center"
+                    alignItems="center"
+                    spacing={2}
+                  >
+                    <Grid
+                      item
+                      xs={12}
+                      sm={12}
+                      md={3}
                       sx={{
-                        textTransform: "capitalize",
-                        fontSize: "14px",
-                        fontWeight: "bold",
-                        color: DarkFFF(cookies),
+                        display: "flex",
+                        justifyContent: "center",
                       }}
                     >
-                      {userData?.fullName}
-                    </Typography>
-                    <Typography
+                      {" "}
+                      <ListItemAvatar>
+                        <StyledBadge
+                          overlap="circular"
+                          anchorOrigin={{
+                            vertical: "bottom",
+                            horizontal: "right",
+                          }}
+                          variant="dot"
+                        >
+                          <Avatar
+                            sx={{
+                              border: `1px solid ${bgColor}`,
+                              width: 60,
+                              height: 60,
+                            }}
+                            src={userData?.profileImage}
+                          />
+                        </StyledBadge>
+                      </ListItemAvatar>
+                    </Grid>
+                    <Grid
+                      item
+                      xs={12}
+                      sm={12}
+                      md={9}
                       sx={{
-                        fontSize: "13px",
-                        color: DarkFFF(cookies),
+                        display: "flex",
+                        justifyContent: "center",
                       }}
                     >
-                      {userData?.email}
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: "13px",
-                        color: DarkFFF(cookies),
-                      }}
-                    >
-                      {userData?.phone}
-                    </Typography>
-                  </Box>
+                      {" "}
+                      <Box sx={{ pl: 2, pr: 2, pt: 0, pb: 0 }}>
+                        <Typography
+                          sx={{
+                            textTransform: "capitalize",
+                            fontSize: "14px",
+                            fontWeight: "bold",
+                            color: DarkFFF(cookies),
+                          }}
+                        >
+                          {userData?.fullName}
+                        </Typography>
+                        <Typography
+                          sx={{
+                            fontSize: "13px",
+                            color: DarkFFF(cookies),
+                          }}
+                        >
+                          {userData?.email}
+                        </Typography>
+                        <Typography
+                          sx={{
+                            fontSize: "13px",
+                            color: DarkFFF(cookies),
+                          }}
+                        >
+                          {userData?.phone}
+                        </Typography>
+                      </Box>
+                    </Grid>
+                  </Grid>
                 </ListItem>
                 <Divider variant="inset" component="li" />
               </Box>
@@ -158,13 +189,13 @@ const ProfileSection = ({
               <ListItemButton
                 sx={{
                   borderRadius: 1,
-                  background: gradientBackground("#0288D1"),
+                  background:"#0288D1",
                   mb: 1,
                   color: "#fff",
                   transition: "transform 500ms ease",
                   "&:hover": {
                     transform: `scale(1.05)`,
-                    background: gradientBackground("#0288D1"),
+                    background:"#0288D1",
                     mb: 1,
                     color: "#fff",
                   },
@@ -179,12 +210,12 @@ const ProfileSection = ({
               <ListItemButton
                 sx={{
                   borderRadius: 1,
-                  background: gradientBackground("#00796B"),
+                  background:"#00796B",
                   transition: "transform 500ms ease",
                   color: "#fff",
                   "&:hover": {
                     transform: `scale(1.05)`,
-                    background: gradientBackground("#00796B"),
+                    background:"#00796B",
                     color: "#fff",
                   },
                 }}

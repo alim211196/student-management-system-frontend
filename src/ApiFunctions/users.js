@@ -195,3 +195,23 @@ export const UPDATE_PASSWORD = (id, currentPassword, newPassword) => {
       });
   });
 };
+
+
+
+//send birthday wishes
+export const SEND_WISHES = (id, formData) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .post(`${process.env.REACT_APP_API_URL}${api.sendWishes}${id}`, formData)
+      .then((res) => {
+        if (res.status === 201) {
+          resolve(res);
+        } else {
+          reject(res.error);
+        }
+      })
+      .catch((err) => {
+        reject(err.response);
+      });
+  });
+};

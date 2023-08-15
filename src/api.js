@@ -44,6 +44,9 @@ const api = {
   //reset password
   resetPassword: "/user/reset-password/",
 
+  //send wishes
+  sendWishes : "/user/send-wishes/",
+
   //post comment
   addComment: "/students/contact/add",
 

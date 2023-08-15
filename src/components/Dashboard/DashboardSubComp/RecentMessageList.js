@@ -13,7 +13,6 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import { CardBorder, Dark00FF, DarkFFF } from "../../../Utils/CommonCookies";
-import { gradientBackground } from "../../../Utils/stylingMethods";
 const RecentMessageList = ({
   cookies,
   icon,
@@ -41,7 +40,7 @@ const RecentMessageList = ({
           borderTopRightRadius: "5px",
           transition: "transform 500ms ease",
           "&:hover": {
-            transform: `scale(1.05)`,
+            transform: `scale(1.025)`,
           },
         }}
       >
@@ -49,7 +48,7 @@ const RecentMessageList = ({
           sx={{
             display: "flex",
             padding: "10px",
-            background: gradientBackground(bgColor),
+            background: bgColor,
             color: "#fff",
             borderTopLeftRadius: "5px",
             borderTopRightRadius: "5px",

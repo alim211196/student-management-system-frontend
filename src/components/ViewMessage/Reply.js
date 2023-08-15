@@ -3,7 +3,6 @@ import { Button, Dialog, DialogActions, Grid } from "@mui/material";
 import CustomTextField from "../../Utils/CustomTextField";
 import PaperWrapper from "../../Utils/PaperWrapper";
 import CustomMultilineTextField from "../../Utils/CustomMultilineTextField";
-import { gradientBackground } from "../../Utils/stylingMethods";
 import { LoadingButton } from "@mui/lab";
 const Reply = ({
   cookies,
@@ -65,13 +64,13 @@ const Reply = ({
             variant="contained"
             onClick={handleClose}
             sx={{
-              background: gradientBackground("#DC143C"),
+              background:"#DC143C",
               color: "#fff",
               borderColor: "#fff",
               ":hover": {
                 color: "#fff",
                 borderColor: "#fff",
-                background: gradientBackground("#DC143C"),
+                background: "#DC143C",
               },
             }}
           >
@@ -81,14 +80,14 @@ const Reply = ({
             type="submit"
             variant={"contained"}
             sx={{
-              background: gradientBackground("#2C497F"),
+              background:"#2C497F",
               color: "#fff",
               borderColor: "#fff",
               minHeight: 32,
               ":hover": {
                 color: "#fff",
                 borderColor: "#fff",
-                background: gradientBackground("#2C497F"),
+                background:"#2C497F",
               },
             }}
             disabled={loading}

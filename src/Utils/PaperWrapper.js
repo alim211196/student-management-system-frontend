@@ -1,7 +1,6 @@
 import { Paper, Typography, Box } from "@mui/material";
 import { CardBorder, Dark00FF } from "./CommonCookies";
 import React, { memo } from "react";
-import { gradientBackground } from "./stylingMethods";
 
 const PaperWrapper = ({ children, cookies, boxBGColor, icon, text }) => {
   const MarginBottom = ()=>{
@@ -28,7 +27,7 @@ const PaperWrapper = ({ children, cookies, boxBGColor, icon, text }) => {
           display: "flex",
           alignItems:'center',
           padding: "5px",
-          background: gradientBackground(boxBGColor),
+          background:boxBGColor,
           color: "#fff",
           borderTopLeftRadius: "5px",
           borderTopRightRadius: "5px",

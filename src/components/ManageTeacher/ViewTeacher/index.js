@@ -31,6 +31,8 @@ const ViewTeachers = () => {
     fullName: "",
     email: "",
     phone: "",
+    dob: "",
+    gender: "male",
     course: "bca",
     courseYear: "first year",
     address: "",
@@ -52,10 +54,14 @@ const ViewTeachers = () => {
       .then((res) => {
         if (id === res.data._id) {
           const data = res?.data;
+          const date = new Date(data?.dob);
+          const formattedDate = date?.toISOString()?.substring(0, 10);
           setFormData({
             fullName: data?.fullName,
             email: data?.email,
             phone: data?.phone,
+            dob: formattedDate,
+            gender: data?.gender,
             course: data?.course,
             courseYear: data?.courseYear,
             address: data?.address,

@@ -16,11 +16,15 @@ const AddTeacher = ({ getTeacherData }) => {
   const loading = useSelector((state) => state.loading);
   const dispatch = useDispatch();
   const [selectedFile, setSelectedFile] = useState(null);
-
+const inputDate = new Date();
+const isoDate = inputDate.toISOString();
+const formattedDate = isoDate.slice(0, 10);
   const DataObj = {
     fullName: "",
     email: "",
     phone: "",
+    dob: formattedDate,
+    gender: "male",
     course: "bca",
     courseYear: "first year",
     address: "",

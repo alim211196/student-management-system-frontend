@@ -4,7 +4,6 @@ import CustomTextField from "../../../Utils/CustomTextField";
 import PaperWrapper from "../../../Utils/PaperWrapper";
 import CustomDropDown from "../../../Utils/CustomDropDown";
 import { LoadingButton } from "@mui/lab";
-import { gradientBackground } from "../../../Utils/stylingMethods";
 const AddCourses = ({
   cookies,
   formData,
@@ -66,13 +65,13 @@ const AddCourses = ({
             variant="contained"
             onClick={handleClose}
             sx={{
-              background: gradientBackground("#DC143C"),
+              background:"#DC143C",
               color: "#fff",
               borderColor: "#fff",
               ":hover": {
                 color: "#fff",
                 borderColor: "#fff",
-                background: gradientBackground("#DC143C"),
+                background:"#DC143C",
               },
             }}
           >
@@ -82,14 +81,14 @@ const AddCourses = ({
             type="submit"
             variant={"contained"}
             sx={{
-              background: gradientBackground("#2C497F"),
+              background:"#2C497F",
               color: "#fff",
               borderColor: "#fff",
               minHeight: 32,
               ":hover": {
                 color: "#fff",
                 borderColor: "#fff",
-                background: gradientBackground("#2C497F"),
+                background:"#2C497F",
               },
             }}
             disabled={loading}

@@ -7,6 +7,8 @@ import {
   Divider,
   CircularProgress,
   useMediaQuery,
+  Tooltip,
+  IconButton,
 } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import ListItemText from "@mui/material/ListItemText";
@@ -19,16 +21,43 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import { GET_BIRTHDAY } from "../../../ApiFunctions/students";
 import { errorHandler } from "../../../ApiFunctions/ErrorHandler";
-import { CardBorder, Dark00FF, DarkFFF } from "../../../Utils/CommonCookies";
-import { gradientBackground } from "../../../Utils/stylingMethods";
+import {
+  CardBorder,
+  Dark00FF,
+  DarkFFF,
+  IconColor,
+} from "../../../Utils/CommonCookies";
+import CakeIcon from "@mui/icons-material/Cake";
+import { SEND_WISHES } from "../../../ApiFunctions/users";
+import { openSnackbar } from "../../../app/reducer/Snackbar";
+import DialogBox from "../../../Utils/DialogBox";
+import { useDispatch } from "react-redux";
 const BirthDayList = ({ cookies, icon, title, bgColor, userData }) => {
   const matches = useMediaQuery("(min-width:900px)");
   const [value, setValue] = useState("student");
   const [studentBirthday, setStudentBirthday] = useState([]);
   const [teacherBirthday, setTeacherBirthday] = useState([]);
   const [loading, setLoading] = useState(true);
+  const isAdmin = userData.role === "Admin";
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [ID, setID] = useState("");
+  const dispatch = useDispatch();
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  };
+
+  const getBirthday = () => {
+    setLoading(true);
+    GET_BIRTHDAY()
+      .then((res) => {
+        setLoading(false);
+        setStudentBirthday(res?.data?.studentsBirthday);
+        setTeacherBirthday(res?.data?.teachersBirthday);
+      })
+      .catch((err) => {
+        setLoading(false);
+        errorHandler(err?.status, err?.data);
+      });
   };
   useEffect(() => {
     setLoading(true);
@@ -44,15 +73,53 @@ const BirthDayList = ({ cookies, icon, title, bgColor, userData }) => {
       });
   }, []);
 
+  const handleClose = () => {
+    setDialogOpen(false);
+    setID("");
+  };
+
+  const handleWished = (id) => {
+    console.log(id);
+    setDialogOpen(true);
+    setID(id);
+  };
+
+  const handleSendWishes = () => {
+    const AllUser = [...studentBirthday, ...teacherBirthday];
+    const filteredDetails = AllUser.filter((i) => i?._id === ID);
+
+    const formData = {
+      fullName: filteredDetails[0]?.fullName,
+      email: filteredDetails[0]?.email,
+      dob: filteredDetails[0]?.dob,
+    };
+    const _id = filteredDetails[0]?._id;
+    SEND_WISHES(_id, formData)
+      .then((res) => {
+        getBirthday();
+        dispatch(
+          openSnackbar({
+            message: res.data,
+            severity: "success",
+          })
+        );
+        handleClose();
+      })
+      .catch((err) => {
+        errorHandler(err?.status, err?.data, dispatch);
+      });
+  };
+
   const CommonUI = ({ data, cookies }) => {
-    if (
-      data &&
-      data.filter(
-        (i) =>
-          i?.course === userData?.course &&
-          i?.courseYear === userData?.courseYear
-      ).length > 0
-    ) {
+    const filteredData = isAdmin
+      ? data
+      : data?.filter(
+          (i) =>
+            i?.course === userData?.course &&
+            i?.courseYear === userData?.courseYear
+        );
+
+    if (filteredData.length > 0) {
       return (
         <Paper
           elevation={0}
@@ -62,6 +129,7 @@ const BirthDayList = ({ cookies, icon, title, bgColor, userData }) => {
             paddingBottom: "10px",
             background: Dark00FF(cookies),
             border: CardBorder(cookies, bgColor),
+            borderTop: "none !important",
             borderBottomLeftRadius: "5px",
             borderBottomRightRadius: "5px",
             overflowY: "scroll",
@@ -85,15 +153,16 @@ const BirthDayList = ({ cookies, icon, title, bgColor, userData }) => {
               width: "100%",
             }}
           >
-            {data
-              .filter(
-                (i) =>
-                  i?.course === userData?.course &&
-                  i?.courseYear === userData?.courseYear
-              )
-              .map((item, index) => {
-                return (
-                  <Box key={index}>
+            {filteredData?.map((item, index) => {
+              return (
+                <Box key={index}>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                    }}
+                  >
                     <ListItem>
                       <ListItemAvatar>
                         <Avatar
@@ -126,10 +195,22 @@ const BirthDayList = ({ cookies, icon, title, bgColor, userData }) => {
                         }
                       />
                     </ListItem>
-                    <Divider variant="inset" component="li" />
+                    <Tooltip title="Send Wishes" placement="top">
+                      <IconButton
+                        onClick={() => handleWished(item?._id)}
+                        disabled={item?.isWished===true}
+                      >
+                        <CakeIcon
+                          sx={{ fontSize: 20, color: IconColor(cookies) }}
+                        />
+                      </IconButton>
+                    </Tooltip>
                   </Box>
-                );
-              })}
+
+                  <Divider variant="inset" component="li" />
+                </Box>
+              );
+            })}
           </List>
         </Paper>
       );
@@ -146,9 +227,9 @@ const BirthDayList = ({ cookies, icon, title, bgColor, userData }) => {
             justifyContent: "center",
             background: Dark00FF(cookies),
             border: CardBorder(cookies, bgColor),
+            borderTop: "none !important",
             borderBottomLeftRadius: "5px",
             borderBottomRightRadius: "5px",
-            borderTop: "none",
           }}
         >
           {" "}
@@ -165,83 +246,91 @@ const BirthDayList = ({ cookies, icon, title, bgColor, userData }) => {
   };
 
   return (
-    <Grid item xs={12} sm={6} md={4} lg={4}>
-      <Box
-        sx={{
-          borderTopLeftRadius: "5px",
-          borderTopRightRadius: "5px",
-          transition: "transform 500ms ease",
-          "&:hover": {
-            transform: `scale(1.05)`,
-          },
-        }}
-      >
+    <>
+      <Grid item xs={12} sm={6} md={4} lg={4}>
         <Box
           sx={{
-            display: "flex",
-            padding: "10px",
-            background: gradientBackground(bgColor),
-            color: "#fff",
             borderTopLeftRadius: "5px",
             borderTopRightRadius: "5px",
+            transition: "transform 500ms ease",
+            "&:hover": {
+              transform: `scale(1.025)`,
+            },
           }}
         >
-          {icon}
-          <Typography>{title}</Typography>
-        </Box>
-        <Box sx={{ width: "100%", typography: "body1" }}>
-          <TabContext value={value}>
-            <Box
-              sx={{
-                borderBottom: 1,
-                borderColor: "divider",
-                background: Dark00FF(cookies),
-              }}
-            >
-              <TabList
-                onChange={handleChange}
+          <Box
+            sx={{
+              display: "flex",
+              padding: "10px",
+              background:bgColor,
+              color: "#fff",
+              borderTopLeftRadius: "5px",
+              borderTopRightRadius: "5px",
+            }}
+          >
+            {icon}
+            <Typography>{title}</Typography>
+          </Box>
+          <Box sx={{ width: "100%", typography: "body1" }}>
+            <TabContext value={value}>
+              <Box
                 sx={{
-                  "& .MuiTabs-indicator": {
-                    background: gradientBackground(bgColor),
-                  },
+                  borderBottom: 1,
+                  borderColor: "divider",
+                  background: Dark00FF(cookies),
                 }}
               >
-                <Tab
-                  label="Student"
-                  value="student"
+                <TabList
+                  onChange={handleChange}
                   sx={{
-                    textTransform: "capitalize",
-                    color: DarkFFF(cookies),
-                    background: Dark00FF(cookies),
-                    "&.Mui-selected": {
-                      color: cookies.theme === "dark" && "#fff",
+                    "& .MuiTabs-indicator": {
+                      background:bgColor,
                     },
                   }}
-                />
-                <Tab
-                  label="Teacher"
-                  value="teacher"
-                  sx={{
-                    textTransform: "capitalize",
-                    color: DarkFFF(cookies),
-                    background: Dark00FF(cookies),
-                    "&.Mui-selected": {
-                      color: cookies.theme === "dark" && "#fff",
-                    },
-                  }}
-                />
-              </TabList>
-            </Box>
-            <TabPanel value="student" sx={{ p: 0 }}>
-              <CommonUI data={studentBirthday} cookies={cookies} />
-            </TabPanel>
-            <TabPanel value="teacher" sx={{ p: 0 }}>
-              <CommonUI data={teacherBirthday} cookies={cookies} />
-            </TabPanel>
-          </TabContext>
+                >
+                  <Tab
+                    label="Student"
+                    value="student"
+                    sx={{
+                      textTransform: "capitalize",
+                      color: DarkFFF(cookies),
+                      background: Dark00FF(cookies),
+                      "&.Mui-selected": {
+                        color: cookies.theme === "dark" && "#fff",
+                      },
+                    }}
+                  />
+                  <Tab
+                    label="Teacher"
+                    value="teacher"
+                    sx={{
+                      textTransform: "capitalize",
+                      color: DarkFFF(cookies),
+                      background: Dark00FF(cookies),
+                      "&.Mui-selected": {
+                        color: cookies.theme === "dark" && "#fff",
+                      },
+                    }}
+                  />
+                </TabList>
+              </Box>
+              <TabPanel value="student" sx={{ p: 0 }}>
+                <CommonUI data={studentBirthday} cookies={cookies} />
+              </TabPanel>
+              <TabPanel value="teacher" sx={{ p: 0 }}>
+                <CommonUI data={teacherBirthday} cookies={cookies} />
+              </TabPanel>
+            </TabContext>
+          </Box>
         </Box>
-      </Box>
-    </Grid>
+      </Grid>
+      <DialogBox
+        open={dialogOpen}
+        handleClose={handleClose}
+        handleChange={handleSendWishes}
+        text={"Are your sure you want to wish this person ?"}
+      />
+    </>
   );
 };
 
