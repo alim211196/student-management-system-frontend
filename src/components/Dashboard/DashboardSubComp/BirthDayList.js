@@ -195,16 +195,18 @@ const BirthDayList = ({ cookies, icon, title, bgColor, userData }) => {
                         }
                       />
                     </ListItem>
-                    <Tooltip title="Send Wishes" placement="top">
-                      <IconButton
-                        onClick={() => handleWished(item?._id)}
-                        disabled={item?.isWished===true}
-                      >
-                        <CakeIcon
-                          sx={{ fontSize: 20, color: IconColor(cookies) }}
-                        />
-                      </IconButton>
-                    </Tooltip>
+                    {isAdmin && (
+                      <Tooltip title="Send Wishes" placement="top">
+                        <IconButton
+                          onClick={() => handleWished(item?._id)}
+                          disabled={item?.isWished === true}
+                        >
+                          <CakeIcon
+                            sx={{ fontSize: 20, color: IconColor(cookies) }}
+                          />
+                        </IconButton>
+                      </Tooltip>
+                    )}
                   </Box>
 
                   <Divider variant="inset" component="li" />
