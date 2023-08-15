@@ -79,7 +79,6 @@ const BirthDayList = ({ cookies, icon, title, bgColor, userData }) => {
   };
 
   const handleWished = (id) => {
-    console.log(id);
     setDialogOpen(true);
     setID(id);
   };
