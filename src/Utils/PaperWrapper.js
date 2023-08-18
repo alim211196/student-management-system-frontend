@@ -20,14 +20,18 @@ const PaperWrapper = ({ children, cookies, boxBGColor, icon, text }) => {
         border: CardBorder(cookies, boxBGColor),
         padding: "0px !important",
         mt: text ? 0 : 1,
+        transition: "transform 500ms ease",
+        "&:hover": {
+          transform: `scale(1.01)`,
+        },
       }}
     >
       <Box
         sx={{
           display: "flex",
-          alignItems:'center',
+          alignItems: "center",
           padding: "5px",
-          background:boxBGColor,
+          background: boxBGColor,
           color: "#fff",
           borderTopLeftRadius: "5px",
           borderTopRightRadius: "5px",
