@@ -22,9 +22,10 @@ import { errorHandler } from "../../ApiFunctions/ErrorHandler";
 import BirthDayList from "./DashboardSubComp/BirthDayList";
 import TitleBox from "../../Utils/TitleBox";
 import { useCookies } from "react-cookie";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ContainerStyle } from "../../Utils/stylingMethods";
 const Dashboard = () => {
+  const dispatch = useDispatch();
   const matches = useMediaQuery("(min-width:600px)");
   const [resources, setResources] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -53,7 +54,7 @@ const Dashboard = () => {
       })
       .catch((err) => {
         setLoading(false);
-        errorHandler(err?.status, err?.data);
+        errorHandler(err?.status, err?.data, dispatch);
       });
     GET_RECENT_ENTRY()
       .then((res) => {
@@ -64,9 +65,9 @@ const Dashboard = () => {
       })
       .catch((err) => {
         setLoading(false);
-        errorHandler(err?.status, err?.data);
+        errorHandler(err?.status, err?.data, dispatch);
       });
-  }, []);
+  }, [dispatch]);
   return (
     <CustomTheme>
       <MiniDrawer>
@@ -74,7 +75,7 @@ const Dashboard = () => {
           <TitleBox
             icon={
               <DisplaySettings
-                sx={{ color: cookies.theme === "dark" ? "#fff" : "#2C497F" }}
+                sx={{ color: cookies.theme === "dark" ? "#fff" : "#000" }}
               />
             }
             text={"Dashboard"}

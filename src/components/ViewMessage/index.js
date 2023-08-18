@@ -162,7 +162,7 @@ const ViewMessage = () => {
           <TitleBox
             icon={
               <Sms
-                sx={{ color: cookies.theme === "dark" ? "#fff" : "#2C497F" }}
+                sx={{ color: cookies.theme === "dark" ? "#fff" : "#000" }}
               />
             }
             text={"Manage Queries"}

@@ -110,7 +110,7 @@ const ManageTeacher = () => {
           <TitleBox
             icon={
               <People
-                sx={{ color: cookies.theme === "dark" ? "#fff" : "#2C497F" }}
+                sx={{ color: cookies.theme === "dark" ? "#fff" : "#000" }}
               />
             }
             text={"Manage Teachers"}
@@ -152,9 +152,9 @@ const ManageTeacher = () => {
                     textTransform: "capitalize",
                     color: cookies.theme === "dark" && "#fff",
                     "&.Mui-selected": {
-                      color: cookies.theme === "dark" ? "#fff" : "#2C497F",
+                      color: cookies.theme === "dark" ? "#fff" : "#000",
                       background: cookies.theme === "dark" && "#292929",
-                      border: cookies.theme === "dark" && "1px solid #2C497F",
+                      border: cookies.theme === "dark" && "1px solid #000",
                       borderRadius: "5px",
                     },
                   }}
@@ -177,9 +177,9 @@ const ManageTeacher = () => {
                     textTransform: "capitalize",
                     color: cookies.theme === "dark" && "#fff",
                     "&.Mui-selected": {
-                      color: cookies.theme === "dark" ? "#fff" : "#2C497F",
+                      color: cookies.theme === "dark" ? "#fff" : "#000",
                       background: cookies.theme === "dark" && "#292929",
-                      border: cookies.theme === "dark" && "1px solid #2C497F",
+                      border: cookies.theme === "dark" && "1px solid #000",
                       borderRadius: "5px",
                     },
                   }}

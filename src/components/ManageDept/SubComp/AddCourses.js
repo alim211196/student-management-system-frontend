@@ -34,7 +34,7 @@ const AddCourses = ({
     >
       <PaperWrapper
         cookies={cookies}
-        boxBGColor={"#2C497F"}
+        boxBGColor={"#000"}
         text={courseCondition}
       >
         <Grid container spacing={2} sx={{ p: 2, mb: 1 }}>
@@ -81,14 +81,14 @@ const AddCourses = ({
             type="submit"
             variant={"contained"}
             sx={{
-              background:"#2C497F",
+              background:"#000",
               color: "#fff",
               borderColor: "#fff",
               minHeight: 32,
               ":hover": {
                 color: "#fff",
                 borderColor: "#fff",
-                background:"#2C497F",
+                background:"#000",
               },
             }}
             disabled={loading}

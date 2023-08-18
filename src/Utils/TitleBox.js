@@ -4,7 +4,6 @@ import {
   Grid,
   Paper,
   Box,
-  Button,
   useMediaQuery,
   Tooltip,
   IconButton,
@@ -103,6 +102,10 @@ const TitleBox = ({ icon, text, data, fileName, id }) => {
         mb: 2,
         mt: 1,
         background: Dark00FF(cookies),
+        transition: "transform 500ms ease",
+        "&:hover": {
+          transform: `scale(1.01)`,
+        },
       }}
     >
       <Grid
@@ -134,7 +137,7 @@ const TitleBox = ({ icon, text, data, fileName, id }) => {
             {icon}
             <Typography
               sx={{
-                color: cookies.theme === "dark" ? "#fff" : "#2C497F",
+                color: cookies.theme === "dark" ? "#fff" : "#000",
                 fontSize: matches ? "20px" : "18px",
                 ml: 1,
               }}
@@ -151,25 +154,15 @@ const TitleBox = ({ icon, text, data, fileName, id }) => {
             md={gridCondition() ? 2 : 6}
             sx={{ display: "flex", justifyContent: "flex-end" }}
           >
-            {matches ? (
-              <Button
-                variant="text"
-                startIcon={<ArrowBackIcon />}
+            <Tooltip title={"Back"} placement="left">
+              <IconButton
+                color="primary"
+                aria-label="Back"
                 onClick={() => BackFunction()}
               >
-                Back
-              </Button>
-            ) : (
-              <Tooltip title={"Back"} placement="top">
-                <IconButton
-                  color="primary"
-                  aria-label="Back"
-                  onClick={() => BackFunction()}
-                >
-                  <ArrowBackIcon />
-                </IconButton>
-              </Tooltip>
-            )}
+                <ArrowBackIcon />
+              </IconButton>
+            </Tooltip>
           </Grid>
         )}
         {ExportBtnCondition() && (

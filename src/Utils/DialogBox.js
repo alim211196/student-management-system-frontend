@@ -46,9 +46,9 @@ const DialogBox = ({ open, handleClose, handleChange,text }) => {
             <Button
               onClick={() => handleChange()}
               sx={{
-                background: "#2C497F",
+                background: "#000",
                 ":hover": {
-                  background: "#2C497F !important",
+                  background: "#000 !important",
                 },
               }}
             >

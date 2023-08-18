@@ -238,10 +238,10 @@ const AddAttendance = ({
                 minWidth: "120px",
                 textTransform: "capitalize",
                 color: "#fff",
-                background:"#2C497F",
+                background:"#000",
                 "&:hover": {
                   color: "#fff",
-                  background:"#2C497F",
+                  background:"#000",
                 },
               }}
               onClick={handleSubmit}

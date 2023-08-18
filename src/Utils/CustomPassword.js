@@ -23,7 +23,7 @@ const CustomPassword = ({
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-    const path = ["/sign_in", "/forgot-password", "/reset-password"].includes(
+    const path = ["/login", "/forgot-password", "/reset-password"].includes(
       window.location.pathname
     );
   return (

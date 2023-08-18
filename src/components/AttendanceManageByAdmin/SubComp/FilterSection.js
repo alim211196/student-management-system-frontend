@@ -9,6 +9,7 @@ import { errorHandler } from "../../../ApiFunctions/ErrorHandler";
 import Fab from "@mui/material/Fab";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import FilterAltOffIcon from "@mui/icons-material/FilterAltOff";
+import { useDispatch } from "react-redux";
 const FilterSection = ({
   cookies,
   formData,
@@ -16,6 +17,7 @@ const FilterSection = ({
   filterFlag,
   setFilterFlag,
 }) => {
+  const dispatch = useDispatch();
   const [Courses, setCourses] = useState([]);
   useEffect(() => {
     GET_COURSES()
@@ -23,7 +25,7 @@ const FilterSection = ({
         setCourses(res.data);
       })
       .catch((err) => {
-        errorHandler(err?.status, err?.data);
+        errorHandler(err?.status, err?.data, dispatch);
       });
   }, []);
 
@@ -43,13 +45,12 @@ const FilterSection = ({
     top: "140px",
     right: "40px",
     borderRadius: "50%",
-    background:"#2C497F",
+    background: "#000",
     color: "white",
     width: "40px",
     height: "40px",
     transition: "all 0.3s ease",
   };
-
 
   return (
     <CustomTheme>
@@ -105,7 +106,10 @@ const FilterSection = ({
           filterFlag ? setFilterFlag(false) : setFilterFlag(true);
         }}
       >
-        <Tooltip title={filterFlag ? "Filter off" : "Filter on"} placement="right">
+        <Tooltip
+          title={filterFlag ? "Filter off" : "Filter on"}
+          placement="right"
+        >
           {filterFlag ? <FilterAltOffIcon /> : <FilterAltIcon />}
         </Tooltip>
       </Fab>

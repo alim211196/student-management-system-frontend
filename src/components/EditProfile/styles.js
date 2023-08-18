@@ -8,7 +8,7 @@ export const ProfileStyle = (cookies) => {
     },
     editProfileBtn = {
       marginTop: "10px",
-      background: "#2C497F",
+      background: "#000",
       width: "100%",
       textTransform: "capitalize",
     },

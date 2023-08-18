@@ -70,7 +70,7 @@ export default function ResetPassword() {
             severity: "success",
           })
         );
-        navigate("/sign_in");
+        navigate("/login");
         dispatch(setLoading(false));
       })
       .catch((err) => {

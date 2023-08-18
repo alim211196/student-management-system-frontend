@@ -62,7 +62,7 @@ const RecentMessageList = ({
             elevation={0}
             sx={{
               borderRadius: 0,
-              height: "280px",
+              height: "273px",
               paddingBottom: "10px",
               borderBottomLeftRadius: "5px",
               borderBottomRightRadius: "5px",
@@ -137,7 +137,7 @@ const RecentMessageList = ({
             elevation={0}
             sx={{
               borderRadius: 0,
-              height: "280px",
+              height: "273px",
               paddingBottom: "10px",
               display: "flex",
               alignItems: "center",

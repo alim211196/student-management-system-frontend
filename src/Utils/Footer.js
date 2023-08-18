@@ -14,7 +14,7 @@ function Copyright({ cookies, navigate }) {
       {"Copyright © "}
       <Link
         color="inherit"
-        onClick={() => navigate("/sign_in")}
+        onClick={() => navigate("/login")}
         sx={{ cursor: "pointer" }}
       >
         StudentsTracker
@@ -32,7 +32,7 @@ const Footer = ({ cookies }) => {
         background: Dark004F(cookies),
         p: "30px 0px",
         mt: "-20px",
-        borderTop: CardBorder(cookies, "#2C497F"),
+        borderTop: CardBorder(cookies, "#000"),
         zIndex: 0,
         position: "relative",
         color: DarkFFF(cookies),

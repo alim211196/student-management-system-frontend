@@ -19,9 +19,9 @@ export const DashboardStyle = (matches) => {
       top: 70,
       cursor: "pointer",
       borderRadius: "50%",
-      background: '#2C497F',
+      background: '#000',
       "&:hover": {
-        background: "#2C497F",
+        background: "#000",
       },
     },
     iconBtnAvatar = {

@@ -14,7 +14,7 @@ import {
 const CustomTheme = ({ children }) => {
   const [cookies] = useCookies(["theme"]);
 
-  const path = ["/sign_in", "/forgot-password", "/reset-password"].includes(
+  const path = ["/login", "/forgot-password", "/reset-password"].includes(
     window.location.pathname
   );
 
@@ -34,10 +34,10 @@ const CustomTheme = ({ children }) => {
   const theme = createTheme({
     palette: {
       primary: {
-        main: "#2C497F",
+        main: "#000",
       },
       secondary: {
-        main: "#2C497F",
+        main: "#000",
       },
     },
     components: {
@@ -185,9 +185,9 @@ const CustomTheme = ({ children }) => {
       MuiTooltip: {
         styleOverrides: {
           tooltip: {
-            color: "#2C497F",
+            color: "#000",
             backgroundColor: "#fff",
-            border: "1px solid #2C497F",
+            border: "1px solid #000",
             fontWeight: "bolder",
           },
         },
@@ -201,10 +201,13 @@ const CustomTheme = ({ children }) => {
             textTransform: "uppercase",
             cursor: "pointer",
             border: "none",
-            background: "#2C497F",
+            background: "#000",
             borderRadius: 2,
             "&:hover": {
-              background: "#2C497F",
+              background: "#000",
+            },
+            "&:disabled": {
+              background: "#000",
             },
           },
         },
@@ -218,9 +221,9 @@ const CustomTheme = ({ children }) => {
             textTransform: "uppercase",
             cursor: "pointer",
             borderRadius: 2,
-            background: "#2C497F",
+            background: "#000",
             "&:hover": {
-              background: "#2C497F",
+              background: "#000",
             },
           },
         },

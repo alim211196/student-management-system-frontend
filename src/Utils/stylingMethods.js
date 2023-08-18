@@ -288,8 +288,8 @@ export const BootstrapButton = styled(Button)(({ cookies }) =>({
   padding: "5px",
   minWidth:'40px !important',
   border: "1px solid",
-  background: cookies.theme === "dark" ? "#000" : "#2C497F",
-  borderColor: cookies.theme === "dark" ? "#2C497F" : "#000",
+  background: "#000",
+  borderColor: "#000",
   "&:hover": {
     backgroundColor: "#0069d9",
     borderColor: "#0062cc",

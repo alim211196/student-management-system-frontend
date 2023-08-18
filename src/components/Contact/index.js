@@ -76,9 +76,9 @@ const Contact = ({ Home, cookies }) => {
         setCourses(res.data);
       })
       .catch((err) => {
-        errorHandler(err?.status, err?.data);
+        errorHandler(err?.status, err?.data, dispatch);
       });
-  }, []);
+  }, [dispatch]);
 
   const coursesName = Courses.filter((i) => i.active === true).map(
     ({ course }) => ({
@@ -103,7 +103,7 @@ const Contact = ({ Home, cookies }) => {
             position: "relative",
             borderRadius: "5px",
             background: Dark00FF(cookies),
-            border: CardBorder(cookies, "#2C497F"),
+            border: CardBorder(cookies, "#000"),
           }}
         >
           <Grid container component="main" sx={{ borderRadius: "5px" }}>

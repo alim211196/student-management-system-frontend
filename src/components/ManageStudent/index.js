@@ -123,7 +123,7 @@ const ManageStudent = () => {
           <TitleBox
             icon={
               <People
-                sx={{ color: cookies.theme === "dark" ? "#fff" : "#2C497F" }}
+                sx={{ color: cookies.theme === "dark" ? "#fff" : "#000" }}
               />
             }
             text={"Manage Students"}
@@ -159,8 +159,8 @@ const ManageStudent = () => {
                     startIcon={<ArrowBack />}
                     sx={{
                       textTransform: "capitalize",
-                      color: cookies.theme === "dark" ? "#fff" : "#2C497F",
-                      background: cookies.theme === "dark" && "#2C497F",
+                      color: cookies.theme === "dark" ? "#fff" : "#000",
+                      background: cookies.theme === "dark" && "#000",
                     }}
                     onClick={backFun}
                   >
@@ -190,10 +190,10 @@ const ManageStudent = () => {
                         textTransform: "capitalize",
                         color: cookies.theme === "dark" && "#fff",
                         "&.Mui-selected": {
-                          color: cookies.theme === "dark" ? "#fff" : "#2C497F",
+                          color: cookies.theme === "dark" ? "#fff" : "#000",
                           background: cookies.theme === "dark" && "#292929",
                           border:
-                            cookies.theme === "dark" && "1px solid #2C497F",
+                            cookies.theme === "dark" && "1px solid #000",
                           borderRadius: "5px",
                         },
                       }}
@@ -216,10 +216,10 @@ const ManageStudent = () => {
                         textTransform: "capitalize",
                         color: cookies.theme === "dark" && "#fff",
                         "&.Mui-selected": {
-                          color: cookies.theme === "dark" ? "#fff" : "#2C497F",
+                          color: cookies.theme === "dark" ? "#fff" : "#000",
                           background: cookies.theme === "dark" && "#292929",
                           border:
-                            cookies.theme === "dark" && "1px solid #2C497F",
+                            cookies.theme === "dark" && "1px solid #000",
                           borderRadius: "5px",
                         },
                       }}

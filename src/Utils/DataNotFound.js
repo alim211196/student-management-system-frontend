@@ -22,7 +22,7 @@ const DataNotFound = () => {
       ) : (
         <>
           {" "}
-          <Info sx={{ fontSize: 60, color: "#2C497F" }} />
+          <Info sx={{ fontSize: 60, color: "#000" }} />
           <Typography
             variant="h5"
             align="center"

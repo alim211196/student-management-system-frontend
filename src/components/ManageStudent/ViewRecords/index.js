@@ -148,7 +148,7 @@ const ViewRecords = ({getStudentData }) => {
           <TitleBox
             icon={
               <PersonSearch
-                sx={{ color: cookies.theme === "dark" ? "#fff" : "#2C497F" }}
+                sx={{ color: cookies.theme === "dark" ? "#fff" : "#000" }}
               />
             }
             text={"View Student"}

@@ -14,7 +14,7 @@ const CustomTextField = ({
   admin,
 }) => {
   const [cookies] = useCookies(["theme"]);
-    const path = ["/sign_in", "/forgot-password", "/reset-password"].includes(
+    const path = ["/login", "/forgot-password", "/reset-password"].includes(
       window.location.pathname
     );
   const styleForTextFiled = () => {

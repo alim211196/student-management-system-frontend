@@ -86,7 +86,7 @@ const RouteIndex = () => {
           )}
         </Route>
         <Route path="/" element={<PublicRoute />}>
-          <Route path="/sign_in" element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
         </Route>

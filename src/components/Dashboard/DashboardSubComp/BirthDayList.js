@@ -56,7 +56,7 @@ const BirthDayList = ({ cookies, icon, title, bgColor, userData }) => {
       })
       .catch((err) => {
         setLoading(false);
-        errorHandler(err?.status, err?.data);
+        errorHandler(err?.status, err?.data, dispatch);
       });
   };
   useEffect(() => {
@@ -69,9 +69,9 @@ const BirthDayList = ({ cookies, icon, title, bgColor, userData }) => {
       })
       .catch((err) => {
         setLoading(false);
-        errorHandler(err?.status, err?.data);
+        errorHandler(err?.status, err?.data, dispatch);
       });
-  }, []);
+  }, [dispatch]);
 
   const handleClose = () => {
     setDialogOpen(false);
@@ -124,7 +124,7 @@ const BirthDayList = ({ cookies, icon, title, bgColor, userData }) => {
           elevation={0}
           sx={{
             borderRadius: 0,
-            height: matches ? "231px" : "182px",
+            height: matches ? "224px" : "182px",
             paddingBottom: "10px",
             background: Dark00FF(cookies),
             border: CardBorder(cookies, bgColor),
@@ -149,6 +149,7 @@ const BirthDayList = ({ cookies, icon, title, bgColor, userData }) => {
         >
           <List
             sx={{
+              pt:0,
               width: "100%",
             }}
           >
@@ -221,7 +222,7 @@ const BirthDayList = ({ cookies, icon, title, bgColor, userData }) => {
           elevation={0}
           sx={{
             borderRadius: 0,
-            height: matches ? "231px" : "182px",
+            height: matches ? "224px" : "182px",
             paddingBottom: "10px",
             display: "flex",
             alignItems: "center",

@@ -69,7 +69,7 @@ const CustomCard = ({
       return {
         background: Dark00FF(cookies),
         color: "#fff",
-        border: CardBorder(cookies, "#2C497F"),
+        border: CardBorder(cookies, "#000"),
         transition: "transform 500ms ease",
         "&:hover": {
           transform: `scale(1.05)`,
@@ -129,7 +129,7 @@ const CustomCard = ({
               width: 80,
               height: 80,
               fontSize: "40px",
-              border: "1px solid #2C497F",
+              border: "1px solid #000",
             }}
           >
             {CardName(`${data.FullName}`)}

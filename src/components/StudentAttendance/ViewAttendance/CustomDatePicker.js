@@ -29,7 +29,7 @@ const CustomDatePicker = ({
         >
           <Typography
             sx={{
-              color: cookies.theme === "dark" ? "#fff" : "#2C497F",
+              color: cookies.theme === "dark" ? "#fff" : "#000",
               fontSize: "20px",
               ml: 1,
             }}

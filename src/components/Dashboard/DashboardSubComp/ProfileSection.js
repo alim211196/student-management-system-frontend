@@ -18,6 +18,7 @@ const ProfileSection = ({
   title,
   bgColor,
   userData,
+  matches,
 }) => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const navigate = useNavigate();
@@ -60,7 +61,7 @@ const ProfileSection = ({
             sx={{
               display: "flex",
               padding: "10px",
-              background:bgColor,
+              background: bgColor,
               color: "#fff",
               borderTopLeftRadius: "5px",
               borderTopRightRadius: "5px",
@@ -73,13 +74,14 @@ const ProfileSection = ({
             elevation={0}
             sx={{
               borderRadius: 0,
-              height: "231px",
+              height: "224px",
               paddingBottom: "10px",
               background: Dark00FF(cookies),
               border: CardBorder(cookies, bgColor),
               borderBottomLeftRadius: "5px",
               borderBottomRightRadius: "5px",
               overflowY: "scroll",
+              overflowX:'hidden',
               scrollbarWidth: "none",
               "-ms-overflow-style": "none",
               "&::-webkit-scrollbar": {
@@ -95,12 +97,8 @@ const ProfileSection = ({
               },
             }}
           >
-            <List
-              sx={{
-                width: "100%",
-              }}
-            >
-              <Box>
+            <List sx={{ pt: 0, width: "100%" }}>
+              <Box sx={{pt:1}}>
                 <ListItem>
                   <Grid
                     container
@@ -114,9 +112,10 @@ const ProfileSection = ({
                       xs={12}
                       sm={12}
                       md={3}
+                      lg={3}
                       sx={{
                         display: "flex",
-                        justifyContent: "center",
+                        justifyContent: matches ? "end" : "center",
                       }}
                     >
                       {" "}
@@ -145,9 +144,10 @@ const ProfileSection = ({
                       xs={12}
                       sm={12}
                       md={9}
+                      lg={9}
                       sx={{
                         display: "flex",
-                        justifyContent: "center",
+                        justifyContent: matches ? "start" : "center",
                       }}
                     >
                       {" "}
@@ -189,13 +189,13 @@ const ProfileSection = ({
               <ListItemButton
                 sx={{
                   borderRadius: 1,
-                  background:"#0288D1",
+                  background: "#0288D1",
                   mb: 1,
                   color: "#fff",
                   transition: "transform 500ms ease",
                   "&:hover": {
                     transform: `scale(1.05)`,
-                    background:"#0288D1",
+                    background: "#0288D1",
                     mb: 1,
                     color: "#fff",
                   },
@@ -210,12 +210,12 @@ const ProfileSection = ({
               <ListItemButton
                 sx={{
                   borderRadius: 1,
-                  background:"#00796B",
+                  background: "#00796B",
                   transition: "transform 500ms ease",
                   color: "#fff",
                   "&:hover": {
                     transform: `scale(1.05)`,
-                    background:"#00796B",
+                    background: "#00796B",
                     color: "#fff",
                   },
                 }}

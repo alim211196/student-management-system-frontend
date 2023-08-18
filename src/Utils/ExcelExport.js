@@ -1,9 +1,8 @@
-import { Button, IconButton, Tooltip, useMediaQuery } from "@mui/material";
+import { IconButton, Tooltip } from "@mui/material";
 import React, { memo } from "react";
 import { utils, writeFile } from "xlsx";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
 const ExcelExport = ({ userData, data, fileName }) => {
-  const matches = useMediaQuery("(min-width:600px)");
   const getYear = (yearNumber) => {
     switch (yearNumber) {
       case 1:
@@ -66,16 +65,8 @@ const ExcelExport = ({ userData, data, fileName }) => {
     writeFile(wb, `${fileName}.xlsx`);
   };
 
-  return matches ? (
-    <Button
-      variant="text"
-      startIcon={<FileDownloadIcon />}
-      onClick={exportToExcel}
-    >
-      Export
-    </Button>
-  ) : (
-    <Tooltip title={"Export file"} placement="top">
+  return (
+    <Tooltip title={"Export file"} placement="left">
       <IconButton color="primary" aria-label="export" onClick={exportToExcel}>
         <FileDownloadIcon />
       </IconButton>

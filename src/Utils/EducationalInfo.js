@@ -6,8 +6,10 @@ import { School } from "@mui/icons-material";
 import { errorHandler } from "../ApiFunctions/ErrorHandler";
 import CustomTextField from "./CustomTextField";
 import { GET_COURSES } from "../ApiFunctions/courses";
+import { useDispatch } from "react-redux";
 
 const EducationalInfo = ({ cookies, formData, setFormData }) => {
+  const dispatch = useDispatch();
   const [Courses, setCourses] = useState([]);
   useEffect(() => {
     GET_COURSES()
@@ -15,9 +17,9 @@ const EducationalInfo = ({ cookies, formData, setFormData }) => {
         setCourses(res.data);
       })
       .catch((err) => {
-        errorHandler(err?.status, err?.data);
+        errorHandler(err?.status, err?.data, dispatch);
       });
-  }, []);
+  }, [dispatch]);
 
   const coursesName = Courses.filter((i) => i.active === true).map(
     ({ course }) => ({

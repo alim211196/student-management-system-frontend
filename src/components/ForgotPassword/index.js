@@ -60,7 +60,7 @@ const ForgotPassword = () => {
       label={"forgot password"}
       handleSubmit={handleSubmit}
       linkText={"Sign in"}
-      path={"/sign_in"}
+      path={"/login"}
       cookies={cookies}
       maxWidth={"xs"}
     >

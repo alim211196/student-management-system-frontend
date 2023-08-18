@@ -62,12 +62,18 @@ const ManageDepartment = () => {
         setCourses(res.data);
       })
       .catch((err) => {
-        errorHandler(err?.status, err?.data);
+        errorHandler(err?.status, err?.data, dispatch);
       });
   };
   useEffect(() => {
-    getCourse();
-  }, []);
+   GET_COURSES()
+     .then((res) => {
+       setCourses(res.data);
+     })
+     .catch((err) => {
+       errorHandler(err?.status, err?.data, dispatch);
+     });
+  }, [dispatch]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -235,7 +241,7 @@ const ManageDepartment = () => {
           <TitleBox
             icon={
               <AccountBalance
-                sx={{ color: cookies.theme === "dark" ? "#fff" : "#2C497F" }}
+                sx={{ color: cookies.theme === "dark" ? "#fff" : "#000" }}
               />
             }
             text={"Manage Department"}
@@ -258,10 +264,10 @@ const ManageDepartment = () => {
                 startIcon={<AddIcon />}
                 sx={{
                   textTransform: "capitalize",
-                  color: cookies.theme === "dark" ? "#fff" : "#2C497F",
+                  color: cookies.theme === "dark" ? "#fff" : "#000",
                   background:
                     cookies.theme === "dark" &&
-                   "#2C497F",
+                   "#000",
                 }}
                 onClick={handleClickOpen}
               >

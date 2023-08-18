@@ -47,7 +47,7 @@ const Home = () => {
               <Typography sx={styles.typo2}>{styles.longText}</Typography>
               <LinkComp
                 text={"Already have an account? Sign in"}
-                path={"/sign_in"}
+                path={"/login"}
                 cookies={cookies}
               />
             </Box>

@@ -90,7 +90,7 @@ export const navLinks = [
   },
   {
     title: "Sign in",
-    path: "/sign_in",
+    path: "/login",
     icon: <Person />,
     LoggedIn: false,
   },
