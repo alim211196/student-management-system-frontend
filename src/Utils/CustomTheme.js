@@ -203,12 +203,6 @@ const CustomTheme = ({ children }) => {
             border: "none",
             background: "#000",
             borderRadius: 2,
-            "&:hover": {
-              background: "#000",
-            },
-            "&:disabled": {
-              background: "#000",
-            },
           },
         },
       },

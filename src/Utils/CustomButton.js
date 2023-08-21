@@ -2,6 +2,11 @@ import { LoadingButton } from "@mui/lab";
 import React, { memo } from "react";
 
 const CustomButton = ({ text, loading }) => {
+ const commonStyle = {
+    color: "#fff",
+    borderColor: "#fff",
+    background: "#ED6A5E",
+  };
   return (
     <LoadingButton
       type="submit"
@@ -11,13 +16,12 @@ const CustomButton = ({ text, loading }) => {
         width: "100%",
         textTransform: "capitalize",
         minHeight: 38,
-        background:"#ED6A5E",
-        color: "#fff",
-        borderColor: "#fff",
-        ":hover": {
-          color: "#fff",
-          borderColor: "#fff",
-          background:"#ED6A5E",
+        ...commonStyle,
+        "&:hover": {
+          ...commonStyle,
+        },
+        "&:disabled": {
+          ...commonStyle,
         },
       }}
       disabled={loading}
