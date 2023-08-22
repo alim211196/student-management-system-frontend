@@ -99,20 +99,11 @@ const ManageTeacher = () => {
   };
   return (
     <CustomTheme>
-      <MiniDrawer
-        setQuery={setQuery}
-        query={query}
-        data={data}
-        value={value}
-      >
+      <MiniDrawer setQuery={setQuery} query={query} data={data} value={value}>
         <Container component="main" maxWidth="xl" sx={ContainerStyle}>
           <CssBaseline />
           <TitleBox
-            icon={
-              <People
-                sx={{ color: cookies.theme === "dark" ? "#fff" : "#000" }}
-              />
-            }
+            icon={<People sx={{ color: "#fff" }} />}
             text={"Manage Teachers"}
             data={data}
             fileName={"teachers_records"}

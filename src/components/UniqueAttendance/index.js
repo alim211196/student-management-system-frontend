@@ -41,11 +41,7 @@ const UniqueIndex = () => {
       <MiniDrawer>
         <Container maxWidth="xl" sx={ContainerStyle}>
           <TitleBox
-            icon={
-              <AddchartIcon
-                sx={{ color: cookies.theme === "dark" ? "#fff" : "#000" }}
-              />
-            }
+            icon={<AddchartIcon sx={{ color: "#fff" }} />}
             text={"View Attendance"}
             id={id}
           />{" "}

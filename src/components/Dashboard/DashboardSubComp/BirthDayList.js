@@ -6,7 +6,6 @@ import {
   Box,
   Divider,
   CircularProgress,
-  useMediaQuery,
   Tooltip,
   IconButton,
 } from "@mui/material";
@@ -32,8 +31,7 @@ import { SEND_WISHES } from "../../../ApiFunctions/users";
 import { openSnackbar } from "../../../app/reducer/Snackbar";
 import DialogBox from "../../../Utils/DialogBox";
 import { useDispatch } from "react-redux";
-const BirthDayList = ({ cookies, icon, title, bgColor, userData }) => {
-  const matches = useMediaQuery("(min-width:900px)");
+const BirthDayList = ({ cookies, icon, title, bgColor, userData, matches }) => {
   const [value, setValue] = useState("student");
   const [studentBirthday, setStudentBirthday] = useState([]);
   const [teacherBirthday, setTeacherBirthday] = useState([]);
@@ -124,7 +122,7 @@ const BirthDayList = ({ cookies, icon, title, bgColor, userData }) => {
           elevation={0}
           sx={{
             borderRadius: 0,
-            height: matches ? "224px" : "182px",
+            height: "175px",
             paddingBottom: "10px",
             background: Dark00FF(cookies),
             border: CardBorder(cookies, bgColor),
@@ -149,7 +147,7 @@ const BirthDayList = ({ cookies, icon, title, bgColor, userData }) => {
         >
           <List
             sx={{
-              pt:0,
+              pt: 0,
               width: "100%",
             }}
           >
@@ -222,7 +220,7 @@ const BirthDayList = ({ cookies, icon, title, bgColor, userData }) => {
           elevation={0}
           sx={{
             borderRadius: 0,
-            height: matches ? "224px" : "182px",
+            height:"175px",
             paddingBottom: "10px",
             display: "flex",
             alignItems: "center",
@@ -264,7 +262,7 @@ const BirthDayList = ({ cookies, icon, title, bgColor, userData }) => {
             sx={{
               display: "flex",
               padding: "10px",
-              background:bgColor,
+              background: bgColor,
               color: "#fff",
               borderTopLeftRadius: "5px",
               borderTopRightRadius: "5px",
@@ -286,7 +284,7 @@ const BirthDayList = ({ cookies, icon, title, bgColor, userData }) => {
                   onChange={handleChange}
                   sx={{
                     "& .MuiTabs-indicator": {
-                      background:bgColor,
+                      background: bgColor,
                     },
                   }}
                 >

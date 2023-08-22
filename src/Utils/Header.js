@@ -16,11 +16,9 @@ const BootstrapButton = styled(Button)(({ cookies }) => ({
   textTransform: "none",
   fontSize: 16,
   padding: "3px 8px",
-  border: "2px solid",
   lineHeight: 1.5,
   backgroundColor: cookies.theme === "dark" ? "#000" : "#fff",
   color: cookies.theme === "dark" ? "#fff!important" : "#000!important",
-  borderColor: "#292929",
   borderRadius: "10px",
   fontFamily: [
     "-apple-system",
@@ -35,10 +33,8 @@ const BootstrapButton = styled(Button)(({ cookies }) => ({
     '"Segoe UI Symbol"',
   ].join(","),
   "&:hover": {
-    color: "#fff!important",
-    backgroundColor: "#292929",
-    borderColor: "#000",
-    boxShadow: "none",
+    backgroundColor: cookies.theme === "dark" ? "#292929" : "#f1f1f1",
+    color: cookies.theme === "dark" ? "#fff!important" : "#000!important",
   },
 }));
 

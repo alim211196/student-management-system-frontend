@@ -4,8 +4,7 @@ import { Container } from "@mui/material";
 import TitleBox from "../../Utils/TitleBox";
 import MiniDrawer from "../Drawer";
 import { Equalizer } from "@mui/icons-material";
-import { useCookies } from "react-cookie";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   ATTENDANCE_ACTIVATION,
   GET_ATTENDANCE,
@@ -19,14 +18,10 @@ import { SearchWithFuse } from "../../Utils/SearchWithFuse";
 import { useNavigate } from "react-router-dom";
 
 const ManageAttendanceByAdmin = () => {
-  const [cookies] = useCookies(["loggedIn", "UserId", "theme"]);
-  const { userData } = useSelector((state) => state.getUserProfile);
+
   const [dialogOpen, setDialogOpen] = useState(false);
   const [AttData, setAttData] = useState([]);
   const dispatch = useDispatch();
-  const inputDate = new Date();
-  const isoDate = inputDate.toISOString();
-  const formattedDate = isoDate.slice(0, 10);
   const [active, setActive] = useState(false);
   const [ID, setID] = useState("");
   const [query, setQuery] = useState("");
@@ -52,7 +47,7 @@ const ManageAttendanceByAdmin = () => {
         setLoading(false);
         errorHandler(err?.status, err?.data, dispatch);
       });
-  }, [cookies, userData, dispatch, formattedDate]);
+  }, [dispatch]);
 
   const handleClose = () => {
     setDialogOpen(false);
@@ -111,11 +106,7 @@ const ManageAttendanceByAdmin = () => {
       >
         <Container maxWidth="xl" sx={ContainerStyle}>
           <TitleBox
-            icon={
-              <Equalizer
-                sx={{ color: cookies.theme === "dark" ? "#fff" : "#000" }}
-              />
-            }
+            icon={<Equalizer sx={{ color: "#fff" }} />}
             text={"Manage Attendance"}
           />
           <CardContainer

@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { DarkFF4F } from "../../../Utils/CommonCookies";
+import { extractFirstName } from "../../../Utils/AvatarName";
 const AfterLoginMenuBody = ({
   open,
   toggleDrawer,
@@ -26,6 +27,15 @@ const AfterLoginMenuBody = ({
   cookies,
 }) => {
   const navigate = useNavigate();
+
+
+  const renderPath = (path)=>{
+  if (["/manage-profile", "/manage-account"].includes(path)) {
+    return false;
+  } else {
+    return true;
+  }
+  }
   return (
     <>
       <MenuWrapper open={open} toggleDrawer={toggleDrawer} cookies={cookies}>
@@ -40,7 +50,9 @@ const AfterLoginMenuBody = ({
                 />
               </ListItemIcon>
               <ListItemText
-                primary={userData?.fullName}
+                primary={extractFirstName(
+                  `${userData?.fullName && userData?.fullName}`
+                )}
                 sx={{
                   color: DarkFF4F(cookies),
                 }}
@@ -74,6 +86,7 @@ const AfterLoginMenuBody = ({
             .filter(
               (nav) =>
                 (nav.path !== window.location.pathname &&
+                  renderPath(nav.path) &&
                   nav.LoggedIn === true &&
                   nav.access === userData.role) ||
                 nav.access === "both"
@@ -99,20 +112,23 @@ const AfterLoginMenuBody = ({
                 </ListItem>
               );
             })}
-         
         </List>
         <Box
-          sx={cookies.loggedIn === "true" ?{
-            position: "absolute",
-            bottom: 0,
-            right: 0,
-            p: 1,
-          }:{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            p: 1,
-          }}
+          sx={
+            cookies.loggedIn === "true"
+              ? {
+                  position: "absolute",
+                  bottom: 0,
+                  right: 0,
+                  p: 1,
+                }
+              : {
+                  position: "absolute",
+                  bottom: 0,
+                  left: 0,
+                  p: 1,
+                }
+          }
         >
           <ModeComp />
         </Box>

@@ -13,13 +13,11 @@ import CustomTheme from "../../../Utils/CustomTheme";
 import { Container, CssBaseline } from "@mui/material";
 import TitleBox from "../../../Utils/TitleBox";
 import { PersonSearch } from "@mui/icons-material";
-import { useCookies } from "react-cookie";
 import { useParams } from "react-router-dom";
 import { ContainerStyle } from "../../../Utils/stylingMethods";
-const ViewRecords = ({getStudentData }) => {
+const ViewRecords = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const [cookies] = useCookies(["theme"]);
   const loader = useSelector((state) => state.loading);
   const [selectedFile, setSelectedFile] = useState(null);
   const [active, setActive] = useState(false);
@@ -146,11 +144,7 @@ const ViewRecords = ({getStudentData }) => {
         <Container component="main" maxWidth="xl" sx={ContainerStyle}>
           <CssBaseline />
           <TitleBox
-            icon={
-              <PersonSearch
-                sx={{ color: cookies.theme === "dark" ? "#fff" : "#000" }}
-              />
-            }
+            icon={<PersonSearch sx={{ color: "#fff" }} />}
             text={"View Student"}
             id={id}
           />

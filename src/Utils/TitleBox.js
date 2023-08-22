@@ -8,15 +8,12 @@ import {
   Tooltip,
   IconButton,
 } from "@mui/material";
-import { Dark00FF } from "./CommonCookies";
-import { useCookies } from "react-cookie";
 import ExcelExport from "./ExcelExport";
 import { useSelector } from "react-redux";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useNavigate } from "react-router-dom";
 const TitleBox = ({ icon, text, data, fileName, id }) => {
   const { userData } = useSelector((state) => state.getUserProfile);
-  const [cookies] = useCookies(["theme"]);
   const isAdmin = userData.role === "Admin";
   const matches = useMediaQuery("(min-width:600px)");
   const navigate = useNavigate();
@@ -101,7 +98,7 @@ const TitleBox = ({ icon, text, data, fileName, id }) => {
         p: "10px",
         mb: 2,
         mt: 1,
-        background: Dark00FF(cookies),
+        background: "#00796B",
         transition: "transform 500ms ease",
         "&:hover": {
           transform: `scale(1.01)`,
@@ -137,7 +134,7 @@ const TitleBox = ({ icon, text, data, fileName, id }) => {
             {icon}
             <Typography
               sx={{
-                color: cookies.theme === "dark" ? "#fff" : "#000",
+                color: "#fff",
                 fontSize: matches ? "20px" : "18px",
                 ml: 1,
               }}
@@ -160,7 +157,7 @@ const TitleBox = ({ icon, text, data, fileName, id }) => {
                 aria-label="Back"
                 onClick={() => BackFunction()}
               >
-                <ArrowBackIcon />
+                <ArrowBackIcon sx={{ color: "#fff" }} />
               </IconButton>
             </Tooltip>
           </Grid>

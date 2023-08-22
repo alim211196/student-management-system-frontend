@@ -8,7 +8,7 @@ const ViewCourses = ({ cookies, Courses, handleEdit, handleActive }) => {
   return (
     <PaperWrapper
       cookies={cookies}
-      boxBGColor={"#000"}
+      boxBGColor={"#292"}
       icon={<ViewStreamIcon />}
       text={"List of Courses"}
     >

@@ -74,14 +74,14 @@ const ProfileSection = ({
             elevation={0}
             sx={{
               borderRadius: 0,
-              height: "224px",
+              height: matches ? "224px" : "100%",
               paddingBottom: "10px",
               background: Dark00FF(cookies),
               border: CardBorder(cookies, bgColor),
               borderBottomLeftRadius: "5px",
               borderBottomRightRadius: "5px",
               overflowY: "scroll",
-              overflowX:'hidden',
+              overflowX: "hidden",
               scrollbarWidth: "none",
               "-ms-overflow-style": "none",
               "&::-webkit-scrollbar": {
@@ -98,7 +98,7 @@ const ProfileSection = ({
             }}
           >
             <List sx={{ pt: 0, width: "100%" }}>
-              <Box sx={{pt:1}}>
+              <Box sx={{ pt: 1 }}>
                 <ListItem>
                   <Grid
                     container
@@ -115,10 +115,9 @@ const ProfileSection = ({
                       lg={3}
                       sx={{
                         display: "flex",
-                        justifyContent: matches ? "end" : "center",
+                        justifyContent: "center",
                       }}
                     >
-                      {" "}
                       <ListItemAvatar>
                         <StyledBadge
                           overlap="circular"
@@ -147,7 +146,7 @@ const ProfileSection = ({
                       lg={9}
                       sx={{
                         display: "flex",
-                        justifyContent: matches ? "start" : "center",
+                        justifyContent: "start",
                       }}
                     >
                       {" "}
@@ -182,7 +181,7 @@ const ProfileSection = ({
                     </Grid>
                   </Grid>
                 </ListItem>
-                <Divider variant="inset" component="li" />
+               { matches && <Divider variant="inset" component="li" />}
               </Box>
             </List>
             <Box sx={{ padding: "12px 16px" }}>

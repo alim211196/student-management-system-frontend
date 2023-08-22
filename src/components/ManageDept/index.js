@@ -239,11 +239,7 @@ const ManageDepartment = () => {
       <MiniDrawer>
         <Container maxWidth="xl" sx={ContainerStyle}>
           <TitleBox
-            icon={
-              <AccountBalance
-                sx={{ color: cookies.theme === "dark" ? "#fff" : "#000" }}
-              />
-            }
+            icon={<AccountBalance sx={{ color: "#fff" }} />}
             text={"Manage Department"}
             data={Courses}
             fileName={"courses_records"}
@@ -264,10 +260,15 @@ const ManageDepartment = () => {
                 startIcon={<AddIcon />}
                 sx={{
                   textTransform: "capitalize",
-                  color: cookies.theme === "dark" ? "#fff" : "#000",
-                  background:
-                    cookies.theme === "dark" &&
-                   "#000",
+                  color:
+                    cookies.theme === "dark" ? "#fff" : "#292929 !important",
+                  background: cookies.theme === "dark" ? "#292929" : "#fff",
+                  ":hover": {
+                    color:
+                      cookies.theme === "dark" ? "#fff" : "#292929 !important",
+                    borderColor: "#fff",
+                    background: cookies.theme === "dark" ? "#292929" : "#fff",
+                  },
                 }}
                 onClick={handleClickOpen}
               >

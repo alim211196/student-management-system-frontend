@@ -34,13 +34,18 @@ function ScrollButton() {
     color: "white",
     width: "36px",
     height: "36px",
+    background: "#292929",
     opacity: isVisible ? 1 : 0,
     visibility: isVisible ? "visible" : "hidden",
     transition: "all 0.3s ease",
+    ":hover": {
+      background: "#292929",
+      color: "white",
+    },
   };
 
   return (
-    <Fab sx={buttonStyles} color="primary"  onClick={scrollToTop}>
+    <Fab sx={buttonStyles}   onClick={scrollToTop}>
       <KeyboardArrowUpIcon />
     </Fab>
   );

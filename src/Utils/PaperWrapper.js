@@ -15,22 +15,6 @@ const PaperWrapper = ({ children, cookies, boxBGColor, icon, text }) => {
     }
   };
 
-  const pathCondtion = ["/manage-departments ", "/manage-queries"].includes(
-    window.location.pathname
-  );
-
-  const animationStyle = () => {
-    if (pathCondtion) {
-      return null;
-    } else {
-      return {
-        transition: "transform 500ms ease",
-        "&:hover": {
-          transform: `scale(1.01)`,
-        },
-      };
-    }
-  };
   return (
     <Paper
       elevation={3}
@@ -40,7 +24,6 @@ const PaperWrapper = ({ children, cookies, boxBGColor, icon, text }) => {
         border: CardBorder(cookies, boxBGColor),
         padding: "0px !important",
         mt: text ? 0 : 1,
-        ...animationStyle,
       }}
     >
       <Box

@@ -68,7 +68,7 @@ const ExcelExport = ({ userData, data, fileName }) => {
   return (
     <Tooltip title={"Export file"} placement="left">
       <IconButton color="primary" aria-label="export" onClick={exportToExcel}>
-        <FileDownloadIcon />
+        <FileDownloadIcon sx={{ color:window.location.pathname!=="/manage-teachers" && "#fff" }} />
       </IconButton>
     </Tooltip>
   );

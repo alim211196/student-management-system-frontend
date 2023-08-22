@@ -49,40 +49,47 @@ const ViewTeachers = () => {
     confirm_password: "",
   });
 
-  useEffect(() => {
-    GET_USER(id)
-      .then((res) => {
-        if (id === res.data._id) {
-          const data = res?.data;
-          const date = new Date(data?.dob);
-          const formattedDate = date?.toISOString()?.substring(0, 10);
-          setFormData({
-            fullName: data?.fullName,
-            email: data?.email,
-            phone: data?.phone,
-            dob: formattedDate,
-            gender: data?.gender,
-            course: data?.course,
-            courseYear: data?.courseYear,
-            address: data?.address,
-            city: data?.city,
-            pinCode: data?.pinCode,
-            state: data?.state,
-            country: data?.country,
-            password: data?.password,
-            confirm_password: data?.password,
-            role: data?.role,
-          });
-          setSelectedFile(data?.profileImage);
-          setActive(data?.active);
-          setDataLoaded(true); // Mark the data as loaded
-        }
-      })
-      .catch((err) => {
-        errorHandler(err?.status, err?.data, dispatch);
-      });
-  }, [id, dispatch]);
-
+ useEffect(() => {
+   GET_USER(id)
+     .then((res) => {
+       if (id === res.data._id) {
+         const data = res?.data;
+         let formattedDate = "";
+         if (data?.dob) {
+           try {
+             const date = new Date(data?.dob);
+             formattedDate = date.toISOString().substring(0, 10);
+           } catch (error) {
+             console.error("Error parsing date:", error);
+           }
+         }
+         setFormData({
+           fullName: data?.fullName || "",
+           email: data?.email || "",
+           phone: data?.phone || "",
+           dob: formattedDate,
+           gender: data?.gender || "male",
+           course: data?.course || "bca",
+           courseYear: data?.courseYear || "first year",
+           address: data?.address || "",
+           city: data?.city || "",
+           pinCode: data?.pinCode || "",
+           state: data?.state || "",
+           country: data?.country || "",
+           password: data?.password || "",
+           confirm_password: data?.password || "",
+           role: data?.role || "Teacher",
+         });
+         setSelectedFile(data?.profileImage);
+         setActive(data?.active);
+         setDataLoaded(true); // Mark the data as loaded
+       }
+     })
+     .catch((err) => {
+       console.error("API Error:", err);
+       errorHandler(err?.status, err?.data, dispatch);
+     });
+ }, [id, dispatch]);
   const handleFileInputChange = (e) => {
     let files = e.target.files;
     let fsize = files[0]?.size;

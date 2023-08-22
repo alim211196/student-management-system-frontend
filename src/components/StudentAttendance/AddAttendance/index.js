@@ -7,7 +7,6 @@ import {
   TableContainer,
   TablePagination,
   TableRow,
-  Button,
   Box,
   Avatar,
   Stack,
@@ -23,6 +22,7 @@ import { Dark00FF, DarkFFF } from "../../../Utils/CommonCookies";
 import { ADD_ATTENDANCE } from "../../../ApiFunctions/attendance";
 import { openSnackbar } from "../../../app/reducer/Snackbar";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
+import { LoadingButton } from "@mui/lab";
 const AddAttendance = ({
   formattedDate,
   data,
@@ -232,22 +232,32 @@ const AddAttendance = ({
               color: DarkFFF(cookies),
             }}
           >
-            <Button
+            <LoadingButton
+              type="submit"
+              variant={"contained"}
               sx={{
                 m: 1,
                 minWidth: "120px",
                 textTransform: "capitalize",
+                background: "#000",
                 color: "#fff",
-                background:"#000",
-                "&:hover": {
+                borderColor: "#fff",
+                minHeight: 32,
+                ":hover": {
                   color: "#fff",
-                  background:"#000",
+                  borderColor: "#fff",
+                  background: "#292929",
+                },
+                ":disabled": {
+                  background: "#7e7f81",
                 },
               }}
+              disabled={loading}
+              loading={loading}
               onClick={handleSubmit}
             >
-              Submit
-            </Button>
+              {loading ? null : <span>Submit</span>}
+            </LoadingButton>
           </Box>
 
           <TablePagination

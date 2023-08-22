@@ -75,7 +75,7 @@ const Dashboard = () => {
           <TitleBox
             icon={
               <DisplaySettings
-                sx={{ color: cookies.theme === "dark" ? "#fff" : "#000" }}
+                sx={{ color:"#fff"}}
               />
             }
             text={"Dashboard"}
@@ -135,6 +135,7 @@ const Dashboard = () => {
               icon={<School sx={{ mr: 1 }} />}
               loading={loading}
               userData={userData}
+              matches={matches}
             />
             <UserDataList
               cookies={cookies}
@@ -144,6 +145,7 @@ const Dashboard = () => {
               icon={<SupervisedUserCircle sx={{ mr: 1 }} />}
               loading={loading}
               userData={userData}
+              matches={matches}
             />
             <BirthDayList
               cookies={cookies}
@@ -151,6 +153,7 @@ const Dashboard = () => {
               bgColor={"#AB47BC"}
               title={"Celebrating birthday"}
               icon={<Celebration sx={{ mr: 1 }} />}
+              matches={matches}
             />
             <RecentMessageList
               cookies={cookies}
@@ -160,6 +163,7 @@ const Dashboard = () => {
               icon={<Sms sx={{ mr: 1 }} />}
               loading={loading}
               userData={userData}
+              matches={matches}
             />
           </Grid>
         </Container>

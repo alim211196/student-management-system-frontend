@@ -21,6 +21,7 @@ const RecentMessageList = ({
   data,
   loading,
   userData,
+  matches,
 }) => {
   const isAdmin = userData.role === "Admin";
 
@@ -62,7 +63,7 @@ const RecentMessageList = ({
             elevation={0}
             sx={{
               borderRadius: 0,
-              height: "273px",
+              height:"224px",
               paddingBottom: "10px",
               borderBottomLeftRadius: "5px",
               borderBottomRightRadius: "5px",
@@ -137,7 +138,7 @@ const RecentMessageList = ({
             elevation={0}
             sx={{
               borderRadius: 0,
-              height: "273px",
+              height: "224px",
               paddingBottom: "10px",
               display: "flex",
               alignItems: "center",

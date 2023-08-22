@@ -160,11 +160,7 @@ const ViewMessage = () => {
         <Container component="main" maxWidth="xl" sx={ContainerStyle}>
           <CssBaseline />
           <TitleBox
-            icon={
-              <Sms
-                sx={{ color: cookies.theme === "dark" ? "#fff" : "#000" }}
-              />
-            }
+            icon={<Sms sx={{ color: "#fff" }} />}
             text={"Manage Queries"}
             data={data}
             fileName={"student_queries"}

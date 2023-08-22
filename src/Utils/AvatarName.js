@@ -11,3 +11,13 @@ export const avatarName = (str) => {
   }
   return nametitle.toUpperCase();
 };
+
+export const extractFirstName = (str) => {
+  const words = str.split(" ");
+
+  if (words.length >= 1) {
+    return words[0];
+  } else {
+    return str; // If there's only one word or an empty string, return the input as is.
+  }
+};

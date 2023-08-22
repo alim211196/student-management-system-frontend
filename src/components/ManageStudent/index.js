@@ -121,11 +121,7 @@ const ManageStudent = () => {
         <Container component="main" maxWidth="xl" sx={ContainerStyle}>
           <CssBaseline />
           <TitleBox
-            icon={
-              <People
-                sx={{ color: cookies.theme === "dark" ? "#fff" : "#000" }}
-              />
-            }
+            icon={<People sx={{ color: "#fff" }} />}
             text={"Manage Students"}
             data={data}
             fileName={"students_records"}
@@ -192,8 +188,7 @@ const ManageStudent = () => {
                         "&.Mui-selected": {
                           color: cookies.theme === "dark" ? "#fff" : "#000",
                           background: cookies.theme === "dark" && "#292929",
-                          border:
-                            cookies.theme === "dark" && "1px solid #000",
+                          border: cookies.theme === "dark" && "1px solid #000",
                           borderRadius: "5px",
                         },
                       }}
@@ -218,8 +213,7 @@ const ManageStudent = () => {
                         "&.Mui-selected": {
                           color: cookies.theme === "dark" ? "#fff" : "#000",
                           background: cookies.theme === "dark" && "#292929",
-                          border:
-                            cookies.theme === "dark" && "1px solid #000",
+                          border: cookies.theme === "dark" && "1px solid #000",
                           borderRadius: "5px",
                         },
                       }}

@@ -31,11 +31,7 @@ const EditProfile = () => {
         <Container component="main" maxWidth="xl" sx={ContainerStyle}>
           <CssBaseline />
           <TitleBox
-            icon={
-              <ManageAccounts
-                sx={{ color: cookies.theme === "dark" ? "#fff" : "#000" }}
-              />
-            }
+            icon={<ManageAccounts sx={{ color: "#fff" }} />}
             text={"Manage Account"}
           />
           <Box sx={{ width: "100%", mt: 2 }}>

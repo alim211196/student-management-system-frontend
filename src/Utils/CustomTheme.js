@@ -201,7 +201,7 @@ const CustomTheme = ({ children }) => {
             textTransform: "uppercase",
             cursor: "pointer",
             border: "none",
-            background: "#000",
+            background: "#292929",
             borderRadius: 2,
           },
         },

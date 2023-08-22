@@ -64,7 +64,7 @@ const Reply = ({
             variant="contained"
             onClick={handleClose}
             sx={{
-              background:"#DC143C",
+              background: "#DC143C",
               color: "#fff",
               borderColor: "#fff",
               ":hover": {
@@ -80,14 +80,17 @@ const Reply = ({
             type="submit"
             variant={"contained"}
             sx={{
-              background:"#000",
+              background: "#000",
               color: "#fff",
               borderColor: "#fff",
               minHeight: 32,
               ":hover": {
                 color: "#fff",
                 borderColor: "#fff",
-                background:"#000",
+                background: "#292929",
+              },
+              ":disabled": {
+                background: "#7e7f81",
               },
             }}
             disabled={loading}
