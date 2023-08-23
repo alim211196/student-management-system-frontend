@@ -98,7 +98,7 @@ const TitleBox = ({ icon, text, data, fileName, id }) => {
         p: "10px",
         mb: 2,
         mt: 1,
-        background: "#00796B",
+        background: "#0063A5",
         transition: "transform 500ms ease",
         "&:hover": {
           transform: `scale(1.01)`,
