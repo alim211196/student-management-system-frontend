@@ -16,6 +16,7 @@ import {
   LocalLibrary,
   RecentActors,
 } from "@mui/icons-material/";
+import FeaturesInfo from "./FeaturesInfo";
 const Home = () => {
   const [cookies] = useCookies(["loggedIn", "theme"]);
     const matches = useMediaQuery("(min-width:900px)");
@@ -97,6 +98,7 @@ const Home = () => {
           </Container>
           <Contact Home={true} cookies={cookies} />
         </Box>
+        <FeaturesInfo matches={matches} cookies={cookies} />
         <Footer cookies={cookies} />
       </Box>
       <ScrollButton />

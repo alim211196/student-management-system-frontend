@@ -239,7 +239,7 @@ const ManageDepartment = () => {
       <MiniDrawer>
         <Container maxWidth="xl" sx={ContainerStyle}>
           <TitleBox
-            icon={<AccountBalance sx={{ color: "#fff" }} />}
+            icon={<AccountBalance />}
             text={"Manage Department"}
             data={Courses}
             fileName={"courses_records"}

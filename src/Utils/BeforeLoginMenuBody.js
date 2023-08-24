@@ -39,7 +39,7 @@ const BeforeLoginMenuBody = ({ open, toggleDrawer }) => {
                   <ListItemButton>
                     <ListItemIcon
                       sx={{
-                        color: DarkFF4F(cookies),
+                        color:cookies.theme==="dark"?"#FFF":"#0063A5",
                       }}
                     >
                       {item.icon}

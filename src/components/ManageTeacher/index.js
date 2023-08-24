@@ -103,7 +103,7 @@ const ManageTeacher = () => {
         <Container component="main" maxWidth="xl" sx={ContainerStyle}>
           <CssBaseline />
           <TitleBox
-            icon={<People sx={{ color: "#fff" }} />}
+            icon={<People />}
             text={"Manage Teachers"}
             data={data}
             fileName={"teachers_records"}

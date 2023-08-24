@@ -9,7 +9,8 @@ import WidgetsIcon from "@mui/icons-material/Widgets";
 import { useMediaQuery } from "@mui/material";
 import ModeComp from "./ModeComp";
 import BeforeLoginMenuBody from "./BeforeLoginMenuBody";
-import { useCookies } from "react-cookie";import Button from "@mui/material/Button";
+import { useCookies } from "react-cookie";
+import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 const BootstrapButton = styled(Button)(({ cookies }) => ({
   boxShadow: "none",
@@ -17,9 +18,9 @@ const BootstrapButton = styled(Button)(({ cookies }) => ({
   fontSize: 16,
   padding: "3px 8px",
   lineHeight: 1.5,
-  backgroundColor: cookies.theme === "dark" ? "#000" : "#fff",
-  color: cookies.theme === "dark" ? "#fff!important" : "#000!important",
-  borderRadius: "10px",
+  backgroundColor: "transparent",
+  color: "#FFF!important",
+  borderRadius: "0px",
   fontFamily: [
     "-apple-system",
     "BlinkMacSystemFont",
@@ -33,15 +34,14 @@ const BootstrapButton = styled(Button)(({ cookies }) => ({
     '"Segoe UI Symbol"',
   ].join(","),
   "&:hover": {
-    backgroundColor: cookies.theme === "dark" ? "#292929" : "#f1f1f1",
-    color: cookies.theme === "dark" ? "#fff!important" : "#000!important",
+    backgroundColor: cookies.theme === "dark" ? "#292929" : "#0063A5",
+    color: "#fff!important",
   },
 }));
 
-
 const Header = () => {
   const [cookies] = useCookies(["theme"]);
- const [scrollingUp, setScrollingUp] = useState(true);
+  const [scrollingUp, setScrollingUp] = useState(true);
   const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
   const matches = useMediaQuery("(min-width:600px)");
   const navigate = useNavigate();
@@ -63,8 +63,6 @@ const Header = () => {
           >
             {title}
           </BootstrapButton>
-
-     
         </CustomTheme>
       );
     }
@@ -88,7 +86,7 @@ const Header = () => {
     <AppBar
       position="fixed"
       sx={{
-        background: cookies.theme === "dark" ? "#000" : "#fff",
+        background: cookies.theme === "dark" ? "#000" : "#0063A5",
         color: "#fff",
         transform: scrollingUp ? "translateY(0)" : "translateY(-100%)", // Add this line
         transition: "transform 0.3s ease-in-out", // Add this line
@@ -106,8 +104,10 @@ const Header = () => {
           sx={{
             display: "inline-block",
             cursor: "pointer",
-            fontSize: matches ? "24px" : "20px",
-            color: cookies.theme === "dark" ? "#FFF" : "#000",
+            color: "transparent",
+            fontSize: matches ? "32px" : "22px",
+            fontWeight: 900,
+            WebkitTextStroke: "1px #FFF",
           }}
           onClick={() => navigate("/")}
         >
@@ -127,7 +127,7 @@ const Header = () => {
                 sx={{
                   width: 24,
                   height: 24,
-                  color: cookies.theme === "dark" ? "#FFF" : "#000",
+                  color: "#FFF",
                 }}
               />
             </IconButton>

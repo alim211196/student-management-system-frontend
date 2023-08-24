@@ -160,7 +160,7 @@ const ViewMessage = () => {
         <Container component="main" maxWidth="xl" sx={ContainerStyle}>
           <CssBaseline />
           <TitleBox
-            icon={<Sms sx={{ color: "#fff" }} />}
+            icon={<Sms/>}
             text={"Manage Queries"}
             data={data}
             fileName={"student_queries"}

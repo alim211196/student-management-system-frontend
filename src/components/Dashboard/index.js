@@ -74,9 +74,7 @@ const Dashboard = () => {
         <Container maxWidth="xl" sx={ContainerStyle}>
           <TitleBox
             icon={
-              <DisplaySettings
-                sx={{ color:"#fff"}}
-              />
+              <DisplaySettings />
             }
             text={"Dashboard"}
           />

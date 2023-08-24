@@ -7,14 +7,14 @@ import {
 } from "@mui/material";
 import React, { memo } from "react";
 import CustomTheme from "../../../Utils/CustomTheme";
-const LowerIcons = ({
-  icon,
-  text,
-  open,
-  setDialogOpen,
-  styles,
-  dialogOpen,
-}) => {
+const LowerIcons = ({ icon, text, open, setDialogOpen, styles, cookies }) => {
+  const IconColor = () => {
+    if (cookies.theme === "dark") {
+      return "#FFF";
+    } else {
+      return "#0063A5";
+    }
+  };
   return (
     <CustomTheme>
       <ListItem disablePadding sx={styles.dynamicListItem}>
@@ -23,10 +23,18 @@ const LowerIcons = ({
           onClick={() => setDialogOpen(true)}
         >
           <Tooltip title={!open && text} placement="right">
-            <ListItemIcon sx={styles.innerAvatar}>{icon}</ListItemIcon>
+            <ListItemIcon sx={{ color: IconColor(), ...styles.innerAvatar }}>
+              {icon}
+            </ListItemIcon>
           </Tooltip>
 
-          <ListItemText primary={text} sx={styles.listItemText} />
+          <ListItemText
+            primary={text}
+            sx={{
+              color: IconColor(),
+              ...styles.listItemText,
+            }}
+          />
         </ListItemButton>
       </ListItem>
     </CustomTheme>

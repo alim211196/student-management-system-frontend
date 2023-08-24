@@ -7,7 +7,7 @@ import ListItem from "@mui/material/ListItem";
 import { useNavigate } from "react-router-dom";
 import DialogBox from "../../Utils/DialogBox";
 import { useCookies } from "react-cookie";
-import { Drawer, DrawerHeader } from "../../Utils/stylingMethods";
+import { Drawer } from "../../Utils/stylingMethods";
 import { navLinks } from "../../Utils/navLinks";
 import CustomListItem from "./DrawerSubComponents/CustomListItem";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,6 +15,7 @@ import { fetchData } from "../../app/reducer/getUserProfile";
 import LowerIcons from "./DrawerSubComponents/LowerIcons";
 import DrawerAppBar from "./DrawerSubComponents/DrawerAppBar";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useMediaQuery } from "@mui/material";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import { GET_USER } from "../../ApiFunctions/users";
@@ -115,7 +116,7 @@ const MiniDrawer = ({ children, setQuery, query, data, value }) => {
     } else {
       setLoading(false);
     }
-  }, [dispatch, cookies.UserId, userData, navigate,removeCookie]);
+  }, [dispatch, cookies.UserId, userData, navigate, removeCookie]);
 
   useEffect(() => {
     if (matches) {
@@ -125,6 +126,7 @@ const MiniDrawer = ({ children, setQuery, query, data, value }) => {
       setOpen(false);
     }
   }, [matches]);
+
   return (
     <CustomTheme>
       <Box sx={styles.parentBox}>
@@ -154,15 +156,37 @@ const MiniDrawer = ({ children, setQuery, query, data, value }) => {
           open={open}
           sx={{ display: !matches && "none" }}
         >
-          <DrawerHeader sx={styles.drawerHeader1}>
-            <Box sx={styles.innerBox1}>
-              <IconButton onClick={handleDrawerClose} sx={styles.iconBtn}>
-                <ChevronLeftIcon sx={styles.iconBtnAvatar} />
-              </IconButton>
-            </Box>
-          </DrawerHeader>
           <List sx={styles.dynamicList}>
             <Box sx={styles.dynamicListBox}>
+              <ListItem disablePadding sx={styles.dynamicListItem}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: open ? "end" : "center",
+                  }}
+                >
+                  <IconButton
+                    onClick={() => {
+                      open ? handleDrawerClose() : handleDrawerOpen();
+                    }}
+                  >
+                    {open ? (
+                      <ChevronLeftIcon
+                        sx={{
+                          color: cookies.theme === "dark" ? "#FFF" : "#1976d2",
+                        }}
+                      />
+                    ) : (
+                      <ChevronRightIcon
+                        sx={{
+                          color: cookies.theme === "dark" ? "#FFF" : "#1976d2",
+                        }}
+                      />
+                    )}
+                  </IconButton>
+                </Box>
+              </ListItem>
+
               {navLinks
                 .filter(
                   (nav) =>
@@ -176,7 +200,12 @@ const MiniDrawer = ({ children, setQuery, query, data, value }) => {
                       disablePadding
                       sx={styles.dynamicListItem}
                     >
-                      <CustomListItem item={item} open={open} styles={styles} />
+                      <CustomListItem
+                        item={item}
+                        open={open}
+                        styles={styles}
+                        cookies={cookies}
+                      />
                     </ListItem>
                   );
                 })}
@@ -188,6 +217,7 @@ const MiniDrawer = ({ children, setQuery, query, data, value }) => {
               open={open}
               setDialogOpen={setDialogOpen}
               styles={styles}
+              cookies={cookies}
             />
           </List>
         </Drawer>

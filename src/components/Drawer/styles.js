@@ -57,6 +57,7 @@ export const DrawerStyle = (cookies, matches, upDown, open) => {
       justifyContent: "space-between",
       height: "100vh",
       background: cookies.theme === "dark" ? "#292929" : "#fff",
+      mt: 8,
       // borderRight: cookies.theme === "dark" && "1px solid #000",
     },
     dynamicListBox = {
@@ -97,9 +98,9 @@ export const DrawerStyle = (cookies, matches, upDown, open) => {
       justifyContent: open ? "initial" : "center",
       px: 2.5,
       "&.Mui-selected": {
-        background: cookies.theme === "dark" ? "#000" : "#E7EBF0",
+        background: cookies.theme === "dark" ? "#000" : "#0063A5",
         ":hover": {
-          background: cookies.theme === "dark" ? "#000" : "#E7EBF0",
+          background: cookies.theme === "dark" ? "#000" : "#0063A5",
         },
       },
     },
@@ -109,7 +110,7 @@ export const DrawerStyle = (cookies, matches, upDown, open) => {
       justifyContent: "center",
       width: 30,
       height: 30,
-      color: cookies.theme === "dark" ? "#fff" : "#000",
+      // color: cookies.theme === "dark" ? "#fff" : "#000",
       alignItems: "center",
       cursor: "pointer",
       transition: "transform 500ms ease",
@@ -119,27 +120,26 @@ export const DrawerStyle = (cookies, matches, upDown, open) => {
     },
     listItemText = {
       opacity: open ? 1 : 0,
-      color: cookies.theme === "dark" ? "#fff" : "#000",
       pb: 0,
     },
     appBar = {
-      background: cookies.theme === "dark" ? "#000" : "#FFF",
+      background: cookies.theme === "dark" ? "#000" : "#0063A5",
       boxShadow: "none",
     },
     toolbarIconBtn = {
       marginRight: matches ? 5 : 1,
       marginLeft: matches ? "-13px" : "2px",
-      color: cookies.theme === "dark" ? "#FFF" : "#000",
+      color: "#FFF",
       ...(open && { display: "none" }),
     },
     toolbarIconBtn1 = {
-      color: cookies.theme === "dark" ? "#FFF" : "#000",
+      color: "#FFF",
     },
     toolbarIconBtnAvatar = {
       width: matches ? 30 : 24,
       height: matches ? 30 : 24,
 
-      color: cookies.theme === "dark" ? "#FFF" : "#000",
+      color: "#FFF",
     },
     innerBox3 = {
       width: "100%",
@@ -148,8 +148,10 @@ export const DrawerStyle = (cookies, matches, upDown, open) => {
       justifyContent: "space-between",
     },
     titleTypo = {
-      color: cookies.theme === "dark" ? "#FFF" : "#000",
-      fontSize: matches ? "24px" : "20px",
+      color: "transparent",
+      fontSize: matches ? "32px" : "22px",
+      fontWeight: 900,
+      WebkitTextStroke: "1px #FFF",
     },
     childBox1 = {
       display: "flex",

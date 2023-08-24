@@ -80,20 +80,22 @@ const DrawerAppBar = ({
     <>
       <AppBar position="fixed" open={open} sx={styles.appBar}>
         <Toolbar sx={{ padding: !matches && "0px 6px" }}>
-          <IconButton
-            aria-label="open drawer"
-            onClick={matches ? handleDrawerOpen : toggleDrawer}
-            edge="start"
-            sx={styles.toolbarIconBtn}
-          >
-            <WidgetsIcon sx={styles.toolbarIconBtnAvatar} />
-          </IconButton>
+          {!matches && (
+            <IconButton
+              aria-label="open drawer"
+              onClick={matches ? handleDrawerOpen : toggleDrawer}
+              edge="start"
+              sx={styles.toolbarIconBtn}
+            >
+              <WidgetsIcon sx={styles.toolbarIconBtnAvatar} />
+            </IconButton>
+          )}
 
           <Box sx={styles.innerBox3}>
             <Typography
               variant={matches && "h6"}
               noWrap
-              component="div"
+              component="h1"
               sx={styles.titleTypo}
             >
               StudentsTracker

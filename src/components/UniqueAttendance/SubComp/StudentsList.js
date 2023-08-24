@@ -16,7 +16,6 @@ import {
 import { CardBorder, DarkFFF } from "../../../Utils/CommonCookies";
 import ContentPasteGoIcon from "@mui/icons-material/ContentPasteGo";
 import { useNavigate } from "react-router-dom";
-import StudentSearch from "./StudentSearch";
 import { SearchWithFuse } from "../../../Utils/SearchWithFuse";
 const StudentsList = ({ cookies, data, id }) => {
   const navigate = useNavigate();
@@ -35,15 +34,11 @@ const StudentsList = ({ cookies, data, id }) => {
       boxBGColor={"#EC407A"}
       icon={<PeopleOutlineIcon />}
       text={"Students list"}
+      setQuery={setQuery}
+      query={query}
+      matches={matches}
+      data={data}
     >
-      {data?.length > 0 && (
-        <StudentSearch
-          cookies={cookies}
-          setQuery={setQuery}
-          query={query}
-          matches={matches}
-        />
-      )}
       <Grid container spacing={2} sx={{ p: 2 }}>
         {newResults?.length > 0 ? (
           newResults?.map((item, index) => {

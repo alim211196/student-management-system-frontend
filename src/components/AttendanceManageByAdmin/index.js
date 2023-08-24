@@ -106,7 +106,7 @@ const ManageAttendanceByAdmin = () => {
       >
         <Container maxWidth="xl" sx={ContainerStyle}>
           <TitleBox
-            icon={<Equalizer sx={{ color: "#fff" }} />}
+            icon={<Equalizer />}
             text={"Manage Attendance"}
           />
           <CardContainer

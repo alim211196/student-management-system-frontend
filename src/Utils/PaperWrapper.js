@@ -1,8 +1,19 @@
-import { Paper, Typography, Box } from "@mui/material";
+import { Paper, Typography, Box, Grid } from "@mui/material";
 import { CardBorder, Dark00FF } from "./CommonCookies";
 import React, { memo } from "react";
+import SearchAppBar from "./SearchAppBar";
 
-const PaperWrapper = ({ children, cookies, boxBGColor, icon, text }) => {
+const PaperWrapper = ({
+  children,
+  cookies,
+  boxBGColor,
+  icon,
+  text,
+  setQuery,
+  query,
+  matches,
+  data,
+}) => {
   const MarginBottom = () => {
     if (
       ["/manage-departments", "/manage-queries"].includes(
@@ -26,22 +37,63 @@ const PaperWrapper = ({ children, cookies, boxBGColor, icon, text }) => {
         mt: text ? 0 : 1,
       }}
     >
-      <Box
+      <Grid
+        container
         sx={{
           display: "flex",
           alignItems: "center",
+          justifyContent: "space-between",
           padding: "5px",
           background: boxBGColor,
-          color: "#fff",
           borderTopLeftRadius: "5px",
           borderTopRightRadius: "5px",
         }}
       >
-        {icon}
-        <Typography sx={{ fontSize: 18, fontWeight: "bold", ml: 1 }}>
-          {text}
-        </Typography>
-      </Box>
+        <Grid
+          item
+          xs={12}
+          sm={9}
+          md={9}
+          sx={{
+            display: "flex",
+            justifyContent: "flex-start",
+          }}
+        >
+          {" "}
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              color: "#fff",
+            }}
+          >
+            {" "}
+            {icon}
+            <Typography sx={{ fontSize: 18, fontWeight: "bold", ml: 1 }}>
+              {text}
+            </Typography>
+          </Box>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          sm={3}
+          md={3}
+          sx={{
+            display: "flex",
+            justifyContent: matches ? "end" : "center",
+          }}
+        >
+          {text === "Students list" && data?.length > 0 && (
+            <SearchAppBar
+              setQuery={setQuery}
+              query={query}
+              cookies={cookies}
+              matches={matches}
+            />
+          )}
+        </Grid>
+      </Grid>
       {children}
     </Paper>
   );

@@ -121,7 +121,7 @@ const ManageStudent = () => {
         <Container component="main" maxWidth="xl" sx={ContainerStyle}>
           <CssBaseline />
           <TitleBox
-            icon={<People sx={{ color: "#fff" }} />}
+            icon={<People />}
             text={"Manage Students"}
             data={data}
             fileName={"students_records"}

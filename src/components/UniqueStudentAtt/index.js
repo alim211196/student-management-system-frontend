@@ -48,7 +48,7 @@ const UniqueStudentAttendance = () => {
       <MiniDrawer>
         <Container maxWidth="xl" sx={ContainerStyle}>
           <TitleBox
-            icon={<AddchartIcon sx={{ color: "#fff" }} />}
+            icon={<AddchartIcon/>}
             text={"View Monthly Attendance"}
             id={id}
           />

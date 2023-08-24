@@ -31,7 +31,7 @@ const EditProfile = () => {
         <Container component="main" maxWidth="xl" sx={ContainerStyle}>
           <CssBaseline />
           <TitleBox
-            icon={<ManageAccounts sx={{ color: "#fff" }} />}
+            icon={<ManageAccounts/>}
             text={"Manage Account"}
           />
           <Box sx={{ width: "100%", mt: 2 }}>

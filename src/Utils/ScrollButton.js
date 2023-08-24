@@ -34,12 +34,12 @@ function ScrollButton() {
     color: "white",
     width: "36px",
     height: "36px",
-    background: "#292929",
+    background: "#ED6A5E",
     opacity: isVisible ? 1 : 0,
     visibility: isVisible ? "visible" : "hidden",
     transition: "all 0.3s ease",
     ":hover": {
-      background: "#292929",
+      background: "#ED6A5E",
       color: "white",
     },
   };
