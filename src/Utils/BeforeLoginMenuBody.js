@@ -10,6 +10,7 @@ import {
   ListItemText,
 } from "@mui/material";
 import { useCookies } from "react-cookie";
+import ModeComp from "./ModeComp";
 const BeforeLoginMenuBody = ({ isOpen }) => {
   const [cookies] = useCookies(["theme"]);
   const navigate = useNavigate();
@@ -75,6 +76,16 @@ const BeforeLoginMenuBody = ({ isOpen }) => {
               </ListItem>
             );
           })}
+        <Box
+          sx={{
+            position: "absolute",
+            bottom: 0,
+            right: 0,
+            p: 1,
+          }}
+        >
+          <ModeComp />
+        </Box>
       </List>
     </Box>
   );

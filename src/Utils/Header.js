@@ -92,8 +92,6 @@ const Header = () => {
           </Typography>
         </Box>
         {!matches ? (
-          <Box>
-            <ModeComp />
             <BootstrapButton
               variant="contained"
               disableRipple
@@ -119,7 +117,6 @@ const Header = () => {
                 />
               )}
             </BootstrapButton>
-          </Box>
         ) : (
           <nav
             style={{
