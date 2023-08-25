@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { lazy, useEffect,useRef } from "react";
 import Header from "../../Utils/Header";
 import Footer from "../../Utils/Footer";
 import { useCookies } from "react-cookie";
@@ -16,8 +16,9 @@ import {
   LocalLibrary,
   RecentActors,
 } from "@mui/icons-material/";
-import FeaturesInfo from "./FeaturesInfo";
+const FeaturesInfo = lazy(() => import("./FeaturesInfo"));
 const Home = () => {
+  const contactSectionRef = useRef();
   const [cookies] = useCookies(["loggedIn", "theme"]);
     const matches = useMediaQuery("(min-width:900px)");
   const styles = HomeStyle(cookies, matches);
@@ -96,10 +97,20 @@ const Home = () => {
               />
             </Grid>
           </Container>
-          <Contact Home={true} cookies={cookies} />
         </Box>
-        <FeaturesInfo matches={matches} cookies={cookies} />
-        <Footer cookies={cookies} />
+        <FeaturesInfo  matches={matches} cookies={cookies} />
+        <section ref={contactSectionRef} id="contact-form-section">
+          {" "}
+          <Contact Home={true} cookies={cookies} />
+        </section>
+
+        <Footer 
+          scrollToContact={() =>
+            contactSectionRef.current.scrollIntoView({ behavior: "smooth" })
+          }
+          cookies={cookies}
+          matches={matches}
+        />
       </Box>
       <ScrollButton />
     </CustomTheme>

@@ -6,12 +6,13 @@ import IconButton from "@mui/material/IconButton";
 import { useNavigate } from "react-router-dom";
 import CustomTheme from "./CustomTheme";
 import WidgetsIcon from "@mui/icons-material/Widgets";
-import { useMediaQuery } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/material";
 import ModeComp from "./ModeComp";
 import BeforeLoginMenuBody from "./BeforeLoginMenuBody";
 import { useCookies } from "react-cookie";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
+import Diversity2Icon from "@mui/icons-material/Diversity2";
 const BootstrapButton = styled(Button)(({ cookies }) => ({
   boxShadow: "none",
   textTransform: "none",
@@ -38,7 +39,24 @@ const BootstrapButton = styled(Button)(({ cookies }) => ({
     color: "#fff!important",
   },
 }));
-
+function CommonCode({ link, title, cookies, navigate }) {
+  if (window.location.pathname === link) {
+    return null;
+  } else {
+    return (
+      <CustomTheme>
+        <BootstrapButton
+          variant="contained"
+          disableRipple
+          onClick={() => navigate(link)}
+          cookies={cookies}
+        >
+          {title}
+        </BootstrapButton>
+      </CustomTheme>
+    );
+  }
+}
 const Header = () => {
   const [cookies] = useCookies(["theme"]);
   const [scrollingUp, setScrollingUp] = useState(true);
@@ -48,24 +66,6 @@ const Header = () => {
   const [open, setOpen] = React.useState(false);
   const toggleDrawer = () => {
     setOpen(!open);
-  };
-  const CommonCode = (link, title) => {
-    if (window.location.pathname === link) {
-      return null;
-    } else {
-      return (
-        <CustomTheme>
-          <BootstrapButton
-            variant="contained"
-            disableRipple
-            onClick={() => navigate(link)}
-            cookies={cookies}
-          >
-            {title}
-          </BootstrapButton>
-        </CustomTheme>
-      );
-    }
   };
 
   useEffect(() => {
@@ -100,19 +100,22 @@ const Header = () => {
           justifyContent: "space-between",
         }}
       >
-        <Typography
-          sx={{
-            display: "inline-block",
-            cursor: "pointer",
-            color: "transparent",
-            fontSize: matches ? "32px" : "22px",
-            fontWeight: 900,
-            WebkitTextStroke: "1px #FFF",
-          }}
-          onClick={() => navigate("/")}
-        >
-          StudentsTracker
-        </Typography>
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Diversity2Icon sx={{ fontSize: matches ? "32px" : "22px", mr: 1 }} />
+          <Typography
+            sx={{
+              display: "inline-block",
+              cursor: "pointer",
+              color: "transparent",
+              fontSize: matches ? "32px" : "22px",
+              fontWeight: 900,
+              WebkitTextStroke: "1px #FFF",
+            }}
+            onClick={() => navigate("/")}
+          >
+            StudentsTracker
+          </Typography>
+        </Box>
         {!matches ? (
           <>
             <IconButton
@@ -140,8 +143,18 @@ const Header = () => {
               justifyContent: "space-between",
             }}
           >
-            {CommonCode("/", "Home")}
-            {CommonCode("/login", "Login")}
+            <CommonCode
+              link={"/"}
+              title={"Home"}
+              cookies={cookies}
+              navigate={navigate}
+            />
+            <CommonCode
+              link={"/login"}
+              title={"Login"}
+              cookies={cookies}
+              navigate={navigate}
+            />
             <ModeComp />
           </nav>
         )}

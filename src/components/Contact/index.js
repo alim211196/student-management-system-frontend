@@ -104,6 +104,7 @@ const Contact = ({ Home, cookies }) => {
             borderRadius: "5px",
             background: Dark00FF(cookies),
             border: CardBorder(cookies, "#000"),
+            boxShadow:'5px 5px 30px'
           }}
         >
           <Grid container component="main" sx={{ borderRadius: "5px" }}>
