@@ -1,8 +1,6 @@
-import React, { memo } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { navLinks } from "./navLinks";
-import ModeComp from "./ModeComp";
-import MenuWrapper from "./MenuWrapper";
 import {
   Box,
   List,
@@ -12,61 +10,74 @@ import {
   ListItemText,
 } from "@mui/material";
 import { useCookies } from "react-cookie";
-import { DarkFF4F } from "./CommonCookies";
-const BeforeLoginMenuBody = ({ open, toggleDrawer }) => {
+import ModeComp from "./ModeComp";
+const BeforeLoginMenuBody = ({ isOpen }) => {
   const [cookies] = useCookies(["theme"]);
   const navigate = useNavigate();
+ const [menuHeight, setMenuHeight] = useState("0%");
+
+ useEffect(() => {
+   setMenuHeight(isOpen ? "100%" : "0%");
+ }, [isOpen]);
+
+ const menuStyle = {
+   height: menuHeight,
+   background: cookies.theme === "dark" ? "#000" : "#0063A5",
+   zIndex: 1000,
+   overflow: "hidden",
+ };
+
+ const ListBtnHover ={
+  "&.MuiListItemButton-root:hover": {
+    backgroundColor: '#292929',
+    opacity:0.8
+}
+ }
+
   return (
-    <>
-      <MenuWrapper
-        open={open}
-        toggleDrawer={toggleDrawer}
-        cookies={cookies}
-      >
-        <List>
-          {navLinks
-            .filter(
-              (nav) =>
-                nav.path !== window.location.pathname && nav.LoggedIn === false
-            )
-            .map((item, index) => {
-              return (
-                <ListItem
-                  key={index}
-                  onClick={() => navigate(item.path)}
-                  disablePadding
-                >
-                  <ListItemButton>
-                    <ListItemIcon
-                      sx={{
-                        color:cookies.theme==="dark"?"#FFF":"#0063A5",
-                      }}
-                    >
-                      {item.icon}
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={item.title}
-                      sx={{
-                        color: DarkFF4F(cookies),
-                      }}
-                    />
-                  </ListItemButton>
-                </ListItem>
-              );
-            })}
-        </List>
-        <Box
-          sx={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            p:1
-          }}
-        >
-          <ModeComp />
-        </Box>
-      </MenuWrapper>
-    </>
+    <Box
+      sx={{
+        position: "initial",
+        top: 56,
+        left: 0,
+        width: "100%",
+        transition: "height 0.5s ease-in-out",
+        ...menuStyle,
+      }}
+    >
+      <List>
+        {navLinks
+          .filter(
+            (nav) =>
+              nav.path !== window.location.pathname && nav.LoggedIn === false
+          )
+          .map((item, index) => {
+            return (
+              <ListItem
+                key={index}
+                onClick={() => navigate(item.path)}
+                disablePadding
+              >
+                <ListItemButton sx={ListBtnHover}>
+                  <ListItemIcon
+                    sx={{
+                      color: "#FFF",
+                    }}
+                  >
+                    {item.icon}
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={item.title}
+                    sx={{
+                      color: "#FFF",
+                    }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            );
+          })}
+      </List>
+    </Box>
   );
 };
 

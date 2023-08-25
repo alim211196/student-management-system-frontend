@@ -146,6 +146,7 @@ export const DrawerStyle = (cookies, matches, upDown, open) => {
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
+      ml: !matches &&1,
     },
     titleTypo = {
       color: "transparent",

@@ -10,7 +10,7 @@ export const HomeStyle = (cookies,matches) => {
       backgroundPosition: "center",
       background: `url(https://source.unsplash.com/random/?city,evening)`,
       borderBottom: CardBorder(cookies, "#000"),
-      marginTop: !matches &&'-4px',
+      marginTop: !matches && "-4px",
     },
     innerBox = {
       textAlign: "left",
@@ -38,7 +38,7 @@ export const HomeStyle = (cookies,matches) => {
       color: "#fff",
     },
     parentContainer = {
-      backgroundColor: Dark00(cookies),
+      backgroundColor: cookies.theme === "dark" ? "#000C18" : "#FFF",
       width: "100%",
       overflow: "scroll",
       overflowY: "auto",

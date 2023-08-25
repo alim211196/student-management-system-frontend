@@ -19,7 +19,7 @@ export const DarkFF4F = (cookies) => {
 };
 
 export const Dark00 = (cookies) => {
-  return cookies.theme === "dark" ? "#000C18" : "#FFF";
+  return cookies.theme === "dark" ? "#000C18" : "#E7EBF0";
 };
 
 

@@ -10,36 +10,12 @@ import { Box, useMediaQuery } from "@mui/material";
 import ModeComp from "./ModeComp";
 import BeforeLoginMenuBody from "./BeforeLoginMenuBody";
 import { useCookies } from "react-cookie";
-import Button from "@mui/material/Button";
-import { styled } from "@mui/material/styles";
 import Diversity2Icon from "@mui/icons-material/Diversity2";
-const BootstrapButton = styled(Button)(({ cookies }) => ({
-  boxShadow: "none",
-  textTransform: "none",
-  fontSize: 16,
-  padding: "3px 8px",
-  lineHeight: 1.5,
-  backgroundColor: "transparent",
-  color: "#FFF!important",
-  borderRadius: "0px",
-  fontFamily: [
-    "-apple-system",
-    "BlinkMacSystemFont",
-    '"Segoe UI"',
-    "Roboto",
-    '"Helvetica Neue"',
-    "Arial",
-    "sans-serif",
-    '"Apple Color Emoji"',
-    '"Segoe UI Emoji"',
-    '"Segoe UI Symbol"',
-  ].join(","),
-  "&:hover": {
-    backgroundColor: cookies.theme === "dark" ? "#292929" : "#0063A5",
-    color: "#fff!important",
-  },
-}));
-function CommonCode({ link, title, cookies, navigate }) {
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
+import { BootstrapButton } from "./BootstrapButton";
+
+function CommonCode({ link, title, cookies, navigate,matches }) {
   if (window.location.pathname === link) {
     return null;
   } else {
@@ -50,6 +26,7 @@ function CommonCode({ link, title, cookies, navigate }) {
           disableRipple
           onClick={() => navigate(link)}
           cookies={cookies}
+          matches={matches}
         >
           {title}
         </BootstrapButton>
@@ -117,24 +94,34 @@ const Header = () => {
           </Typography>
         </Box>
         {!matches ? (
-          <>
-            <IconButton
-              aria-label="menu"
+          <Box>
+            <ModeComp />
+            <BootstrapButton
+              variant="contained"
+              disableRipple
               onClick={toggleDrawer}
-              size="small"
-              aria-controls={open ? "account-menu" : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? "true" : undefined}
+              cookies={cookies}
+              matches={matches}
             >
-              <WidgetsIcon
-                sx={{
-                  width: 24,
-                  height: 24,
-                  color: "#FFF",
-                }}
-              />
-            </IconButton>
-          </>
+              {!open ? (
+                <MenuIcon
+                  sx={{
+                    width: 24,
+                    height: 24,
+                    color: "#FFF",
+                  }}
+                />
+              ) : (
+                <CloseIcon
+                  sx={{
+                    width: 24,
+                    height: 24,
+                    color: "#FFF",
+                  }}
+                />
+              )}
+            </BootstrapButton>
+          </Box>
         ) : (
           <nav
             style={{
@@ -148,18 +135,20 @@ const Header = () => {
               title={"Home"}
               cookies={cookies}
               navigate={navigate}
+              matches={matches}
             />
             <CommonCode
               link={"/login"}
               title={"Login"}
               cookies={cookies}
               navigate={navigate}
+              matches={matches}
             />
             <ModeComp />
           </nav>
         )}
       </Toolbar>
-      <BeforeLoginMenuBody open={open} toggleDrawer={toggleDrawer} />
+      {open && !matches && <BeforeLoginMenuBody isOpen={open} />}
     </AppBar>
   );
 };

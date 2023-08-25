@@ -14,8 +14,9 @@ import AfterLoginMenuBody from "./AfterLoginMenuBody";
 import ModeComp from "../../../Utils/ModeComp.js";
 import DialogBox from "../../../Utils/DialogBox.js";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
-import WidgetsIcon from "@mui/icons-material/Widgets";
+import MenuIcon from "@mui/icons-material/Menu";
 import Diversity2Icon from "@mui/icons-material/Diversity2";
+import { BootstrapButton } from "../../../Utils/BootstrapButton.js";
 const DrawerAppBar = ({
   open,
   handleDrawerOpen,
@@ -42,7 +43,7 @@ const DrawerAppBar = ({
   const toggleDrawer = () => {
     setDrawerOpen(!drawerOpen);
   };
-  
+
   const searchCondition = () => {
     if (
       [
@@ -60,49 +61,58 @@ const DrawerAppBar = ({
   };
 
   const handleNavigate = () => {
-   if (cookies?.UserType === "Admin") {
-     navigate("/manage-profile");
-   } else {
-     navigate("/manage-account");
-   }
+    if (cookies?.UserType === "Admin") {
+      navigate("/manage-profile");
+    } else {
+      navigate("/manage-account");
+    }
   };
   const removeSearch = () => {
     setUpDown(false);
     setQuery("");
   };
 
-    useEffect(() => {
-      if (matches) {
-       setDrawerOpen(false);
-      }
-    }, [matches]);
+  useEffect(() => {
+    if (matches) {
+      setDrawerOpen(false);
+    }
+  }, [matches]);
 
   return (
     <>
       <AppBar position="fixed" open={open} sx={styles.appBar}>
         <Toolbar sx={{ padding: !matches && "0px 6px" }}>
           {!matches && (
-            <IconButton
-              aria-label="open drawer"
+            <BootstrapButton
+              variant="contained"
+              disableRipple
               onClick={matches ? handleDrawerOpen : toggleDrawer}
-              edge="start"
-              sx={styles.toolbarIconBtn}
+              cookies={cookies}
+              matches={matches}
             >
-              <WidgetsIcon sx={styles.toolbarIconBtnAvatar} />
-            </IconButton>
+              <MenuIcon
+                sx={{
+                  width: 24,
+                  height: 24,
+                  color: "#FFF",
+                }}
+              />
+            </BootstrapButton>
           )}
 
           <Box sx={styles.innerBox3}>
-           <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Diversity2Icon sx={{ fontSize: matches ? "32px" : "22px", mr: 1 }} />
-            <Typography
-              variant={matches && "h6"}
-              noWrap
-              component="h1"
-              sx={styles.titleTypo}
-            >
-              StudentsTracker
-            </Typography>
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <Diversity2Icon
+                sx={{ fontSize: matches ? "32px" : "22px", mr: 1 }}
+              />
+              <Typography
+                variant={matches && "h6"}
+                noWrap
+                component="h1"
+                sx={styles.titleTypo}
+              >
+                StudentsTracker
+              </Typography>
             </Box>
             <Box sx={styles.childBox1}>
               {matches &&
