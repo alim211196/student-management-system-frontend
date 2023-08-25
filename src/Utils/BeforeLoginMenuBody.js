@@ -10,7 +10,6 @@ import {
   ListItemText,
 } from "@mui/material";
 import { useCookies } from "react-cookie";
-import ModeComp from "./ModeComp";
 const BeforeLoginMenuBody = ({ isOpen }) => {
   const [cookies] = useCookies(["theme"]);
   const navigate = useNavigate();

@@ -1,4 +1,4 @@
-import { CardBorder, Dark00 } from "../../Utils/CommonCookies";
+import { CardBorder } from "../../Utils/CommonCookies";
 
 export const HomeStyle = (cookies,matches) => {
   let Container = { margin: "60px 0px 0px 0px" },
