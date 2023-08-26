@@ -42,7 +42,7 @@ const ChangeProfile = ({ cookies }) => {
 
     const file = Math.round(fsize / 1024);
 
-    if (file > 100) {
+    if (file > 1024) {
       dispatch(
         openSnackbar({
           message: "Please upload image less than 1MB.",
