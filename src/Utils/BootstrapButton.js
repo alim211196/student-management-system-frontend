@@ -31,7 +31,8 @@ export const BootstrapButton = styled(Button)(({ cookies, matches }) => ({
     borderColor: !matches && "#fff",
   },
   "&:focus": {
-    boxShadow: "0 0 0 0.2rem #292929",
+    boxShadow:
+      cookies.theme === "dark" ? "0 0 0 0.2rem #000" : "0 0 0 0.2rem #0063A5",
   },
 }));
 
