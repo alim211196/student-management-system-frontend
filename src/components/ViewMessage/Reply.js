@@ -23,7 +23,7 @@ const Reply = ({
     >
       <PaperWrapper
         cookies={cookies}
-        boxBGColor={"#000"}
+        boxBGColor={"#0063A5"}
         text={"Submit your replay"}
       >
         <Grid container spacing={2} sx={{ p: 2, mb: 1 }}>
@@ -67,10 +67,11 @@ const Reply = ({
               background: "#DC143C",
               color: "#fff",
               borderColor: "#fff",
+              minHeight: 32,
               ":hover": {
                 color: "#fff",
                 borderColor: "#fff",
-                background: "#DC143C",
+                background: "#292929",
               },
             }}
           >
@@ -80,7 +81,7 @@ const Reply = ({
             type="submit"
             variant={"contained"}
             sx={{
-              background: "#000",
+              background: "#0063A5",
               color: "#fff",
               borderColor: "#fff",
               minHeight: 32,

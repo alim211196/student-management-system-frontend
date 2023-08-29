@@ -40,7 +40,7 @@ const AttendanceIndex = () => {
   const isoDate = inputDate.toISOString();
   const formattedDate = isoDate.slice(0, 10);
   const [status, setStatus] = useState(false);
-  const isAdmin = userData.role === "Admin";
+  const isAdmin = userData?.role === "Admin";
 
   useEffect(() => {
     setLoading(true);

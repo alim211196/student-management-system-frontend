@@ -61,7 +61,7 @@ const DrawerAppBar = ({
   };
 
   const handleNavigate = () => {
-    if (cookies?.UserType === "Admin") {
+    if (userData?.role === "Admin") {
       navigate("/manage-profile");
     } else {
       navigate("/manage-account");

@@ -21,7 +21,7 @@ import ViewCourses from "./SubComp/ViewCourses";
 import DialogBox from "../../Utils/DialogBox";
 import { ContainerStyle } from "../../Utils/stylingMethods";
 const ManageDepartment = () => {
-  const [cookies] = useCookies(["loggedIn", "UserId", "theme"]);
+  const [cookies] = useCookies(["token", "theme"]);
   const [open, setOpen] = React.useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [flag, setFlag] = useState("");

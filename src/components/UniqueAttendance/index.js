@@ -20,7 +20,7 @@ const UniqueIndex = () => {
   const { id } = useParams();
   const [AttData, setAttData] = useState([]);
   const dispatch = useDispatch();
-  const [cookies] = useCookies(["loggedIn", "UserId", "theme"]);
+  const [cookies] = useCookies(["theme"]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

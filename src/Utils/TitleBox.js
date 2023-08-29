@@ -17,7 +17,7 @@ import { Dark00FF, DarkFFF } from "./CommonCookies";
 const TitleBox = ({ icon, text, data, fileName, id }) => {
   const { userData } = useSelector((state) => state.getUserProfile);
   const [cookies] = useCookies(["theme"]);
-  const isAdmin = userData.role === "Admin";
+  const isAdmin = userData?.role === "Admin";
   const matches = useMediaQuery("(min-width:600px)");
   const navigate = useNavigate();
   const attendance_id = localStorage.getItem("attendance_id");

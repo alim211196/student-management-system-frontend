@@ -16,7 +16,7 @@ import { TabPanel, a11yProps } from "../../Utils/TabPanel";
 import { ContainerStyle } from "../../Utils/stylingMethods";
 
 const EditProfile = () => {
-  const [cookies] = useCookies(["theme", "UserId"]);
+  const [cookies] = useCookies(["theme", "token"]);
   const styles = ProfileStyle(cookies);
 
   const [value, setValue] = React.useState(0);

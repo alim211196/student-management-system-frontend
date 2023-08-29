@@ -14,7 +14,6 @@ const BoxWrapper = ({
   linkText,
   path,
   maxWidth,
-  userType,
 }) => {
   return (
     <CustomTheme>
@@ -88,13 +87,11 @@ const BoxWrapper = ({
               >
                 {children}
               </Box>
-              {userType === "teacher" && (
                 <Grid container maxWidth="xs" justifyContent={"center"}>
                   <Grid item>
                     <LinkComp text={linkText} path={path} cookies={cookies} />
                   </Grid>
                 </Grid>
-              )}
             </Paper>
           </Container>
         </Box>

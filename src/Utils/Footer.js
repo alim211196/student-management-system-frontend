@@ -159,7 +159,7 @@ const Footer = ({ cookies, matches, scrollToContact }) => {
                 matches={matches}
               >
                 <Link
-                  to="contact-form-section"
+                  to="contact-link"
                   {...scrollOptions}
                   onClick={() => scrollToContact()}
                 >
@@ -207,8 +207,8 @@ const Footer = ({ cookies, matches, scrollToContact }) => {
                   mb: 1,
                 }}
               >
-                StudentsTracker Pvt Ltd <br />
-                Hadapsar, Pune, Maharashtra, India
+                Oxcytech System Pvt Ltd <br />
+                Pune, Maharashtra, India
               </Typography>
               <Typography
                 sx={{
@@ -228,7 +228,7 @@ const Footer = ({ cookies, matches, scrollToContact }) => {
                   mb: 1,
                 }}
               >
-                Alim.Mohammad619@outlook.com
+                alim.mohd@oxcytech.com
               </Typography>
               <Typography
                 sx={{
@@ -300,7 +300,7 @@ const Footer = ({ cookies, matches, scrollToContact }) => {
             color: "#777777",
           }}
         >
-          Copyright 2023- StudentsTracker a product of StudentsTracker Pvt Ltd.
+          Copyright 2023- StudentsTracker a product of Oxcytech System Pvt Ltd.
         </Typography>
       </Box>
     </>

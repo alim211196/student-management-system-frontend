@@ -27,8 +27,7 @@ const ProfileSection = ({
     setDialogOpen(false);
   };
   const logoutFn = () => {
-    removeCookie("loggedIn");
-    removeCookie("UserId");
+    removeCookie("token");
     dispatch(
       fetchData({
         userData: {},
@@ -38,7 +37,7 @@ const ProfileSection = ({
   };
 
   const redirectToProfile = () => {
-    if (cookies?.UserType === "Admin") {
+    if (userData?.role === "Admin") {
       navigate("/manage-profile");
     } else {
       navigate("/manage-account");
@@ -181,7 +180,7 @@ const ProfileSection = ({
                     </Grid>
                   </Grid>
                 </ListItem>
-               { matches && <Divider variant="inset" component="li" />}
+                {matches && <Divider variant="inset" component="li" />}
               </Box>
             </List>
             <Box sx={{ padding: "12px 16px" }}>

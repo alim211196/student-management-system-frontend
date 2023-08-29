@@ -32,12 +32,7 @@ const Dashboard = () => {
   const [recentMessages, setRecentMessages] = useState([]);
   const [recentStudents, setRecentStudents] = useState([]);
   const [recentTeachers, setRecentTeachers] = useState([]);
-  const [cookies, removeCookie] = useCookies([
-    "loggedIn",
-    "UserId",
-    "theme",
-    "UserType",
-  ]);
+  const [cookies, removeCookie] = useCookies(["token","theme"]);
   const { userData } = useSelector((state) => state.getUserProfile);
   const iconStyle = {
     width: "80px",
@@ -72,12 +67,7 @@ const Dashboard = () => {
     <CustomTheme>
       <MiniDrawer>
         <Container maxWidth="xl" sx={ContainerStyle}>
-          <TitleBox
-            icon={
-              <DisplaySettings />
-            }
-            text={"Dashboard"}
-          />
+          <TitleBox icon={<DisplaySettings />} text={"Dashboard"} />
           <Grid container spacing={2}>
             <CardList
               topColor={"#EF5350"}

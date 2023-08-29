@@ -10,15 +10,12 @@ import BoxWrapper from "../../Utils/BoxWrapper";
 import { USER_LOGIN } from "../../ApiFunctions/users";
 import { errorHandler } from "../../ApiFunctions/ErrorHandler";
 import { setLoading } from "../../app/reducer/Loader";
-
 export default function SignIn() {
   const loading = useSelector((state) => state.loading);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [cookies, setCookie] = useCookies([
-    "loggedIn",
-    "UserId",
-    "UserType",
+    "token",
     "theme",
   ]);
   const [formData, setFormData] = useState({
@@ -45,15 +42,14 @@ export default function SignIn() {
     dispatch(setLoading(true));
     USER_LOGIN(formData)
       .then((res) => {
+        console.log(res)
         dispatch(
           openSnackbar({
             message: "Login successfully.",
             severity: "success",
           })
         );
-        setCookie("loggedIn", "true", { path: "/" });
-        setCookie("UserId", res?.data?._id, { path: "/" });
-        setCookie("UserType", res?.data?.role, { path: "/" });
+        setCookie("token", res?.data?.token, { path: "/" });
         navigate("/dashboard");
         dispatch(setLoading(false));
         dispatch(closeSnackbar())
@@ -72,7 +68,6 @@ export default function SignIn() {
       path={"/forgot-password"}
       cookies={cookies}
       maxWidth={"xs"}
-      userType={"teacher"}
     >
       <CustomTextField
         label={"Email Address"}

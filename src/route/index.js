@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React, { lazy } from "react";
+import jwt_decode from "jwt-decode";
 import { useCookies } from "react-cookie";
 const ViewRecords = lazy(() =>
   import("../components/ManageStudent/ViewRecords")
@@ -34,7 +35,20 @@ const ManageAttendance = lazy(() =>
 );
 
 const RouteIndex = () => {
-  const [cookies] = useCookies(["UserType"]);
+  const [cookies] = useCookies(["token"]);
+ let decoded = null;
+
+if (cookies?.token && cookies?.token !== "undefined") {
+  try {
+    decoded = jwt_decode(cookies.token);
+    // You can access properties of 'decoded' here
+  } catch (error) {
+    console.error("JWT decoding error:", error);
+  }
+} else {
+  console.log("Token is undefined or not present.");
+}
+
 
   return (
     <Router>
@@ -44,7 +58,7 @@ const RouteIndex = () => {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/manage-queries" element={<ViewMessage />} />
 
-          {cookies?.UserType === "Admin" && (
+          {decoded?.userType === "Admin" && (
             <>
               <Route path="/manage-teachers" element={<ManageTeacher />} />
               <Route path="/manage-teachers/:id" element={<ViewTeacher />} />
@@ -76,7 +90,7 @@ const RouteIndex = () => {
             </>
           )}
 
-          {cookies?.UserType === "Teacher" && (
+          {decoded?.userType === "Teacher" && (
             <>
               <Route path="/manage-students" element={<ManageStudent />} />
               <Route path="/manage-students/:id" element={<ViewRecords />} />

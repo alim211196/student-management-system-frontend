@@ -31,7 +31,13 @@ const DialogBox = ({ open, handleClose, handleChange,text }) => {
           }}
         >
           <DialogTitle>{text}</DialogTitle>
-          <DialogActions sx={{display:'flex',alignItems:'center',justifyContent:'center'}}>
+          <DialogActions
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             <Button
               onClick={() => handleClose()}
               sx={{
@@ -46,9 +52,9 @@ const DialogBox = ({ open, handleClose, handleChange,text }) => {
             <Button
               onClick={() => handleChange()}
               sx={{
-                background: "#000",
+                background: "#0063A5",
                 ":hover": {
-                  background: "#000 !important",
+                  background: "#0063A5 !important",
                 },
               }}
             >

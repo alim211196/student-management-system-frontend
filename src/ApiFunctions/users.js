@@ -1,5 +1,6 @@
 import axios from "axios";
 import api from "../api";
+import AxiosConfig from "../axiosConfig";
 
 //user login
 export const USER_LOGIN = (formData) => {
@@ -19,7 +20,6 @@ export const USER_LOGIN = (formData) => {
   });
 };
 
-
 //get users
 export const GET_USERS = () => {
   return new Promise((resolve, reject) => {
@@ -37,7 +37,6 @@ export const GET_USERS = () => {
       });
   });
 };
-
 
 //activate or deactivate user account
 export const USER_ACTIVATION = (id, active) => {
@@ -59,12 +58,10 @@ export const USER_ACTIVATION = (id, active) => {
   });
 };
 
-
-
 //get current user data by id
-export const GET_USER = (id) => {
+export const GET_USER = (token,id) => {
   return new Promise((resolve, reject) => {
-    axios
+    return AxiosConfig(token)
       .get(`${process.env.REACT_APP_API_URL}${api.getUser}${id}`)
       .then((res) => {
         if (res.status === 200) {
@@ -195,8 +192,6 @@ export const UPDATE_PASSWORD = (id, currentPassword, newPassword) => {
       });
   });
 };
-
-
 
 //send birthday wishes
 export const SEND_WISHES = (id, formData) => {

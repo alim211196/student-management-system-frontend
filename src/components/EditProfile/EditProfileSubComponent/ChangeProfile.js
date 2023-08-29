@@ -10,9 +10,7 @@ import AddressInfo from "../../../Utils/AddressInfo";
 import FormButton from "../../../Utils/FormButton";
 import { setLoading } from "../../../app/reducer/Loader";
 const ChangeProfile = ({ cookies }) => {
-  const { userData } = useSelector((state) => state.getUserProfile);
-    const isAdmin = userData.role === "Admin";
-
+  const { userData } = useSelector((state) => state?.getUserProfile);
   const loading = useSelector((state) => state.loading);
   const [selectedFile, setSelectedFile] = useState(null);
   const inputDate = new Date();
@@ -32,7 +30,7 @@ const ChangeProfile = ({ cookies }) => {
     pinCode: "",
     state: "",
     country: "",
-    role:"",
+    role: "",
   };
   const [formData, setFormData] = useState(DataObj);
 
@@ -63,11 +61,21 @@ const ChangeProfile = ({ cookies }) => {
   };
 
   useEffect(() => {
+    let formattedDate = "";
+    if (userData?.dob) {
+      try {
+        const date = new Date(userData?.dob);
+        formattedDate = date.toISOString().substring(0, 10);
+      } catch (error) {
+        console.error("Error parsing date:", error);
+      }
+    }
+
     setFormData({
       fullName: userData?.fullName,
       phone: userData?.phone,
       email: userData?.email,
-      dob: userData?.dob,
+      dob: formattedDate,
       gender: userData?.gender,
       course: userData?.course,
       courseYear: userData?.courseYear,
@@ -107,16 +115,20 @@ const ChangeProfile = ({ cookies }) => {
       profileImage: selectedFile,
     };
     dispatch(setLoading(true));
-    UPDATE_PROFILE(cookies.UserId, newFormData)
+    UPDATE_PROFILE(userData?._id, newFormData)
       .then((res) => {
-        dispatch(
-          openSnackbar({
-            message: res.data,
-            severity: "success",
-          })
-        );
-        window.location.reload();
-        dispatch(setLoading(false));
+        if (res.data) {
+          dispatch(
+            openSnackbar({
+              message: res.data,
+              severity: "success",
+            })
+          );
+          window.location.reload();
+          dispatch(setLoading(false));
+        } else {
+          dispatch(setLoading(false));
+        }
       })
       .catch((err) => {
         errorHandler(err?.status, err?.data, dispatch);
@@ -133,7 +145,7 @@ const ChangeProfile = ({ cookies }) => {
         handleClear={handleClear}
         selectedFile={selectedFile}
       />
-      {!isAdmin && window.location.pathname !== "/manage-profile" && (
+      {window.location.pathname !== "/manage-profile" && (
         <>
           <EducationalInfo
             cookies={cookies}
@@ -148,7 +160,7 @@ const ChangeProfile = ({ cookies }) => {
         </>
       )}
 
-      <FormButton cookies={cookies} text={"Update Profile"} loading={loading} />
+      <FormButton text={"Update Profile"} loading={loading} />
     </Box>
   );
 };

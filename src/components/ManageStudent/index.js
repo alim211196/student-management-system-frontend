@@ -34,7 +34,7 @@ const ManageStudent = () => {
   const [ID, setID] = useState("");
   const [dialogOpen, setDialogOpen] = useState(false);
   const [active, setActive] = useState(false);
-  const [cookies] = useCookies(["theme", "UserId"]);
+  const [cookies] = useCookies(["token", "theme"]);
   const [flag, setFlag] = useState(false);
   const [value, setValue] = React.useState(0);
   const [loading, setLoading] = useState(true);

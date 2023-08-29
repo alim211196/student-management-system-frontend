@@ -108,9 +108,7 @@ const PersonalInfo = ({
               value={formData.email}
               setFormData={setFormData}
               type="email"
-              disabled={
-                window.location.pathname === "/manage-account" ? true : false
-              }
+              disabled={true}
             />
           </Grid>
           <Grid item xs={12} sm={6} md={6}>

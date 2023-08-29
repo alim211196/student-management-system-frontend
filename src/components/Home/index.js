@@ -18,15 +18,17 @@ import {
 } from "@mui/icons-material/";
 const FeaturesInfo = lazy(() => import("./FeaturesInfo"));
 const Home = () => {
+   const [cookies] = useCookies(["token", "theme"]);
+  const token = cookies?.token && cookies?.token !== "undefined";
   const contactSectionRef = useRef();
-  const [cookies] = useCookies(["loggedIn", "theme"]);
+ 
     const matches = useMediaQuery("(min-width:900px)");
   const styles = HomeStyle(cookies, matches);
   useEffect(() => {
-    if (window.location.path === "/" && cookies.loggedIn === "true") {
+    if (token) {
       <Navigate to="/dashboard" />;
     }
-  }, [cookies.loggedIn]);
+  }, [token]);
 
   const iconStyle = {
     width: "80px",
@@ -34,7 +36,7 @@ const Home = () => {
     color: "#fff",
   };
 
-  return cookies.loggedIn === "true" ? (
+  return token ? (
     <Navigate to="/dashboard" />
   ) : (
     <CustomTheme>
@@ -98,13 +100,13 @@ const Home = () => {
             </Grid>
           </Container>
         </Box>
-        <FeaturesInfo  matches={matches} cookies={cookies} />
+        <FeaturesInfo matches={matches} cookies={cookies} />
         <section ref={contactSectionRef} id="contact-form-section">
           {" "}
           <Contact Home={true} cookies={cookies} />
         </section>
 
-        <Footer 
+        <Footer
           scrollToContact={() =>
             contactSectionRef.current.scrollIntoView({ behavior: "smooth" })
           }

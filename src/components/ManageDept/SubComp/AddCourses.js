@@ -71,7 +71,7 @@ const AddCourses = ({
               ":hover": {
                 color: "#fff",
                 borderColor: "#fff",
-                background: "#DC143C",
+                background: "#292929",
               },
             }}
           >
@@ -81,7 +81,7 @@ const AddCourses = ({
             type="submit"
             variant={"contained"}
             sx={{
-              background: "#000",
+              background: "#0063A5",
               color: "#fff",
               borderColor: "#fff",
               minHeight: 32,

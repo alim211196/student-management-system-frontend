@@ -88,7 +88,7 @@ const AfterLoginMenuBody = ({
                 (nav.path !== window.location.pathname &&
                   renderPath(nav.path) &&
                   nav.LoggedIn === true &&
-                  nav.access === userData.role) ||
+                  nav.access === userData?.role) ||
                 nav.access === "both"
             )
             .map((item, index) => {
@@ -115,7 +115,7 @@ const AfterLoginMenuBody = ({
         </List>
         <Box
           sx={
-            cookies.loggedIn === "true"
+            cookies.token !== "undefined"
               ? {
                   position: "absolute",
                   bottom: 0,

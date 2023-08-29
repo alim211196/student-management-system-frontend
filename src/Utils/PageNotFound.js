@@ -3,8 +3,8 @@ import { Typography, Box, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
 const PageNotFound = () => {
-  const [cookies] = useCookies(["loggedIn"]);
-  const isLoggedIn = cookies.loggedIn === "true";
+  const [cookies] = useCookies(["token"]);
+  const isLoggedIn = cookies?.token !== "undefined";
   return (
     <Box
       sx={{

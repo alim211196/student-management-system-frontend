@@ -36,7 +36,7 @@ const BirthDayList = ({ cookies, icon, title, bgColor, userData, matches }) => {
   const [studentBirthday, setStudentBirthday] = useState([]);
   const [teacherBirthday, setTeacherBirthday] = useState([]);
   const [loading, setLoading] = useState(true);
-  const isAdmin = userData.role === "Admin";
+  const isAdmin = userData?.role === "Admin";
   const [dialogOpen, setDialogOpen] = useState(false);
   const [ID, setID] = useState("");
   const dispatch = useDispatch();

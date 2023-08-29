@@ -129,7 +129,7 @@ const CustomCard = ({
               width: 80,
               height: 80,
               fontSize: "40px",
-              border: "1px solid #000",
+              border: "1px solid #E7EBF0",
             }}
           >
             {CardName(`${data.FullName}`)}
@@ -173,7 +173,7 @@ const CustomCard = ({
         {["View Records", "Manage Teachers"].includes(parentComp) && (
           <Tooltip title="Edit" placement="top">
             <IconButton onClick={() => handleEdit(item._id)}>
-              <EditIcon sx={{ fontSize: 20, color: IconColor(cookies) }} />
+              <EditIcon sx={{ fontSize: 20 }} />
             </IconButton>
           </Tooltip>
         )}
@@ -211,12 +211,12 @@ const CustomCard = ({
               aria-expanded={expanded}
               aria-label="show more"
             >
-              <ExpandMoreIcon sx={{ color: IconColor(cookies) }} />
+              <ExpandMoreIcon sx={{ fontSize: 20 }} />
             </ExpandMore>
             {isAdmin && (
               <Tooltip title={"Reply"} placement="top">
                 <IconButton onClick={() => handleClickOpen(item._id)}>
-                  <ReplyIcon sx={{ color: IconColor(cookies) }} />
+                  <ReplyIcon sx={{ fontSize: 20 }} />
                 </IconButton>
               </Tooltip>
             )}

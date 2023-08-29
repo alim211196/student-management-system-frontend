@@ -27,7 +27,7 @@ const CardContainer = ({
     }
   };
 
-  const isAdmin = userData.role === "Admin";
+  const isAdmin = userData?.role === "Admin";
 
   const filteredData = isAdmin
     ? data

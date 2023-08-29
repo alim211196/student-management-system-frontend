@@ -18,7 +18,7 @@ import PaperWrapper from "../../Utils/PaperWrapper";
 import { ContainerStyle } from "../../Utils/stylingMethods";
 const UniqueStudentAttendance = () => {
   const { id } = useParams();
-  const [cookies] = useCookies(["loggedIn", "UserId", "theme"]);
+  const [cookies] = useCookies(["theme"]);
   const matches = useMediaQuery("(min-width:600px)");
   const [studentAttendance, setStudentAttendance] = useState([]);
   const dispatch = useDispatch();

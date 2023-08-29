@@ -23,18 +23,14 @@ import { errorHandler } from "../../ApiFunctions/ErrorHandler";
 import { DrawerStyle } from "./styles";
 import CustomTheme from "../../Utils/CustomTheme";
 import { openSnackbar } from "../../app/reducer/Snackbar";
+import jwt_decode from "jwt-decode";
 const MiniDrawer = ({ children, setQuery, query, data, value }) => {
   const dispatch = useDispatch();
   const { userData } = useSelector((state) => state.getUserProfile);
   const matches = useMediaQuery("(min-width:600px)");
   const [open, setOpen] = React.useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [cookies, removeCookie] = useCookies([
-    "loggedIn",
-    "UserId",
-    "UserType",
-    "theme",
-  ]);
+  const [cookies, removeCookie] = useCookies(["token", "theme"]);
   const [loading, setLoading] = useState(true);
   const [upDown, setUpDown] = useState(false);
   const navigate = useNavigate();
@@ -50,10 +46,7 @@ const MiniDrawer = ({ children, setQuery, query, data, value }) => {
     setDialogOpen(false);
   };
   const logoutFn = () => {
-    const pastDate = new Date(0);
-    removeCookie("loggedIn", { expires: pastDate });
-    removeCookie("UserId", { expires: pastDate });
-    removeCookie("UserType", { expires: pastDate });
+    removeCookie("token");
     dispatch(
       fetchData({
         userData: {},
@@ -70,10 +63,7 @@ const MiniDrawer = ({ children, setQuery, query, data, value }) => {
           severity: "error",
         })
       );
-      const pastDate = new Date(0);
-      removeCookie("loggedIn", { expires: pastDate });
-      removeCookie("UserId", { expires: pastDate });
-      removeCookie("UserType", { expires: pastDate });
+      removeCookie("token");
       dispatch(
         fetchData({
           userData: {},
@@ -85,11 +75,23 @@ const MiniDrawer = ({ children, setQuery, query, data, value }) => {
     return () => clearTimeout(timeout);
   }, [dispatch, navigate, removeCookie]);
 
+  
   useEffect(() => {
+   
     if (!userData?._id) {
       setLoading(true);
-      GET_USER(cookies?.UserId)
+      let decoded = null;
+
+      if (cookies?.token && cookies?.token !== "undefined") {
+        try {
+          decoded = jwt_decode(cookies.token);
+        } catch (error) {
+          //  navigate("/");
+        }
+      }
+      GET_USER(cookies.token,decoded?.userId)
         .then((response) => {
+          console.log(response);
           setLoading(false);
           dispatch(
             fetchData({
@@ -99,10 +101,7 @@ const MiniDrawer = ({ children, setQuery, query, data, value }) => {
         })
         .catch((err) => {
           if (err?.status === 404) {
-            const pastDate = new Date(0);
-            removeCookie("loggedIn", { expires: pastDate });
-            removeCookie("UserId", { expires: pastDate });
-            removeCookie("UserType", { expires: pastDate });
+            removeCookie("token");
             dispatch(
               fetchData({
                 userData: {},
@@ -116,7 +115,7 @@ const MiniDrawer = ({ children, setQuery, query, data, value }) => {
     } else {
       setLoading(false);
     }
-  }, [dispatch, cookies.UserId, userData, navigate, removeCookie]);
+  }, [dispatch, cookies?.token,navigate, userData, removeCookie]);
 
   useEffect(() => {
     if (matches) {
@@ -190,7 +189,7 @@ const MiniDrawer = ({ children, setQuery, query, data, value }) => {
               {navLinks
                 .filter(
                   (nav) =>
-                    (nav.LoggedIn === true && nav.access === userData.role) ||
+                    (nav.LoggedIn === true && nav.access === userData?.role) ||
                     nav.access === "both"
                 )
                 .map((item, index) => {
