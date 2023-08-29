@@ -16,7 +16,7 @@ import LowerIcons from "./DrawerSubComponents/LowerIcons";
 import DrawerAppBar from "./DrawerSubComponents/DrawerAppBar";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { useMediaQuery } from "@mui/material";
+import { LinearProgress, useMediaQuery } from "@mui/material";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import { GET_USER } from "../../ApiFunctions/users";
 import { errorHandler } from "../../ApiFunctions/ErrorHandler";
@@ -186,28 +186,40 @@ const MiniDrawer = ({ children, setQuery, query, data, value }) => {
                 </Box>
               </ListItem>
 
-              {navLinks
-                .filter(
-                  (nav) =>
-                    (nav.LoggedIn === true && nav.access === userData?.role) ||
-                    nav.access === "both"
-                )
-                .map((item, index) => {
-                  return (
-                    <ListItem
-                      key={index}
-                      disablePadding
-                      sx={styles.dynamicListItem}
-                    >
-                      <CustomListItem
-                        item={item}
-                        open={open}
-                        styles={styles}
-                        cookies={cookies}
-                      />
-                    </ListItem>
-                  );
-                })}
+              {userData?.role ? (
+                navLinks
+                  .filter(
+                    (nav) =>
+                      (nav.LoggedIn === true &&
+                        nav.access === userData?.role) ||
+                      nav.access === "both"
+                  )
+                  .map((item, index) => {
+                    return (
+                      <ListItem
+                        key={index}
+                        disablePadding
+                        sx={styles.dynamicListItem}
+                      >
+                        <CustomListItem
+                          item={item}
+                          open={open}
+                          styles={styles}
+                          cookies={cookies}
+                        />
+                      </ListItem>
+                    );
+                  })
+              ) : (
+                <LinearProgress
+                  sx={{
+                    height: "10px",
+                    width:'100%',
+                    background:
+                      "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+                  }}
+                />
+              )}
             </Box>
             <LowerIcons
               icon={<PowerSettingsNewIcon />}
