@@ -33,7 +33,7 @@ const BootstrapButton = styled(Button)(({ cookies, matches }) => ({
     '"Segoe UI Symbol"',
   ].join(","),
   "&:hover": {
-    backgroundColor:"#292929",
+    backgroundColor: "#292929",
     color: "#fff!important",
   },
 }));
@@ -44,14 +44,14 @@ const Footer = ({ cookies, matches, scrollToContact }) => {
     offset: -window.innerHeight / 8, // Scroll to the middle of the screen
     smooth: true, // Enable smooth scrolling
   };
-
+  const IsHome = window.location.pathname !== "/privacy-policy";
   return (
     <>
       <Box
         sx={{
           background: "#0C0D15",
           p: "20px 30px",
-          mt: 3,
+          mt: IsHome ? 3 : 0,
           zIndex: 0,
           position: "relative",
         }}
@@ -123,16 +123,23 @@ const Footer = ({ cookies, matches, scrollToContact }) => {
               <BootstrapButton
                 variant="contained"
                 disableRipple
+                onClick={() => {
+                  !IsHome && navigate("/");
+                }}
                 cookies={cookies}
                 matches={matches}
               >
-                <Link
-                  smooth={true}
-                  duration={500}
-                  onClick={() => scroll.scrollToTop()}
-                >
-                  Home
-                </Link>
+                {IsHome ? (
+                  <Link
+                    smooth={true}
+                    duration={500}
+                    onClick={() => scroll.scrollToTop()}
+                  >
+                    Home
+                  </Link>
+                ) : (
+                  <>Home</>
+                )}
               </BootstrapButton>
               <BootstrapButton
                 variant="contained"
@@ -152,29 +159,33 @@ const Footer = ({ cookies, matches, scrollToContact }) => {
               >
                 Forgot Password
               </BootstrapButton>
-              <BootstrapButton
-                variant="contained"
-                disableRipple
-                cookies={cookies}
-                matches={matches}
-              >
-                <Link
-                  to="contact-link"
-                  {...scrollOptions}
-                  onClick={() => scrollToContact()}
-                >
-                  Contact
-                </Link>
-              </BootstrapButton>
-              <BootstrapButton
-                variant="contained"
-                disableRipple
-                // onClick={() => navigate("/login")}
-                cookies={cookies}
-                matches={matches}
-              >
-                Privacy Policy
-              </BootstrapButton>
+              {IsHome && (
+                <>
+                  <BootstrapButton
+                    variant="contained"
+                    disableRipple
+                    cookies={cookies}
+                    matches={matches}
+                  >
+                    <Link
+                      to="contact-link"
+                      {...scrollOptions}
+                      onClick={() => scrollToContact()}
+                    >
+                      Contact
+                    </Link>
+                  </BootstrapButton>
+                  <BootstrapButton
+                    variant="contained"
+                    disableRipple
+                    onClick={() => navigate("/privacy-policy")}
+                    cookies={cookies}
+                    matches={matches}
+                  >
+                    Privacy Policy
+                  </BootstrapButton>
+                </>
+              )}
             </Box>
           </Grid>
           <Grid item xs={12} sm={3}>

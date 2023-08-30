@@ -16,7 +16,6 @@ import DialogBox from "../../../Utils/DialogBox.js";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import MenuIcon from "@mui/icons-material/Menu";
 import Diversity2Icon from "@mui/icons-material/Diversity2";
-import { BootstrapButton } from "../../../Utils/BootstrapButton.js";
 const DrawerAppBar = ({
   open,
   handleDrawerOpen,
@@ -83,13 +82,7 @@ const DrawerAppBar = ({
       <AppBar position="fixed" open={open} sx={styles.appBar}>
         <Toolbar sx={{ padding: !matches && "0px 6px" }}>
           {!matches && (
-            <BootstrapButton
-              variant="contained"
-              disableRipple
-              onClick={matches ? handleDrawerOpen : toggleDrawer}
-              cookies={cookies}
-              matches={matches}
-            >
+            <IconButton onClick={matches ? handleDrawerOpen : toggleDrawer}>
               <MenuIcon
                 sx={{
                   width: 24,
@@ -97,14 +90,17 @@ const DrawerAppBar = ({
                   color: "#FFF",
                 }}
               />
-            </BootstrapButton>
+            </IconButton>
           )}
 
           <Box sx={styles.innerBox3}>
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <Diversity2Icon
-                sx={{ fontSize: matches ? "32px" : "22px", mr: 1 }}
-              />
+              {matches && (
+                <Diversity2Icon
+                  sx={{ fontSize: matches ? "32px" : "22px", mr: 1 }}
+                />
+              )}
+
               <Typography
                 variant={matches && "h6"}
                 noWrap

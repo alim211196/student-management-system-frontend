@@ -4,30 +4,22 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 import CustomTheme from "./CustomTheme";
-import { Box, useMediaQuery } from "@mui/material";
+import { Box, Button, IconButton, useMediaQuery } from "@mui/material";
 import ModeComp from "./ModeComp";
 import BeforeLoginMenuBody from "./BeforeLoginMenuBody";
 import { useCookies } from "react-cookie";
 import Diversity2Icon from "@mui/icons-material/Diversity2";
 import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
-import { BootstrapButton } from "./BootstrapButton";
 
-function CommonCode({ link, title, cookies, navigate,matches }) {
+function CommonCode({ link, title, navigate }) {
   if (window.location.pathname === link) {
     return null;
   } else {
     return (
       <CustomTheme>
-        <BootstrapButton
-          variant="contained"
-          disableRipple
-          onClick={() => navigate(link)}
-          cookies={cookies}
-          matches={matches}
-        >
+        <Button sx={{ml:1}} variant="text" onClick={() => navigate(link)}>
           {title}
-        </BootstrapButton>
+        </Button>
       </CustomTheme>
     );
   }
@@ -38,9 +30,10 @@ const Header = () => {
   const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
   const matches = useMediaQuery("(min-width:600px)");
   const navigate = useNavigate();
-  const [open, setOpen] = React.useState(false);
+  const [drawerOpen, setDrawerOpen] = React.useState(false);
+
   const toggleDrawer = () => {
-    setOpen(!open);
+    setDrawerOpen(!drawerOpen);
   };
 
   useEffect(() => {
@@ -92,31 +85,15 @@ const Header = () => {
           </Typography>
         </Box>
         {!matches ? (
-            <BootstrapButton
-              variant="contained"
-              disableRipple
-              onClick={toggleDrawer}
-              cookies={cookies}
-              matches={matches}
-            >
-              {!open ? (
-                <MenuIcon
-                  sx={{
-                    width: 24,
-                    height: 24,
-                    color: "#FFF",
-                  }}
-                />
-              ) : (
-                <CloseIcon
-                  sx={{
-                    width: 24,
-                    height: 24,
-                    color: "#FFF",
-                  }}
-                />
-              )}
-            </BootstrapButton>
+          <IconButton onClick={toggleDrawer}>
+            <MenuIcon
+              sx={{
+                width: 24,
+                height: 24,
+                color: "#FFF",
+              }}
+            />
+          </IconButton>
         ) : (
           <nav
             style={{
@@ -125,25 +102,19 @@ const Header = () => {
               justifyContent: "space-between",
             }}
           >
-            <CommonCode
-              link={"/"}
-              title={"Home"}
-              cookies={cookies}
-              navigate={navigate}
-              matches={matches}
-            />
-            <CommonCode
-              link={"/login"}
-              title={"Login"}
-              cookies={cookies}
-              navigate={navigate}
-              matches={matches}
-            />
+            <CommonCode link={"/"} title={"Home"} navigate={navigate} />
+            <CommonCode link={"/login"} title={"Login"} navigate={navigate} />
             <ModeComp />
           </nav>
         )}
       </Toolbar>
-      {open && !matches && <BeforeLoginMenuBody isOpen={open} />}
+      {drawerOpen && !matches && (
+        <BeforeLoginMenuBody
+          open={drawerOpen}
+          toggleDrawer={toggleDrawer}
+          cookies={cookies}
+        />
+      )}
     </AppBar>
   );
 };

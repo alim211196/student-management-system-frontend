@@ -26,6 +26,7 @@ const PageNotFound = lazy(() => import("../Utils/PageNotFound"));
 const PrivateRoute = lazy(() => import("../route/PrivateRoute"));
 const PublicRoute = lazy(() => import("../route/PublicRoute"));
 const ForgotPassword = lazy(() => import("../components/ForgotPassword/index"));
+const PrivacyPolicy = lazy(() => import("../components/PrivacyPolicy/index"));
 const ResetPassword = lazy(() => import("../components/ResetPassword/index"));
 const EditProfile = lazy(() => import("../components/EditProfile"));
 const Home = lazy(() => import("../components/Home"));
@@ -102,6 +103,7 @@ if (cookies?.token && cookies?.token !== "undefined") {
         <Route path="/" element={<PublicRoute />}>
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/reset-password" element={<ResetPassword />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />

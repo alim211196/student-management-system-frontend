@@ -11,10 +11,13 @@ import {
   ListItem,
   ListItemButton,
   Box,
+  Divider,
+  ListItemAvatar,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { DarkFF4F } from "../../../Utils/CommonCookies";
 import { extractFirstName } from "../../../Utils/AvatarName";
+import { StyledBadge } from "../../../Utils/stylingMethods";
 const AfterLoginMenuBody = ({
   open,
   toggleDrawer,
@@ -28,90 +31,130 @@ const AfterLoginMenuBody = ({
 }) => {
   const navigate = useNavigate();
 
-
-  const renderPath = (path)=>{
-  if (["/manage-profile", "/manage-account"].includes(path)) {
-    return false;
-  } else {
-    return true;
-  }
-  }
+ const IconColor = (selected) => {
+   if (cookies.theme === "dark") {
+     if (selected) {
+       return "#fff";
+     } else {
+       return "#FFF";
+     }
+   } else {
+     if (selected) {
+       return "#0063A5";
+     } 
+   }
+ };
   return (
     <>
       <MenuWrapper open={open} toggleDrawer={toggleDrawer} cookies={cookies}>
         <List>
-          <ListItem onClick={() => handleNavigate()} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <Avatar
-                  variant="square"
-                  sx={{ width: "24px !important", height: "24px !important" }}
-                  src={userData?.profileImage}
-                />
-              </ListItemIcon>
-              <ListItemText
-                primary={extractFirstName(
-                  `${userData?.fullName && userData?.fullName}`
-                )}
-                sx={{
-                  color: DarkFF4F(cookies),
+          <ListItem
+            onClick={() => handleNavigate()}
+            disablePadding
+            sx={{
+              pl: 2,
+              pt: 1,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "start",
+            }}
+          >
+            <ListItemAvatar>
+              <StyledBadge
+                overlap="circular"
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "right",
                 }}
-              />
-            </ListItemButton>
+                variant="dot"
+              >
+                <Avatar src={userData?.profileImage} />
+              </StyledBadge>
+            </ListItemAvatar>
+            <ListItemText
+              sx={{
+                "& .MuiTypography-root": {
+                  color: DarkFF4F(cookies),
+                },
+              }}
+              primary={extractFirstName(
+                `${userData?.fullName && userData?.fullName}`
+              )}
+              secondary={userData?.email}
+            />
           </ListItem>
 
-          {searchCondition() && !upDown && data?.length > 0 && (
-            <ListItem
-              onClick={() => {
-                setUpDown(true);
-                toggleDrawer();
-              }}
-              disablePadding
-            >
-              <ListItemButton>
-                <ListItemIcon>
-                  <SearchIcon sx={{ color: DarkFF4F(cookies) }} />
-                </ListItemIcon>
-                <ListItemText
-                  primary={"Search"}
-                  sx={{
-                    color: DarkFF4F(cookies),
-                  }}
-                />
-              </ListItemButton>
-            </ListItem>
-          )}
+          <Divider
+            sx={{
+              borderColor: cookies.theme === "dark" && "#fff",
+            }}
+          />
+          <Box sx={{ p: 1 }}>
+            {searchCondition() && !upDown && data?.length > 0 && (
+              <ListItem
+                onClick={() => {
+                  setUpDown(true);
+                  toggleDrawer();
+                }}
+                disablePadding
+              >
+                <ListItemButton sx={{ borderRadius: "10px" }}>
+                  <ListItemIcon>
+                    <SearchIcon sx={{ color: DarkFF4F(cookies) }} />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={"Search"}
+                    sx={{
+                      color: DarkFF4F(cookies),
+                    }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            )}
 
-          {navLinks
-            .filter(
-              (nav) =>
-                (nav.path !== window.location.pathname &&
-                  renderPath(nav.path) &&
-                  nav.LoggedIn === true &&
-                  nav.access === userData?.role) ||
-                nav.access === "both"
-            )
-            .map((item, index) => {
-              return (
-                <ListItem
-                  key={index}
-                  onClick={() => navigate(item.path)}
-                  disablePadding
-                >
-                  <ListItemButton>
-                    <ListItemIcon sx={{ color: DarkFF4F(cookies) }}>
-                      {item.icon}
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={item.title}
+            {navLinks
+              .filter(
+                (nav) =>
+                  (nav.LoggedIn === true && nav.access === userData?.role) ||
+                  nav.access === "both"
+              )
+              .map((item, index) => {
+                const selected = item.path === window.location.pathname;
+                return (
+                  <ListItem
+                    key={index}
+                    onClick={() => navigate(item.path)}
+                    disablePadding
+                  >
+                    <ListItemButton
+                      selected={selected}
                       sx={{
-                        color: DarkFF4F(cookies),
+                        borderRadius: "10px",
+                        ":hover": {
+                          background: cookies.theme === "dark" && "#292929",
+                        },
+                        "&.Mui-selected": {
+                          background: "#0063a530",
+                          ":hover": {
+                            background:"#0063a530",
+                          },
+                        },
                       }}
-                    />
-                  </ListItemButton>
-                </ListItem>
-              );
-            })}
+                    >
+                      <ListItemIcon sx={{ color: IconColor(selected) }}>
+                        {item.icon}
+                      </ListItemIcon>
+                      <ListItemText
+                        primary={item.title}
+                        sx={{
+                          color: IconColor(selected),
+                        }}
+                      />
+                    </ListItemButton>
+                  </ListItem>
+                );
+              })}
+          </Box>
         </List>
         <Box
           sx={

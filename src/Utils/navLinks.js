@@ -9,6 +9,9 @@ import {
   Equalizer,
   Person,
   DisplaySettings,
+  PrivacyTip,
+  ContactSupport,
+  LockReset
 } from "@mui/icons-material";
 export const navLinks = [
   {
@@ -89,9 +92,26 @@ export const navLinks = [
     LoggedIn: false,
   },
   {
-    title: "Sign in",
+    title: "Login",
     path: "/login",
     icon: <Person />,
+    LoggedIn: false,
+  },
+  {
+    title: "Forgot Password",
+    path: "/forgot-password",
+    icon: <LockReset />,
+    LoggedIn: false,
+  },
+  {
+    title: "Contact us",
+    icon: <ContactSupport />,
+    LoggedIn: false,
+  },
+  {
+    title: "Privacy Policy",
+    path: "/privacy-policy",
+    icon: <PrivacyTip />,
     LoggedIn: false,
   },
 ];

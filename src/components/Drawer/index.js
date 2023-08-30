@@ -2,7 +2,6 @@ import React, { memo, useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import CssBaseline from "@mui/material/CssBaseline";
-import IconButton from "@mui/material/IconButton";
 import ListItem from "@mui/material/ListItem";
 import { useNavigate } from "react-router-dom";
 import DialogBox from "../../Utils/DialogBox";
@@ -16,7 +15,7 @@ import LowerIcons from "./DrawerSubComponents/LowerIcons";
 import DrawerAppBar from "./DrawerSubComponents/DrawerAppBar";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { LinearProgress, useMediaQuery } from "@mui/material";
+import { Button, LinearProgress, useMediaQuery } from "@mui/material";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import { GET_USER } from "../../ApiFunctions/users";
 import { errorHandler } from "../../ApiFunctions/ErrorHandler";
@@ -75,9 +74,7 @@ const MiniDrawer = ({ children, setQuery, query, data, value }) => {
     return () => clearTimeout(timeout);
   }, [dispatch, navigate, removeCookie]);
 
-  
   useEffect(() => {
-   
     if (!userData?._id) {
       setLoading(true);
       let decoded = null;
@@ -89,7 +86,7 @@ const MiniDrawer = ({ children, setQuery, query, data, value }) => {
           //  navigate("/");
         }
       }
-      GET_USER(cookies.token,decoded?.userId)
+      GET_USER(cookies.token, decoded?.userId)
         .then((response) => {
           console.log(response);
           setLoading(false);
@@ -115,7 +112,7 @@ const MiniDrawer = ({ children, setQuery, query, data, value }) => {
     } else {
       setLoading(false);
     }
-  }, [dispatch, cookies?.token,navigate, userData, removeCookie]);
+  }, [dispatch, cookies?.token, navigate, userData, removeCookie]);
 
   useEffect(() => {
     if (matches) {
@@ -164,9 +161,23 @@ const MiniDrawer = ({ children, setQuery, query, data, value }) => {
                     justifyContent: open ? "end" : "center",
                   }}
                 >
-                  <IconButton
+                  <Button
                     onClick={() => {
                       open ? handleDrawerClose() : handleDrawerOpen();
+                    }}
+                    sx={{
+                      background: cookies.theme === "dark" ? "#000" : "#fff",
+                      boxShadow:
+                        cookies.theme === "dark"
+                          ? "0px 0px 2px #292929"
+                          : "0px 0px 2px #0063A5",
+                      minWidth: "24px!important",
+                      height: "24px",
+                      margin: "4px",
+                      "&:hover": {
+                        background: cookies.theme === "dark" ? "#000" : "#fff",
+                        color: cookies.theme === "dark" ? "#FFF" : "#1976d2",
+                      },
                     }}
                   >
                     {open ? (
@@ -182,7 +193,7 @@ const MiniDrawer = ({ children, setQuery, query, data, value }) => {
                         }}
                       />
                     )}
-                  </IconButton>
+                  </Button>
                 </Box>
               </ListItem>
 
@@ -214,7 +225,7 @@ const MiniDrawer = ({ children, setQuery, query, data, value }) => {
                 <LinearProgress
                   sx={{
                     height: "10px",
-                    width:'100%',
+                    width: "100%",
                     background:
                       "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
                   }}
