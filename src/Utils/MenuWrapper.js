@@ -2,9 +2,10 @@ import { Box, Drawer } from "@mui/material";
 import React, { memo } from "react";
 import { Dark00 } from "./CommonCookies";
 const MenuWrapper = ({ open, toggleDrawer, children, cookies }) => {
+    const token = cookies?.token && cookies?.token !== "undefined";
   return (
     <Drawer
-      anchor={cookies?.token !== "undefined" ? "left" : "right"}
+      anchor={token ? "left" : "right"}
       open={open}
       onClose={toggleDrawer}
       ModalProps={{
@@ -15,7 +16,7 @@ const MenuWrapper = ({ open, toggleDrawer, children, cookies }) => {
     >
       <Box
         sx={{
-          width: 240,
+          width: 280,
           background: Dark00(cookies),
           height: "100vh",
         }}
