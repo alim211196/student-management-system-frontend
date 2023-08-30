@@ -16,7 +16,7 @@ const MenuWrapper = ({ open, toggleDrawer, children, cookies }) => {
     >
       <Box
         sx={{
-          width: 280,
+          width: 260,
           background: Dark00(cookies),
           height: "100vh",
         }}
