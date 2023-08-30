@@ -5,17 +5,15 @@ import Header from "../../Utils/Header";
 import { Box, useMediaQuery } from "@mui/material";
 import { useCookies } from "react-cookie";
 import Footer from "../../Utils/Footer";
-import { Divider } from "@mui/material";
 
 const PrivacyPolicy = () => {
   const matches = useMediaQuery("(min-width:600px)");
   const [cookies] = useCookies(["theme"]);
 
   const title = {
-    color: "transparent",
-    fontSize: matches ? "32px" : "22px",
+    fontSize: matches ? "28px" : "18px",
     fontWeight: 900,
-    WebkitTextStroke: cookies.theme === "dark" ? "1px #FFF" : "1px #292929",
+    color: cookies.theme === "dark" ? "#FFF" : "#292929",
   };
   return (
     <CustomTheme>
@@ -32,12 +30,10 @@ const PrivacyPolicy = () => {
           Privacy Policy
         </Typography>
         <Box sx={{ pt: 1, pb: 1 }}>
-          <Divider textAlign="left">
-            <Typography variant="h4" paragraph sx={title}>
-              Welcome to StudentsTracker
-            </Typography>
-          </Divider>
-          <Typography variant="h6" paragraph>
+          <Typography variant="h4" paragraph sx={title} gutterBottom>
+            Welcome to StudentsTracker
+          </Typography>
+          <Typography variant="h6" paragraph gutterBottom>
             This website is designed to provide an easy and efficient way for
             students, teachers, and administrators to manage student
             information, including course schedules, grades, attendance records,
@@ -48,22 +44,21 @@ const PrivacyPolicy = () => {
             are a teacher, administrator, or student, this website has
             everything you need to stay organized and on track.
           </Typography>
-          <Typography variant="h6" paragraph>
+          <Typography variant="h6" paragraph gutterBottom>
             Your privacy is important to us. This Privacy Policy is meant to
             help you understand what data we collect, why we collect it, and how
             we protect it.
           </Typography>
         </Box>
         <Box sx={{ pt: 1, pb: 1 }}>
-          <Divider textAlign="right">
-            <Typography variant="h4" gutterBottom sx={title}>
-              Information We Collect
-            </Typography>
-          </Divider>
-          <Typography variant="h6" paragraph>
+          <Typography variant="h4" gutterBottom sx={title}>
+            Information We Collect
+          </Typography>
+
+          <Typography variant="h6" paragraph gutterBottom>
             We collect the following types of information:
           </Typography>
-          <Typography variant="h6" component="ul">
+          <Typography variant="h6" component="ul" gutterBottom>
             <li>
               Personal Information: We may collect personal information such as
               your name, email address, and contact details when you register or
@@ -81,16 +76,15 @@ const PrivacyPolicy = () => {
           </Typography>
         </Box>{" "}
         <Box sx={{ pt: 1, pb: 1 }}>
-          <Divider textAlign="left">
-            <Typography variant="h4" gutterBottom sx={title}>
-              How We Use Your Information
-            </Typography>
-          </Divider>
-          <Typography variant="h6" paragraph>
+          <Typography variant="h4" gutterBottom sx={title}>
+            How We Use Your Information
+          </Typography>
+
+          <Typography variant="h6" paragraph gutterBottom>
             We use the information we collect for various purposes, including
             but not limited to:
           </Typography>
-          <Typography variant="h6" component="ul">
+          <Typography variant="h6" component="ul" gutterBottom>
             <li>
               Providing Services: We use your information to provide educational
               services, manage accounts, and facilitate communication.
@@ -106,27 +100,25 @@ const PrivacyPolicy = () => {
           </Typography>
         </Box>
         <Box sx={{ pt: 1, pb: 1 }}>
-          <Divider textAlign="right">
-            <Typography variant="h4" gutterBottom sx={title}>
-              Data Security
-            </Typography>
-          </Divider>
-          <Typography variant="h6" paragraph>
+          <Typography variant="h4" gutterBottom sx={title}>
+            Data Security
+          </Typography>
+
+          <Typography variant="h6" paragraph gutterBottom>
             We take data security seriously. We implement industry-standard
             security measures to protect your data from unauthorized access,
             disclosure, alteration, and destruction.
           </Typography>
         </Box>
         <Box sx={{ pt: 1, pb: 1 }}>
-          <Divider textAlign="left">
-            <Typography variant="h4" gutterBottom sx={title}>
-              Your Rights
-            </Typography>
-          </Divider>
-          <Typography variant="h6" paragraph>
+          <Typography variant="h4" gutterBottom sx={title}>
+            Your Rights
+          </Typography>
+
+          <Typography variant="h6" paragraph gutterBottom>
             You have the right to:
           </Typography>
-          <Typography variant="h6" component="ul">
+          <Typography variant="h6" component="ul" gutterBottom>
             <li>
               Access Your Data: You can request access to your personal
               information and data.
@@ -148,18 +140,17 @@ const PrivacyPolicy = () => {
               circumstances.
             </li>
           </Typography>
-        </Box>{" "}
+        </Box>
         <Box sx={{ pt: 1, pb: 1 }}>
-          <Divider textAlign="right">
-            <Typography variant="h4" gutterBottom sx={title}>
-              Contact Information
-            </Typography>
-          </Divider>
-          <Typography variant="h6" paragraph>
+          <Typography variant="h4" gutterBottom sx={title}>
+            Contact Information
+          </Typography>
+
+          <Typography variant="h6" paragraph gutterBottom>
             If you have any questions or concerns about our Privacy Policy or
             data practices, please contact us at:
           </Typography>
-          <Typography variant="h6">
+          <Typography variant="h6" gutterBottom>
             Email: alim.mohammad@oxcytech.com
           </Typography>
         </Box>
