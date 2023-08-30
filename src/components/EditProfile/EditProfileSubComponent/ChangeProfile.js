@@ -67,7 +67,6 @@ const ChangeProfile = ({ cookies }) => {
         const date = new Date(userData?.dob);
         formattedDate = date.toISOString().substring(0, 10);
       } catch (error) {
-        console.error("Error parsing date:", error);
       }
     }
 

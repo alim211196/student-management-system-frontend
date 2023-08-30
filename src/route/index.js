@@ -44,10 +44,8 @@ if (cookies?.token && cookies?.token !== "undefined") {
     decoded = jwt_decode(cookies.token);
     // You can access properties of 'decoded' here
   } catch (error) {
-    console.error("JWT decoding error:", error);
   }
 } else {
-  console.log("Token is undefined or not present.");
 }
 
 

@@ -42,7 +42,6 @@ export default function SignIn() {
     dispatch(setLoading(true));
     USER_LOGIN(formData)
       .then((res) => {
-        console.log(res)
         dispatch(
           openSnackbar({
             message: "Login successfully.",

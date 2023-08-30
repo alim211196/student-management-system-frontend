@@ -60,7 +60,6 @@ const ViewTeachers = () => {
              const date = new Date(data?.dob);
              formattedDate = date.toISOString().substring(0, 10);
            } catch (error) {
-             console.error("Error parsing date:", error);
            }
          }
          setFormData({
@@ -86,7 +85,6 @@ const ViewTeachers = () => {
        }
      })
      .catch((err) => {
-       console.error("API Error:", err);
        errorHandler(err?.status, err?.data, dispatch);
      });
  }, [id, dispatch]);

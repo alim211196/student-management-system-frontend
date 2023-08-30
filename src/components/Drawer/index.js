@@ -88,7 +88,6 @@ const MiniDrawer = ({ children, setQuery, query, data, value }) => {
       }
       GET_USER(cookies.token, decoded?.userId)
         .then((response) => {
-          console.log(response);
           setLoading(false);
           dispatch(
             fetchData({
