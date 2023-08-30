@@ -51,7 +51,6 @@ const Footer = ({ cookies, matches, scrollToContact }) => {
         sx={{
           background: "#0C0D15",
           p: "20px 30px",
-          mt: IsHome ? 3 : 0,
           zIndex: 0,
           position: "relative",
         }}
