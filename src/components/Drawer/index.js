@@ -15,24 +15,26 @@ import LowerIcons from "./DrawerSubComponents/LowerIcons";
 import DrawerAppBar from "./DrawerSubComponents/DrawerAppBar";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { Button, LinearProgress, useMediaQuery } from "@mui/material";
+import { Button, Divider, LinearProgress, useMediaQuery } from "@mui/material";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
-import { GET_USER } from "../../ApiFunctions/users";
+import { GET_USER, REFRESH_TOKEN } from "../../ApiFunctions/users";
 import { errorHandler } from "../../ApiFunctions/ErrorHandler";
 import { DrawerStyle } from "./styles";
 import CustomTheme from "../../Utils/CustomTheme";
-import { openSnackbar } from "../../app/reducer/Snackbar";
-import jwt_decode from "jwt-decode";
+
+import SessionDailog from "../../Utils/SessionDailog";
+import { decodeToken } from "../../Utils/decodeToken";
 const MiniDrawer = ({ children, setQuery, query, data, value }) => {
   const dispatch = useDispatch();
   const { userData } = useSelector((state) => state.getUserProfile);
   const matches = useMediaQuery("(min-width:600px)");
   const [open, setOpen] = React.useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [cookies, removeCookie] = useCookies(["token", "theme"]);
+  const [cookies, setCookie, removeCookie] = useCookies(["token", "theme"]);
   const [loading, setLoading] = useState(true);
   const [upDown, setUpDown] = useState(false);
   const navigate = useNavigate();
+  const decodedToken = decodeToken(cookies);
   const styles = DrawerStyle(cookies, matches, upDown, open);
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -55,38 +57,10 @@ const MiniDrawer = ({ children, setQuery, query, data, value }) => {
   };
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      dispatch(
-        openSnackbar({
-          message: "Your session is Expired please login again.",
-          severity: "error",
-        })
-      );
-      removeCookie("token");
-      dispatch(
-        fetchData({
-          userData: {},
-        })
-      );
-      navigate("/");
-    }, 3600000); // 1 hour in milliseconds
-
-    return () => clearTimeout(timeout);
-  }, [dispatch, navigate, removeCookie]);
-
-  useEffect(() => {
     if (!userData?._id) {
       setLoading(true);
-      let decoded = null;
 
-      if (cookies?.token && cookies?.token !== "undefined") {
-        try {
-          decoded = jwt_decode(cookies.token);
-        } catch (error) {
-          //  navigate("/");
-        }
-      }
-      GET_USER(cookies.token, decoded?.userId)
+      GET_USER(cookies?.token, decodedToken?._id)
         .then((response) => {
           setLoading(false);
           dispatch(
@@ -96,22 +70,13 @@ const MiniDrawer = ({ children, setQuery, query, data, value }) => {
           );
         })
         .catch((err) => {
-          if (err?.status === 404) {
-            removeCookie("token");
-            dispatch(
-              fetchData({
-                userData: {},
-              })
-            );
-            navigate("/");
-          }
           setLoading(false);
           errorHandler(err?.status, err?.data, dispatch);
         });
     } else {
       setLoading(false);
     }
-  }, [dispatch, cookies?.token, navigate, userData, removeCookie]);
+  }, [dispatch, cookies, decodedToken?._id, navigate, userData]);
 
   useEffect(() => {
     if (matches) {
@@ -122,6 +87,55 @@ const MiniDrawer = ({ children, setQuery, query, data, value }) => {
     }
   }, [matches]);
 
+  // -------------------session functionality----------------
+  const [openSessionDialog, setOpenSessionDialog] = useState(false);
+  useEffect(() => {
+    let timer;
+
+    const checkTokenExpiration = () => {
+      // Calculate the remaining time until token expiration
+      const currentTime = Date.now();
+      const tokenExpiration = new Date(decodedToken?.exp * 1000);
+      const timeUntilExpiration = tokenExpiration - currentTime;
+
+      if (timeUntilExpiration <= 0) {
+        removeCookie("token");
+        clearInterval(timer); // Stop checking when token expires
+      } else {
+        // Show the popup 1 minute before token expiration
+        if (timeUntilExpiration > 5 * 60 * 1000) {
+          // Only set a timer if more than 1 minute is remaining
+          timer = setTimeout(() => {
+            setOpenSessionDialog(true);
+          }, timeUntilExpiration - 5 * 60 * 1000);
+        }
+      }
+    };
+
+    // Initial check
+    checkTokenExpiration();
+
+    // Set up periodic checks (e.g., every minute)
+    const interval = setInterval(checkTokenExpiration, 60 * 1000);
+
+    return () => {
+      clearInterval(interval); // Clean up the interval when the component unmounts
+    };
+  }, [removeCookie, decodedToken?.exp]);
+
+  const handleContinue = () => {
+    REFRESH_TOKEN(cookies?.token)
+      .then((res) => {
+        const newToken = res?.data?.token;
+        setCookie("token", newToken, { path: "/" });
+        setOpenSessionDialog(false);
+      })
+      .catch((err) => {
+        errorHandler(err?.status, err?.data, dispatch);
+      });
+  };
+
+  // -------------------session functionality----------------
   return (
     <CustomTheme>
       <Box sx={styles.parentBox}>
@@ -195,41 +209,49 @@ const MiniDrawer = ({ children, setQuery, query, data, value }) => {
                   </Button>
                 </Box>
               </ListItem>
-
-              {userData?.role ? (
-                navLinks
-                  .filter(
-                    (nav) =>
-                      (nav.LoggedIn === true &&
-                        nav.access === userData?.role) ||
-                      nav.access === "both"
-                  )
-                  .map((item, index) => {
-                    return (
-                      <ListItem
-                        key={index}
-                        disablePadding
-                        sx={styles.dynamicListItem}
-                      >
-                        <CustomListItem
-                          item={item}
-                          open={open}
-                          styles={styles}
-                          cookies={cookies}
-                        />
-                      </ListItem>
-                    );
-                  })
-              ) : (
-                <LinearProgress
-                  sx={{
-                    height: "10px",
-                    width: "100%",
-                    background:
-                      "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
-                  }}
-                />
-              )}
+              <Divider
+                sx={{
+                  mt: 1,
+                  mb: 1,
+                  borderColor: cookies.theme === "dark" && "#bdbdbd",
+                }}
+              />
+              <Box sx={{ padding: open && "0px 10px" }}>
+                {userData?.role ? (
+                  navLinks
+                    .filter(
+                      (nav) =>
+                        (nav.LoggedIn === true &&
+                          nav.access === userData?.role) ||
+                        nav.access === "both"
+                    )
+                    .map((item, index) => {
+                      return (
+                        <ListItem
+                          key={index}
+                          disablePadding
+                          sx={styles.dynamicListItem}
+                        >
+                          <CustomListItem
+                            item={item}
+                            open={open}
+                            styles={styles}
+                            cookies={cookies}
+                          />
+                        </ListItem>
+                      );
+                    })
+                ) : (
+                  <LinearProgress
+                    sx={{
+                      height: "10px",
+                      width: "100%",
+                      background:
+                        "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+                    }}
+                  />
+                )}
+              </Box>
             </Box>
             <LowerIcons
               icon={<PowerSettingsNewIcon />}
@@ -250,6 +272,11 @@ const MiniDrawer = ({ children, setQuery, query, data, value }) => {
           handleClose={handleClose}
           handleChange={logoutFn}
           text={"Are your sure you want to exit?"}
+        />
+        <SessionDailog
+          open={openSessionDialog}
+          handleLogout={logoutFn}
+          handleContinue={handleContinue}
         />
       </Box>
     </CustomTheme>

@@ -11,33 +11,45 @@ import {
 } from "@mui/material";
 import ModeComp from "./ModeComp";
 import MenuWrapper from "./MenuWrapper";
-import { DarkFF4F } from "./CommonCookies";
+import { IconColor } from "./CommonCookies";
 const BeforeLoginMenuBody = ({ open, toggleDrawer, cookies }) => {
   const navigate = useNavigate();
 
   return (
     <MenuWrapper open={open} toggleDrawer={toggleDrawer} cookies={cookies}>
-      <List>
+      <List sx={{ p: 1 }}>
         {navLinks
-          .filter(
-            (nav) =>
-              nav?.path !== window.location.pathname && nav.LoggedIn === false
-          )
+          .filter((nav) => nav.LoggedIn === false)
           .map((item, index) => {
+            const selected = item.path === window.location.pathname;
             return (
               <ListItem
                 key={index}
                 onClick={() => navigate(item.path)}
                 disablePadding
               >
-                <ListItemButton>
-                  <ListItemIcon sx={{ color: DarkFF4F(cookies) }}>
+                <ListItemButton
+                  selected={selected}
+                  sx={{
+                    borderRadius: "10px",
+                    ":hover": {
+                      background: cookies.theme === "dark" && "#292929",
+                    },
+                    "&.Mui-selected": {
+                      background: "#0063a530",
+                      ":hover": {
+                        background: "#0063a530",
+                      },
+                    },
+                  }}
+                >
+                  <ListItemIcon sx={{ color: IconColor(cookies, selected) }}>
                     {item.icon}
                   </ListItemIcon>
                   <ListItemText
                     primary={item.title}
                     sx={{
-                      color: DarkFF4F(cookies),
+                      color: IconColor(cookies, selected),
                     }}
                   />
                 </ListItemButton>

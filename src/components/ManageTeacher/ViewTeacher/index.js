@@ -21,7 +21,7 @@ import { ContainerStyle } from "../../../Utils/stylingMethods";
 const ViewTeachers = () => {
   const loading = useSelector((state) => state.loading);
   const { id } = useParams();
-  const [cookies] = useCookies(["theme"]);
+  const [cookies] = useCookies(["token","theme"]);
   const dispatch = useDispatch();
   const [selectedFile, setSelectedFile] = useState(null);
   const [active, setActive] = useState(false);
@@ -50,7 +50,7 @@ const ViewTeachers = () => {
   });
 
  useEffect(() => {
-   GET_USER(id)
+   GET_USER(cookies?.token, id)
      .then((res) => {
        if (id === res.data._id) {
          const data = res?.data;
@@ -59,8 +59,7 @@ const ViewTeachers = () => {
            try {
              const date = new Date(data?.dob);
              formattedDate = date.toISOString().substring(0, 10);
-           } catch (error) {
-           }
+           } catch (error) {}
          }
          setFormData({
            fullName: data?.fullName || "",
@@ -87,7 +86,7 @@ const ViewTeachers = () => {
      .catch((err) => {
        errorHandler(err?.status, err?.data, dispatch);
      });
- }, [id, dispatch]);
+ }, [id, dispatch, cookies?.token]);
   const handleFileInputChange = (e) => {
     let files = e.target.files;
     let fsize = files[0]?.size;

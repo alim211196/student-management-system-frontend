@@ -16,8 +16,9 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { DarkFF4F } from "../../../Utils/CommonCookies";
-import { extractFirstName } from "../../../Utils/AvatarName";
-import { StyledBadge } from "../../../Utils/stylingMethods";
+import { avatarName, extractFirstName } from "../../../Utils/AvatarName";
+import { IconColor, StyledBadge } from "../../../Utils/stylingMethods";
+import CustomAvatar from "../../../Utils/CustomAvatar";
 const AfterLoginMenuBody = ({
   open,
   toggleDrawer,
@@ -31,19 +32,7 @@ const AfterLoginMenuBody = ({
 }) => {
   const navigate = useNavigate();
 
- const IconColor = (selected) => {
-   if (cookies.theme === "dark") {
-     if (selected) {
-       return "#fff";
-     } else {
-       return "#FFF";
-     }
-   } else {
-     if (selected) {
-       return "#0063A5";
-     } 
-   }
- };
+ 
   return (
     <>
       <MenuWrapper open={open} toggleDrawer={toggleDrawer} cookies={cookies}>
@@ -68,7 +57,15 @@ const AfterLoginMenuBody = ({
                 }}
                 variant="dot"
               >
-                <Avatar src={userData?.profileImage} />
+                {userData?.profileImage ? (
+                  <CustomAvatar>
+                    <Avatar alt="profile" src={userData?.profileImage} />
+                  </CustomAvatar>
+                ) : (
+                  <CustomAvatar>
+                    {avatarName(`${userData?.fullName && userData?.fullName}`)}
+                  </CustomAvatar>
+                )}
               </StyledBadge>
             </ListItemAvatar>
             <ListItemText
@@ -136,18 +133,20 @@ const AfterLoginMenuBody = ({
                         "&.Mui-selected": {
                           background: "#0063a530",
                           ":hover": {
-                            background:"#0063a530",
+                            background: "#0063a530",
                           },
                         },
                       }}
                     >
-                      <ListItemIcon sx={{ color: IconColor(selected) }}>
+                      <ListItemIcon
+                        sx={{ color: IconColor(cookies, selected) }}
+                      >
                         {item.icon}
                       </ListItemIcon>
                       <ListItemText
                         primary={item.title}
                         sx={{
-                          color: IconColor(selected),
+                          color: IconColor(cookies, selected),
                         }}
                       />
                     </ListItemButton>

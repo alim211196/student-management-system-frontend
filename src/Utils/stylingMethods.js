@@ -95,12 +95,12 @@ export const StyledBadge = styled(Badge)(({ theme }) => ({
 export const StyledAvatar = styled(Avatar)`
   ${({ theme }) => `
   cursor: pointer;
-  background-color: ${theme.palette.primary.main};
+  background-color: "#bdbdbd";
   transition: ${theme.transitions.create(["background-color", "transform"], {
     duration: theme.transitions.duration.standard,
   })};
   &:hover {
-    background-color: ${theme.palette.secondary.main};
+    background-color: "#bdbdbd";
     transform: scale(1.3);
   }
   `}
@@ -293,3 +293,17 @@ export const BootstrapButton = styled(Button)(({ cookies }) =>({
     boxShadow: "0 0 0 0.2rem rgba(0,123,255,.5)",
   },
 }));
+
+export const IconColor = (cookies,selected) => {
+   if (cookies.theme === "dark") {
+     if (selected) {
+       return "#fff";
+     } else {
+       return "#FFF";
+     }
+   } else {
+     if (selected) {
+       return "#0063A5";
+     }
+   }
+ };

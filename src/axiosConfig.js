@@ -1,11 +1,10 @@
 import axios from "axios";
 
 const AxiosConfig = (token) => {
-
   const axiosInstance = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
     headers: {
-      Authorization: token,
+      Authorization: `Bearer ${token}`,
     },
   });
 
@@ -17,7 +16,7 @@ const AxiosConfig = (token) => {
     (error) => {
       if (error.response && error.response.status === 401) {
         // Token is expired or invalid, redirect to the "/" route
-        setTimeout(() => (window.location = "/"), 1000);
+        window.location.replace("/");
       }
       return Promise.reject(error);
     }

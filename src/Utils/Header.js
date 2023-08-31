@@ -11,13 +11,20 @@ import { useCookies } from "react-cookie";
 import Diversity2Icon from "@mui/icons-material/Diversity2";
 import MenuIcon from "@mui/icons-material/Menu";
 
-function CommonCode({ link, title, navigate }) {
+function CommonCode({ link, title, navigate, cookies }) {
   if (window.location.pathname === link) {
     return null;
   } else {
     return (
       <CustomTheme>
-        <Button sx={{ml:1}} variant="text" onClick={() => navigate(link)}>
+        <Button
+          sx={{
+            ml: 1,
+            background: cookies.theme === "dark" ? "#000" : "#0063A5",
+          }}
+          variant="text"
+          onClick={() => navigate(link)}
+        >
           {title}
         </Button>
       </CustomTheme>
@@ -102,8 +109,18 @@ const Header = () => {
               justifyContent: "space-between",
             }}
           >
-            <CommonCode link={"/"} title={"Home"} navigate={navigate} />
-            <CommonCode link={"/login"} title={"Login"} navigate={navigate} />
+            <CommonCode
+              link={"/"}
+              title={"Home"}
+              navigate={navigate}
+              cookies={cookies}
+            />
+            <CommonCode
+              link={"/login"}
+              title={"Login"}
+              navigate={navigate}
+              cookies={cookies}
+            />
             <ModeComp />
           </nav>
         )}

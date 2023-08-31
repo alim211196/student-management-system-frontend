@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import DialogBox from "../../../Utils/DialogBox";
 import { fetchData } from "../../../app/reducer/getUserProfile";
 import { CardBorder, Dark00FF, DarkFFF } from "../../../Utils/CommonCookies";
+import { avatarName } from "../../../Utils/AvatarName";
 const ProfileSection = ({
   removeCookie,
   cookies,
@@ -126,14 +127,29 @@ const ProfileSection = ({
                           }}
                           variant="dot"
                         >
-                          <Avatar
-                            sx={{
-                              border: `1px solid ${bgColor}`,
-                              width: 60,
-                              height: 60,
-                            }}
-                            src={userData?.profileImage}
-                          />
+                          {userData?.profileImage ? (
+                            <Avatar
+                              sx={{
+                                border: `1px solid ${bgColor}`,
+                                width: 60,
+                                height: 60,
+                              }}
+                              src={userData?.profileImage}
+                            />
+                          ) : (
+                            <Avatar
+                              sx={{
+                                border: `1px solid ${bgColor}`,
+                                width: 60,
+                                height: 60,
+                                fontSize:'24px'
+                              }}
+                            >
+                              {avatarName(
+                                `${userData?.fullName && userData?.fullName}`
+                              )}
+                            </Avatar>
+                          )}
                         </StyledBadge>
                       </ListItemAvatar>
                     </Grid>

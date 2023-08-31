@@ -135,7 +135,6 @@ const DrawerAppBar = ({
                     >
                       {userData?.profileImage ? (
                         <CustomAvatar>
-                          {" "}
                           <Avatar alt="profile" src={userData?.profileImage} />
                         </CustomAvatar>
                       ) : (

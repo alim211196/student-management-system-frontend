@@ -30,13 +30,16 @@ const api = {
   updateUser: "/user/update-user/",
 
   //update profile
-  updateProfile:"/user/update-profile/",
+  updateProfile: "/user/update-profile/",
 
   //update password
   updatePassword: "/user/update-password/",
 
   //user login
   login: "/user/login",
+
+  //refresh token
+  refreshToken: "/user/refresh-token",
 
   //forgot password
   forgotPassword: "/user/forgot-password/",
@@ -45,7 +48,7 @@ const api = {
   resetPassword: "/user/reset-password/",
 
   //send wishes
-  sendWishes : "/user/send-wishes/",
+  sendWishes: "/user/send-wishes/",
 
   //post comment
   addComment: "/students/contact/add",

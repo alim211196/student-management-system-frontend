@@ -20,6 +20,23 @@ export const USER_LOGIN = (formData) => {
   });
 };
 
+export const REFRESH_TOKEN = (token) => {
+  return new Promise((resolve, reject) => {
+    return AxiosConfig(token)
+      .post(`${process.env.REACT_APP_API_URL}${api.refreshToken}`)
+      .then((res) => {
+        if (res.status === 201) {
+          resolve(res);
+        } else {
+          reject(res.error);
+        }
+      })
+      .catch((err) => {
+        reject(err.response);
+      });
+  });
+};
+
 //get users
 export const GET_USERS = () => {
   return new Promise((resolve, reject) => {
@@ -59,7 +76,7 @@ export const USER_ACTIVATION = (id, active) => {
 };
 
 //get current user data by id
-export const GET_USER = (token,id) => {
+export const GET_USER = (token, id) => {
   return new Promise((resolve, reject) => {
     return AxiosConfig(token)
       .get(`${process.env.REACT_APP_API_URL}${api.getUser}${id}`)

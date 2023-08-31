@@ -97,10 +97,13 @@ export const DrawerStyle = (cookies, matches, upDown, open) => {
       minHeight: 48,
       justifyContent: open ? "initial" : "center",
       px: 2.5,
+      ":hover": {
+        background: cookies.theme === "dark" && "#292929",
+      },
       "&.Mui-selected": {
-        background: cookies.theme === "dark" ? "#000" : "#0063A5",
+        background: "#0063a530",
         ":hover": {
-          background: cookies.theme === "dark" ? "#000" : "#0063A5",
+          background: "#0063a530",
         },
       },
     },
@@ -146,7 +149,7 @@ export const DrawerStyle = (cookies, matches, upDown, open) => {
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
-      ml: !matches &&1,
+      ml: !matches && 1,
     },
     titleTypo = {
       color: "transparent",
