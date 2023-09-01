@@ -12,7 +12,7 @@ import FormButton from "../../../Utils/FormButton";
 import { useCookies } from "react-cookie";
 import { USER_REGISTER } from "../../../ApiFunctions/users";
 const AddTeacher = ({ getTeacherData }) => {
-  const [cookies] = useCookies(["theme"]);
+  const [cookies] = useCookies(["theme","token"]);
   const loading = useSelector((state) => state.loading);
   const dispatch = useDispatch();
   const [selectedFile, setSelectedFile] = useState(null);
@@ -103,7 +103,7 @@ const formattedDate = isoDate.slice(0, 10);
       profileImage: selectedFile,
     };
     dispatch(setLoading(true));
-    USER_REGISTER(newFormData)
+    USER_REGISTER(newFormData,cookies?.token)
       .then((res) => {
         getTeacherData();
         dispatch(

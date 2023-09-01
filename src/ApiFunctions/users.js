@@ -38,45 +38,45 @@ export const REFRESH_TOKEN = (token) => {
 };
 
 //get users
-export const GET_USERS = () => {
+export const GET_USERS = (token) => {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}${api.getUsers}`)
-      .then((res) => {
-        if (res.status === 200) {
-          resolve(res);
-        } else {
-          reject(res.error);
-        }
-      })
-      .catch((err) => {
-        reject(err.response);
-      });
+  return AxiosConfig(token)
+    .get(`${process.env.REACT_APP_API_URL}${api.getUsers}`)
+    .then((res) => {
+      if (res.status === 200) {
+        resolve(res);
+      } else {
+        reject(res.error);
+      }
+    })
+    .catch((err) => {
+      reject(err.response);
+    });
   });
 };
 
 //activate or deactivate user account
-export const USER_ACTIVATION = (id, active) => {
+export const USER_ACTIVATION = (id, active,token) => {
   return new Promise((resolve, reject) => {
-    axios
-      .patch(`${process.env.REACT_APP_API_URL}${api.userActivation}${id}`, {
-        active: active,
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          resolve(res);
-        } else {
-          reject(res.error);
-        }
-      })
-      .catch((err) => {
-        reject(err.response);
-      });
+     return AxiosConfig(token)
+       .patch(`${process.env.REACT_APP_API_URL}${api.userActivation}${id}`, {
+         active: active,
+       })
+       .then((res) => {
+         if (res.status === 200) {
+           resolve(res);
+         } else {
+           reject(res.error);
+         }
+       })
+       .catch((err) => {
+         reject(err.response);
+       });
   });
 };
 
 //get current user data by id
-export const GET_USER = (token, id) => {
+export const GET_USER = (id, token) => {
   return new Promise((resolve, reject) => {
     return AxiosConfig(token)
       .get(`${process.env.REACT_APP_API_URL}${api.getUser}${id}`)
@@ -94,20 +94,20 @@ export const GET_USER = (token, id) => {
 };
 
 //user register
-export const USER_REGISTER = (formData) => {
+export const USER_REGISTER = (formData,token) => {
   return new Promise((resolve, reject) => {
-    axios
-      .post(`${process.env.REACT_APP_API_URL}${api.register}`, formData)
-      .then((res) => {
-        if (res.status === 201) {
-          resolve(res);
-        } else {
-          reject(res.error);
-        }
-      })
-      .catch((err) => {
-        reject(err.response);
-      });
+     return AxiosConfig(token)
+       .post(`${process.env.REACT_APP_API_URL}${api.register}`, formData)
+       .then((res) => {
+         if (res.status === 201) {
+           resolve(res);
+         } else {
+           reject(res.error);
+         }
+       })
+       .catch((err) => {
+         reject(err.response);
+       });
   });
 };
 
@@ -151,79 +151,82 @@ export const RESET_PASSWORD = (id, password, otp) => {
 };
 
 //update user
-export const UPDATE_USER = (id, formData) => {
+export const UPDATE_USER = (id, formData,token) => {
   return new Promise((resolve, reject) => {
-    axios
-      .patch(`${process.env.REACT_APP_API_URL}${api.updateUser}${id}`, formData)
-      .then((res) => {
-        if (res.status === 200) {
-          resolve(res);
-        } else {
-          reject(res.error);
-        }
-      })
-      .catch((err) => {
-        reject(err.response);
-      });
+     return AxiosConfig(token)
+       .patch(
+         `${process.env.REACT_APP_API_URL}${api.updateUser}${id}`,
+         formData
+       )
+       .then((res) => {
+         if (res.status === 200) {
+           resolve(res);
+         } else {
+           reject(res.error);
+         }
+       })
+       .catch((err) => {
+         reject(err.response);
+       });
   });
 };
 
 //update user
-export const UPDATE_PROFILE = (id, formData) => {
+export const UPDATE_PROFILE = (id, formData,token) => {
   return new Promise((resolve, reject) => {
-    axios
-      .patch(
-        `${process.env.REACT_APP_API_URL}${api.updateProfile}${id}`,
-        formData
-      )
-      .then((res) => {
-        if (res.status === 200) {
-          resolve(res);
-        } else {
-          reject(res.error);
-        }
-      })
-      .catch((err) => {
-        reject(err.response);
-      });
+     return AxiosConfig(token)
+       .patch(
+         `${process.env.REACT_APP_API_URL}${api.updateProfile}${id}`,
+         formData
+       )
+       .then((res) => {
+         if (res.status === 200) {
+           resolve(res);
+         } else {
+           reject(res.error);
+         }
+       })
+       .catch((err) => {
+         reject(err.response);
+       });
   });
 };
 
 //update password
-export const UPDATE_PASSWORD = (id, currentPassword, newPassword) => {
+export const UPDATE_PASSWORD = (id, currentPassword, newPassword,token) => {
   return new Promise((resolve, reject) => {
-    axios
-      .patch(`${process.env.REACT_APP_API_URL}${api.updatePassword}${id}`, {
-        currentPassword,
-        newPassword,
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          resolve(res);
-        } else {
-          reject(res.error);
-        }
-      })
-      .catch((err) => {
-        reject(err.response);
-      });
+     return AxiosConfig(token)
+       .patch(`${process.env.REACT_APP_API_URL}${api.updatePassword}${id}`, {
+         currentPassword,
+         newPassword,
+       })
+       .then((res) => {
+         if (res.status === 200) {
+           resolve(res);
+         } else {
+           reject(res.error);
+         }
+       })
+       .catch((err) => {
+         reject(err.response);
+       });
   });
 };
 
 //send birthday wishes
-export const SEND_WISHES = (id, formData) => {
+export const SEND_WISHES = (id, formData,token) => {
   return new Promise((resolve, reject) => {
-    axios
-      .post(`${process.env.REACT_APP_API_URL}${api.sendWishes}${id}`, formData)
-      .then((res) => {
-        if (res.status === 201) {
-          resolve(res);
-        } else {
-          reject(res.error);
-        }
-      })
-      .catch((err) => {
-        reject(err.response);
-      });
+     return AxiosConfig(token)
+       .post(`${process.env.REACT_APP_API_URL}${api.sendWishes}${id}`, formData)
+       .then((res) => {
+         if (res.status === 201) {
+           resolve(res);
+         } else {
+           reject(res.error);
+         }
+       })
+       .catch((err) => {
+         reject(err.response);
+       });
   });
 };

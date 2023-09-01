@@ -60,7 +60,7 @@ const MiniDrawer = ({ children, setQuery, query, data, value }) => {
     if (!userData?._id) {
       setLoading(true);
 
-      GET_USER(cookies?.token, decodedToken?._id)
+      GET_USER(decodedToken?._id, cookies?.token)
         .then((response) => {
           setLoading(false);
           dispatch(

@@ -110,7 +110,7 @@ const ManageDepartment = () => {
     };
 
     dispatch(setLoading(true));
-    ADD_COURSE(newFormData)
+    ADD_COURSE(newFormData,cookies?.token)
       .then((res) => {
         dispatch(
           openSnackbar({
@@ -197,7 +197,7 @@ const ManageDepartment = () => {
     };
 
     dispatch(setLoading(true));
-    UPDATE_COURSE(ID, newFormData)
+    UPDATE_COURSE(ID, newFormData,cookies?.token)
       .then((res) => {
         dispatch(
           openSnackbar({
@@ -218,7 +218,7 @@ const ManageDepartment = () => {
   };
 
   const handleActiveState = () => {
-    COURSE_ACTIVATION(ID, active)
+    COURSE_ACTIVATION(ID, active,cookies?.token)
       .then((res) => {
         getCourse();
         dispatch(

@@ -20,12 +20,12 @@ const UniqueIndex = () => {
   const { id } = useParams();
   const [AttData, setAttData] = useState([]);
   const dispatch = useDispatch();
-  const [cookies] = useCookies(["theme"]);
+  const [cookies] = useCookies(["theme", "token"]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
-    GET_ATTENDANCE_BY_ID(id)
+    GET_ATTENDANCE_BY_ID(id, cookies?.token)
       .then((res) => {
         setAttData(res.data);
         setLoading(false);
@@ -34,17 +34,13 @@ const UniqueIndex = () => {
         setLoading(false);
         errorHandler(err?.status, err?.data, dispatch);
       });
-  }, [dispatch, id]);
+  }, [dispatch, id, cookies?.token]);
 
   return (
     <CustomTheme>
       <MiniDrawer>
         <Container maxWidth="xl" sx={ContainerStyle}>
-          <TitleBox
-            icon={<AddchartIcon/>}
-            text={"View Attendance"}
-            id={id}
-          />{" "}
+          <TitleBox icon={<AddchartIcon />} text={"View Attendance"} id={id} />{" "}
           <TopSection cookies={cookies} AttData={AttData} loading={loading} />
           <AttendanceInfo cookies={cookies} AttData={AttData} />
           <StudentsList

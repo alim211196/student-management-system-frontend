@@ -42,7 +42,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     setLoading(true);
-    GET_RESOURCE()
+    GET_RESOURCE(cookies?.token)
       .then((res) => {
         setResources(res.data);
         setLoading(false);
@@ -51,7 +51,7 @@ const Dashboard = () => {
         setLoading(false);
         errorHandler(err?.status, err?.data, dispatch);
       });
-    GET_RECENT_ENTRY()
+    GET_RECENT_ENTRY(cookies?.token)
       .then((res) => {
         setLoading(false);
         setRecentMessages(res?.data?.recentMessages);
@@ -62,7 +62,7 @@ const Dashboard = () => {
         setLoading(false);
         errorHandler(err?.status, err?.data, dispatch);
       });
-  }, [dispatch]);
+  }, [dispatch, cookies?.token]);
   return (
     <CustomTheme>
       <MiniDrawer>

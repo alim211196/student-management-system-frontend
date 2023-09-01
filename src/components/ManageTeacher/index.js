@@ -28,7 +28,7 @@ import { ContainerStyle } from "../../Utils/stylingMethods";
 const ManageTeacher = () => {
   const { userData } = useSelector((state) => state.getUserProfile);
   const dispatch = useDispatch();
-  const [cookies] = useCookies(["theme", "UserId"]);
+  const [cookies] = useCookies(["theme", "token"]);
   const [value, setValue] = React.useState(0);
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState("");
@@ -41,7 +41,7 @@ const ManageTeacher = () => {
   };
   const navigate = useNavigate();
   const getTeacherData = () => {
-    GET_USERS()
+    GET_USERS(cookies?.token)
       .then((res) => {
         setData(res.data);
       })
@@ -52,7 +52,7 @@ const ManageTeacher = () => {
 
   useEffect(() => {
     setLoading(true);
-    GET_USERS()
+    GET_USERS(cookies?.token)
       .then((res) => {
         setLoading(false);
         setData(res.data);
@@ -61,13 +61,13 @@ const ManageTeacher = () => {
         setLoading(false);
         errorHandler(err?.status, err?.data, dispatch);
       });
-  }, [dispatch]);
+  }, [dispatch, cookies?.token]);
   const handleClose = () => {
     setDialogOpen(false);
     setID("");
   };
   const handleActiveState = () => {
-    USER_ACTIVATION(ID, active)
+    USER_ACTIVATION(ID, active, cookies?.token)
       .then((res) => {
         getTeacherData();
         dispatch(

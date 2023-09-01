@@ -1,20 +1,21 @@
 import axios from "axios";
 import api from "../api";
+import AxiosConfig from "../axiosConfig";
 //add attendance
-export const ADD_COURSE = (formData) => {
+export const ADD_COURSE = (formData,token) => {
   return new Promise((resolve, reject) => {
-    axios
-      .post(`${process.env.REACT_APP_API_URL}${api.addCourse}`, formData)
-      .then((res) => {
-        if (res.status === 201) {
-          resolve(res);
-        } else {
-          reject(res.error);
-        }
-      })
-      .catch((err) => {
-        reject(err.response);
-      });
+       return AxiosConfig(token)
+         .post(`${process.env.REACT_APP_API_URL}${api.addCourse}`, formData)
+         .then((res) => {
+           if (res.status === 201) {
+             resolve(res);
+           } else {
+             reject(res.error);
+           }
+         })
+         .catch((err) => {
+           reject(err.response);
+         });
   });
 };
 
@@ -38,43 +39,46 @@ export const GET_COURSES = () => {
 };
 
 //update courses 
-export const UPDATE_COURSE = (id, formData) => {
+export const UPDATE_COURSE = (id, formData,token) => {
   return new Promise((resolve, reject) => {
-    axios
-      .patch(
-        `${process.env.REACT_APP_API_URL}${api.updateCourse}${id}`,
-        formData
-      )
-      .then((res) => {
-        if (res.status === 200) {
-          resolve(res);
-        } else {
-          reject(res.error);
-        }
-      })
-      .catch((err) => {
-        reject(err.response);
-      });
+       return AxiosConfig(token)
+         .patch(
+           `${process.env.REACT_APP_API_URL}${api.updateCourse}${id}`,
+           formData
+         )
+         .then((res) => {
+           if (res.status === 200) {
+             resolve(res);
+           } else {
+             reject(res.error);
+           }
+         })
+         .catch((err) => {
+           reject(err.response);
+         });
   });
 };
 
 //activate or deactivate course
-export const COURSE_ACTIVATION = (id, active) => {
+export const COURSE_ACTIVATION = (id, active,token) => {
   return new Promise((resolve, reject) => {
-    axios
-      .patch(`${process.env.REACT_APP_API_URL}${api.courseActivation}${id}`, {
-        active: active,
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          resolve(res);
-        } else {
-          reject(res.error);
-        }
-      })
-      .catch((err) => {
-        reject(err.response);
-      });
+       return AxiosConfig(token)
+         .patch(
+           `${process.env.REACT_APP_API_URL}${api.courseActivation}${id}`,
+           {
+             active: active,
+           }
+         )
+         .then((res) => {
+           if (res.status === 200) {
+             resolve(res);
+           } else {
+             reject(res.error);
+           }
+         })
+         .catch((err) => {
+           reject(err.response);
+         });
   });
 };
 

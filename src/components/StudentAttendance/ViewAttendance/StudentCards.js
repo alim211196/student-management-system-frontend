@@ -38,7 +38,7 @@ useEffect(() => {
   const handleAttendanceChange = (event) => {
     const newAttendance = event.target.checked;
     setAttendance(newAttendance);
-    UPDATE_ATTENDANCE(_id,attendanceId, newAttendance)
+    UPDATE_ATTENDANCE(_id, attendanceId, newAttendance, cookies?.token)
       .then((res) => {
         getAttendance();
       })

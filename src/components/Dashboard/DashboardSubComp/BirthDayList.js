@@ -46,7 +46,7 @@ const BirthDayList = ({ cookies, icon, title, bgColor, userData, matches }) => {
 
   const getBirthday = () => {
     setLoading(true);
-    GET_BIRTHDAY()
+    GET_BIRTHDAY(cookies?.token)
       .then((res) => {
         setLoading(false);
         setStudentBirthday(res?.data?.studentsBirthday);
@@ -59,7 +59,7 @@ const BirthDayList = ({ cookies, icon, title, bgColor, userData, matches }) => {
   };
   useEffect(() => {
     setLoading(true);
-    GET_BIRTHDAY()
+    GET_BIRTHDAY(cookies?.token)
       .then((res) => {
         setLoading(false);
         setStudentBirthday(res?.data?.studentsBirthday);
@@ -69,7 +69,7 @@ const BirthDayList = ({ cookies, icon, title, bgColor, userData, matches }) => {
         setLoading(false);
         errorHandler(err?.status, err?.data, dispatch);
       });
-  }, [dispatch]);
+  }, [dispatch, cookies?.token]);
 
   const handleClose = () => {
     setDialogOpen(false);
@@ -91,7 +91,7 @@ const BirthDayList = ({ cookies, icon, title, bgColor, userData, matches }) => {
       dob: filteredDetails[0]?.dob,
     };
     const _id = filteredDetails[0]?._id;
-    SEND_WISHES(_id, formData)
+    SEND_WISHES(_id, formData, cookies?.token)
       .then((res) => {
         getBirthday();
         dispatch(

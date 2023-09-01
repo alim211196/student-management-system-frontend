@@ -24,7 +24,7 @@ import ViewAttendance from "./ViewAttendance";
 import { GET_ATTENDANCE } from "../../ApiFunctions/attendance";
 import { ContainerStyle } from "../../Utils/stylingMethods";
 const AttendanceIndex = () => {
-  const [cookies, setCookie] = useCookies(["theme", "UserId"]);
+  const [cookies, setCookie] = useCookies(["theme", "token"]);
   const { userData } = useSelector((state) => state.getUserProfile);
   const { allUsers } = useSelector((state) => state.getUsers);
   const [value, setValue] = useState(0);
@@ -44,7 +44,7 @@ const AttendanceIndex = () => {
 
   useEffect(() => {
     setLoading(true);
-    GET_STUDENTS()
+    GET_STUDENTS(cookies?.token)
       .then((res) => {
         let data = isAdmin
           ? res.data
@@ -83,7 +83,7 @@ const AttendanceIndex = () => {
   }, [cookies, userData, dispatch, value, formattedDate, status, isAdmin]);
   const getAttendance = () => {
     setLoading(false);
-    GET_ATTENDANCE()
+    GET_ATTENDANCE(cookies?.token)
       .then((res) => {
         setAttData(res.data.filter((i) => i.active === true));
         const matchingAttendance = res.data.find(
@@ -112,7 +112,7 @@ const AttendanceIndex = () => {
   };
   useEffect(() => {
     setLoading(false);
-    GET_ATTENDANCE()
+    GET_ATTENDANCE(cookies?.token)
       .then((res) => {
         setAttData(res.data.filter((i) => i.active === true));
         const matchingAttendance = res.data.find(
@@ -138,7 +138,7 @@ const AttendanceIndex = () => {
         setStatus(false);
         errorHandler(err?.status, err?.data, dispatch);
       });
-  }, [cookies, userData, dispatch, value, formattedDate, allUsers]);
+  }, [cookies?.token, userData, dispatch, value, formattedDate, allUsers]);
 
   return (
     <CustomTheme>

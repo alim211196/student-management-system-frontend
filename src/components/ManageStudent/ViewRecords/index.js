@@ -15,8 +15,10 @@ import TitleBox from "../../../Utils/TitleBox";
 import { PersonSearch } from "@mui/icons-material";
 import { useParams } from "react-router-dom";
 import { ContainerStyle } from "../../../Utils/stylingMethods";
+import { useCookies } from "react-cookie";
 const ViewRecords = () => {
   const dispatch = useDispatch();
+    const [cookies] = useCookies(["token"]);
   const { id } = useParams();
   const loader = useSelector((state) => state.loading);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -39,35 +41,35 @@ const ViewRecords = () => {
   const [formData, setFormData] = useState(DataObj);
 
   useEffect(() => {
- GET_STUDENT_BY_ID(id)
-   .then((res) => {
-     if (id === res.data._id) {
-       const data = res?.data;
-       const date = new Date(data.dob);
-       const formattedDate = date.toISOString().substring(0, 10);
-       setFormData({
-         fullName: data.fullName,
-         email: data.email,
-         phone: data.phone,
-         dob: formattedDate,
-         gender: data.gender,
-         course: data.course,
-         courseYear: data.courseYear,
-         address: data.address,
-         city: data.city,
-         pinCode: data.pinCode,
-         state: data.state,
-         country: data.country,
-         role: data.role,
-       });
-       setSelectedFile(data.profileImage);
-       setActive(data.active);
-     }
-   })
-   .catch((err) => {
-     errorHandler(err?.status, err?.data, dispatch);
-   });
-  }, [id, dispatch]);
+    GET_STUDENT_BY_ID(id, cookies?.token)
+      .then((res) => {
+        if (id === res.data._id) {
+          const data = res?.data;
+          const date = new Date(data.dob);
+          const formattedDate = date.toISOString().substring(0, 10);
+          setFormData({
+            fullName: data.fullName,
+            email: data.email,
+            phone: data.phone,
+            dob: formattedDate,
+            gender: data.gender,
+            course: data.course,
+            courseYear: data.courseYear,
+            address: data.address,
+            city: data.city,
+            pinCode: data.pinCode,
+            state: data.state,
+            country: data.country,
+            role: data.role,
+          });
+          setSelectedFile(data.profileImage);
+          setActive(data.active);
+        }
+      })
+      .catch((err) => {
+        errorHandler(err?.status, err?.data, dispatch);
+      });
+  }, [id, dispatch, cookies?.token]);
 
 
   const handleFileInputChange = (e) => {
@@ -121,7 +123,7 @@ const ViewRecords = () => {
       active: active,
     };
     dispatch(setLoading(true));
-    UPDATE_STUDENT(id, newFormData)
+    UPDATE_STUDENT(id, newFormData,cookies?.token)
       .then((res) => {
         dispatch(
           openSnackbar({

@@ -45,7 +45,7 @@ const ManageStudent = () => {
   };
   const navigate = useNavigate();
   const getStudentData = () => {
-    GET_STUDENTS()
+    GET_STUDENTS(cookies?.token)
       .then((res) => {
         setData(res.data);
       })
@@ -56,7 +56,7 @@ const ManageStudent = () => {
 
   useEffect(() => {
     setLoading(true);
-    GET_STUDENTS()
+    GET_STUDENTS(cookies?.token)
       .then((res) => {
         setLoading(false);
         setData(res.data);
@@ -65,7 +65,7 @@ const ManageStudent = () => {
         setLoading(false);
         errorHandler(err?.status, err?.data, dispatch);
       });
-  }, [dispatch]);
+  }, [dispatch, cookies?.token]);
 
   const backFun = () => {
     getStudentData();
@@ -95,7 +95,7 @@ const ManageStudent = () => {
     setID(id);
   };
   const handleActiveState = () => {
-    STUDENT_RECORD_ACTIVATION(ID, active)
+    STUDENT_RECORD_ACTIVATION(ID, active,cookies?.token)
       .then((res) => {
         getStudentData();
         dispatch(
@@ -222,7 +222,10 @@ const ManageStudent = () => {
                 )}
               </Box>
               <TabPanel value={value} index={0} sx={{ p: 0 }}>
-                <AddStudents getStudentData={getStudentData} />
+                <AddStudents
+                  getStudentData={getStudentData}
+                  cookies={cookies}
+                />
               </TabPanel>
               <TabPanel value={value} index={1} sx={{ p: 0 }}>
                 <CardContainer

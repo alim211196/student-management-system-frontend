@@ -5,7 +5,7 @@ import { openSnackbar } from "../../../app/reducer/Snackbar";
 import { CREATE_STUDENT } from "../../../ApiFunctions/students";
 import { errorHandler } from "../../../ApiFunctions/ErrorHandler";
 import { setLoading } from "../../../app/reducer/Loader";
-const Dashboard = ({ getStudentData }) => {
+const AddStudents = ({ getStudentData, cookies }) => {
   const { userData } = useSelector((state) => state?.getUserProfile);
   const loading = useSelector((state) => state.loading);
   const dispatch = useDispatch();
@@ -93,7 +93,7 @@ const Dashboard = ({ getStudentData }) => {
       active: true,
     };
     dispatch(setLoading(true));
-    CREATE_STUDENT(newFormData)
+    CREATE_STUDENT(newFormData, cookies?.token)
       .then((res) => {
         getStudentData();
         dispatch(
@@ -127,4 +127,4 @@ const Dashboard = ({ getStudentData }) => {
   );
 };
 
-export default memo(Dashboard);
+export default memo(AddStudents);

@@ -18,7 +18,7 @@ import PaperWrapper from "../../Utils/PaperWrapper";
 import { ContainerStyle } from "../../Utils/stylingMethods";
 const UniqueStudentAttendance = () => {
   const { id } = useParams();
-  const [cookies] = useCookies(["theme"]);
+  const [cookies] = useCookies(["theme", "token"]);
   const matches = useMediaQuery("(min-width:600px)");
   const [studentAttendance, setStudentAttendance] = useState([]);
   const dispatch = useDispatch();
@@ -32,14 +32,19 @@ const UniqueStudentAttendance = () => {
       ? endDate.toISOString().split("T")[0]
       : formattedStartDate; // Set endDate to startDate if it's null
 
-    GET_STUDENT_ATTENDANCE(id, formattedStartDate, formattedEndDate)
+    GET_STUDENT_ATTENDANCE(
+      id,
+      formattedStartDate,
+      formattedEndDate,
+      cookies?.token
+    )
       .then((res) => {
         setStudentAttendance(res?.data);
       })
       .catch((err) => {
         errorHandler(err?.status, err?.data, dispatch);
       });
-  }, [dispatch, id, startDate, endDate]);
+  }, [dispatch, id, startDate, endDate, cookies?.token]);
 
   const attendanceLengthChecker =
     studentAttendance?.attendanceCounterArray?.length > 0;
@@ -48,7 +53,7 @@ const UniqueStudentAttendance = () => {
       <MiniDrawer>
         <Container maxWidth="xl" sx={ContainerStyle}>
           <TitleBox
-            icon={<AddchartIcon/>}
+            icon={<AddchartIcon />}
             text={"View Monthly Attendance"}
             id={id}
           />

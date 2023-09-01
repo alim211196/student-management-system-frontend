@@ -86,9 +86,6 @@ const api = {
   //update attendance
   updateAttendance: "/students/update-attendance/",
 
-  //delete attendance
-  deleteAttendance: "/students/delete-attendance/",
-
   //attendance activation
   attendanceActivation: "/students/attendance/activation/",
 

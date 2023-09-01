@@ -28,7 +28,7 @@ const ViewMessage = () => {
   const loading = useSelector((state) => state.loading);
   const [ID, setID] = useState("");
   const [active, setActive] = useState(false);
-  const [cookies] = useCookies(["theme"]);
+  const [cookies] = useCookies(["theme","token"]);
   const DataObj = {
     fullName: "",
     email: "",
@@ -40,7 +40,7 @@ const ViewMessage = () => {
   };
   const [formData, setFormData] = useState(DataObj);
   const getStudentComment = () => {
-    GET_COMMENTS()
+    GET_COMMENTS(cookies?.token)
       .then((res) => {
         setData(res.data);
       })
@@ -50,14 +50,14 @@ const ViewMessage = () => {
   };
 
   useEffect(() => {
-  GET_COMMENTS()
-    .then((res) => {
-      setData(res.data);
-    })
-    .catch((err) => {
-      errorHandler(err?.status, err?.data, dispatch);
-    });
-  }, [dispatch]);
+    GET_COMMENTS(cookies?.token)
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => {
+        errorHandler(err?.status, err?.data, dispatch);
+      });
+  }, [dispatch, cookies?.token]);
 
   const handleClose = () => {
     setDialogOpen(false);
@@ -89,7 +89,7 @@ const ViewMessage = () => {
     setOpen(false);
   };
   const handleActiveState = () => {
-    STUDENT_COMMENT_ACTIVATION(ID, active)
+    STUDENT_COMMENT_ACTIVATION(ID, active,cookies?.token)
       .then((res) => {
         getStudentComment();
         dispatch(
@@ -130,7 +130,7 @@ const ViewMessage = () => {
     }
 
     dispatch(setLoading(true));
-    SEND_REPLY(formData)
+    SEND_REPLY(formData,cookies?.token)
       .then((res) => {
         dispatch(
           openSnackbar({

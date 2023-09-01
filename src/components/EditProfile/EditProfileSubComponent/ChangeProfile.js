@@ -114,7 +114,7 @@ const ChangeProfile = ({ cookies }) => {
       profileImage: selectedFile,
     };
     dispatch(setLoading(true));
-    UPDATE_PROFILE(userData?._id, newFormData)
+    UPDATE_PROFILE(userData?._id, newFormData,cookies?.token)
       .then((res) => {
         if (res.data) {
           dispatch(

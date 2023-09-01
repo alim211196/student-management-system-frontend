@@ -50,7 +50,7 @@ const ViewTeachers = () => {
   });
 
  useEffect(() => {
-   GET_USER(cookies?.token, id)
+   GET_USER(id, cookies?.token)
      .then((res) => {
        if (id === res.data._id) {
          const data = res?.data;
@@ -139,7 +139,7 @@ const ViewTeachers = () => {
       active: active,
     };
     dispatch(setLoading(true));
-    UPDATE_USER(id, newFormData)
+    UPDATE_USER(id, newFormData,cookies?.token)
       .then((res) => {
         dispatch(
           openSnackbar({

@@ -79,7 +79,7 @@ const AddAttendance = ({
       userData?._id,
       userData?.course,
       userData?.courseYear,
-      formattedDate
+      formattedDate,cookies?.token
     )
       .then(() => {
         setFullName("Thanks for taking attendance.");

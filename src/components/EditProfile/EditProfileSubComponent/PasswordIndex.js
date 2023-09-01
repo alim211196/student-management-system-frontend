@@ -8,9 +8,11 @@ import { errorHandler } from "../../../ApiFunctions/ErrorHandler";
 import FormButton from "../../../Utils/FormButton";
 import UpdatePassword from "./UpdatePassword";
 import { setLoading } from "../../../app/reducer/Loader";
+import { decodeToken } from "../../../Utils/decodeToken";
 const PasswordIndex = () => {
-  const [cookies] = useCookies(["UserId", "theme"]);
+  const [cookies] = useCookies(["token", "theme"]);
   const loading = useSelector((state) => state.loading);
+  const decodedToken = decodeToken(cookies);
   const dispatch = useDispatch();
   const DataObj = {
     currentPassword: "",
@@ -51,9 +53,9 @@ const PasswordIndex = () => {
     }
     dispatch(setLoading(true));
     UPDATE_PASSWORD(
-      cookies.UserId,
+      decodedToken._id,
       formData.currentPassword,
-      formData.newPassword
+      formData.newPassword,cookies?.token
     )
       .then((res) => {
         dispatch(

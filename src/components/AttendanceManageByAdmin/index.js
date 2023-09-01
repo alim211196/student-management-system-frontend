@@ -16,9 +16,10 @@ import { ContainerStyle } from "../../Utils/stylingMethods";
 import CardContainer from "../../Utils/CardContainer";
 import { SearchWithFuse } from "../../Utils/SearchWithFuse";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 const ManageAttendanceByAdmin = () => {
-
+  const [cookies] = useCookies(["theme", "token"]);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [AttData, setAttData] = useState([]);
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const ManageAttendanceByAdmin = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const getAttendance = () => {
-    GET_ATTENDANCE()
+    GET_ATTENDANCE(cookies?.token)
       .then((res) => {
         setAttData(res.data);
       })
@@ -38,7 +39,7 @@ const ManageAttendanceByAdmin = () => {
   };
   useEffect(() => {
     setLoading(true);
-    GET_ATTENDANCE()
+    GET_ATTENDANCE(cookies?.token)
       .then((res) => {
         setLoading(false);
         setAttData(res.data);
@@ -47,7 +48,7 @@ const ManageAttendanceByAdmin = () => {
         setLoading(false);
         errorHandler(err?.status, err?.data, dispatch);
       });
-  }, [dispatch]);
+  }, [dispatch, cookies?.token]);
 
   const handleClose = () => {
     setDialogOpen(false);
@@ -60,7 +61,7 @@ const ManageAttendanceByAdmin = () => {
   };
 
   const handleActiveState = () => {
-    ATTENDANCE_ACTIVATION(ID, active)
+    ATTENDANCE_ACTIVATION(ID, active, cookies?.token)
       .then((res) => {
         getAttendance();
         dispatch(
@@ -105,10 +106,7 @@ const ManageAttendanceByAdmin = () => {
         value={1}
       >
         <Container maxWidth="xl" sx={ContainerStyle}>
-          <TitleBox
-            icon={<Equalizer />}
-            text={"Manage Attendance"}
-          />
+          <TitleBox icon={<Equalizer />} text={"Manage Attendance"} />
           <CardContainer
             setQuery={setQuery}
             query={query}

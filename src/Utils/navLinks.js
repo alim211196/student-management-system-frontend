@@ -105,6 +105,7 @@ export const navLinks = [
   },
   {
     title: "Contact us",
+    path: "/",
     icon: <ContactSupport />,
     LoggedIn: false,
   },
