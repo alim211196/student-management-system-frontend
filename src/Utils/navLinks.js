@@ -103,12 +103,12 @@ export const navLinks = [
     icon: <LockReset />,
     LoggedIn: false,
   },
-  {
-    title: "Contact us",
-    path: "/",
-    icon: <ContactSupport />,
-    LoggedIn: false,
-  },
+  // {
+  //   title: "Contact us",
+  //   path: "/",
+  //   icon: <ContactSupport />,
+  //   LoggedIn: false,
+  // },
   {
     title: "Privacy Policy",
     path: "/privacy-policy",
