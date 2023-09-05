@@ -84,7 +84,7 @@ const DrawerAppBar = ({
           sx={{
             padding: !matches && "0px 6px",
             "&.MuiToolbar-root": {
-              paddingLeft: "18px",
+              paddingLeft: matches ? "18px" : "0px",
             },
           }}
         >
