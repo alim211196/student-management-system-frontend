@@ -1,11 +1,11 @@
 import Badge from "@mui/material/Badge";
-import { styled, alpha } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
 import { Avatar, IconButton, TableCell, tableCellClasses,Button } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
 import Switch from "@mui/material/Switch";
-import { DarkFFF, Light4F, LightBorder } from "./CommonCookies";
+import { DarkFFF } from "./CommonCookies";
 const drawerWidth = 240;
 
 export const openedMixin = (theme) => ({
@@ -107,19 +107,20 @@ export const StyledAvatar = styled(Avatar)`
 `;
 
 export const Search = styled("div")(({ theme, cookies, matches }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  border: LightBorder(cookies, matches),
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginLeft: 0,
+  borderRadius: "4px",
+  border: "1px solid #118aef",
+  height: "38px",
+  fontSize: "14px",
+  color: "#118aef",
+  fontWeight: "400",
+  background: "0 0",
   width: "100%",
-
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(1),
-    width: "auto",
+  float: "left",
+  outline: "0",
+  position: "relative",
+  "&:hover": {
+    background: "0 0",
+    color: "#118aef",
   },
 }));
 
@@ -134,8 +135,8 @@ export const SearchIconWrapper = styled("div")(({ theme }) => ({
 }));
 
 export const StyledInputBase = styled(InputBase)(
-  ({ theme, cookies, matches }) => ({
-    color: Light4F(cookies, matches),
+  ({ theme }) => ({
+     color: "#118aef",
     "& .MuiInputBase-input": {
       padding: theme.spacing(1, 1, 1, 0),
       // vertical padding + font size from searchIcon

@@ -3,7 +3,6 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
-import CustomTheme from "./CustomTheme";
 import { Box, Button, IconButton, useMediaQuery } from "@mui/material";
 import ModeComp from "./ModeComp";
 import BeforeLoginMenuBody from "./BeforeLoginMenuBody";
@@ -16,18 +15,23 @@ function CommonCode({ link, title, navigate, cookies }) {
     return null;
   } else {
     return (
-      <CustomTheme>
+      window.location.pathname !== "/dashboard" && (
         <Button
           sx={{
             ml: 1,
-            background: cookies.theme === "dark" ? "#000" : "#0063A5",
+            background: "#F5AB40",
+            ":hover": {
+              background: cookies.theme === "dark" ? "#000" : "#fff",
+              border: "1px solid #F5AB40",
+              color: "#F5AB40 !important",
+            },
           }}
           variant="text"
           onClick={() => navigate(link)}
         >
           {title}
         </Button>
-      </CustomTheme>
+      )
     );
   }
 }
@@ -61,8 +65,7 @@ const Header = () => {
     <AppBar
       position="fixed"
       sx={{
-        background: cookies.theme === "dark" ? "#000" : "#0063A5",
-        color: "#fff",
+        background: cookies.theme === "dark" ? "#000" : "#fff",
         transform: scrollingUp ? "translateY(0)" : "translateY(-100%)", // Add this line
         transition: "transform 0.3s ease-in-out", // Add this line
       }}
@@ -76,19 +79,24 @@ const Header = () => {
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Diversity2Icon sx={{ fontSize: matches ? "32px" : "22px", mr: 1 }} />
+          <Diversity2Icon
+            sx={{
+              fontSize: matches ? "32px" : "22px",
+              mr: 1,
+              color: cookies.theme === "dark" ? "#fff" : "#00A7DC",
+            }}
+          />
           <Typography
             sx={{
               display: "inline-block",
               cursor: "pointer",
-              color: "transparent",
               fontSize: matches ? "32px" : "22px",
               fontWeight: 900,
-              WebkitTextStroke: "1px #FFF",
+              color: "#F5AB40",
             }}
             onClick={() => navigate("/")}
           >
-            StudentsTracker
+            Students<span style={{ color: "#00A7DC" }}>Tracker</span>
           </Typography>
         </Box>
         {!matches ? (
@@ -97,7 +105,7 @@ const Header = () => {
               sx={{
                 width: 24,
                 height: 24,
-                color: "#FFF",
+                color: "#00A7DC",
               }}
             />
           </IconButton>

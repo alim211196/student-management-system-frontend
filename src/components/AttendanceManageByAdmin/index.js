@@ -37,6 +37,7 @@ const ManageAttendanceByAdmin = () => {
         errorHandler(err?.status, err?.data, dispatch);
       });
   };
+
   useEffect(() => {
     setLoading(true);
     GET_ATTENDANCE(cookies?.token)
@@ -49,6 +50,7 @@ const ManageAttendanceByAdmin = () => {
         errorHandler(err?.status, err?.data, dispatch);
       });
   }, [dispatch, cookies?.token]);
+  
 
   const handleClose = () => {
     setDialogOpen(false);

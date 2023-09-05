@@ -80,14 +80,21 @@ const DrawerAppBar = ({
   return (
     <>
       <AppBar position="fixed" open={open} sx={styles.appBar}>
-        <Toolbar sx={{ padding: !matches && "0px 6px" }}>
+        <Toolbar
+          sx={{
+            padding: !matches && "0px 6px",
+            "&.MuiToolbar-root": {
+              paddingLeft: "18px",
+            },
+          }}
+        >
           {!matches && (
             <IconButton onClick={matches ? handleDrawerOpen : toggleDrawer}>
               <MenuIcon
                 sx={{
                   width: 24,
                   height: 24,
-                  color: "#FFF",
+                  color: "#00A7DC",
                 }}
               />
             </IconButton>
@@ -97,7 +104,11 @@ const DrawerAppBar = ({
             <Box sx={{ display: "flex", alignItems: "center" }}>
               {matches && (
                 <Diversity2Icon
-                  sx={{ fontSize: matches ? "32px" : "22px", mr: 1 }}
+                  sx={{
+                    fontSize: matches ? "32px" : "22px",
+                    mr: 1,
+                    color: cookies.theme === "dark" ? "#fff" : "#00A7DC",
+                  }}
                 />
               )}
 
@@ -107,7 +118,7 @@ const DrawerAppBar = ({
                 component="h1"
                 sx={styles.titleTypo}
               >
-                StudentsTracker
+                Students<span style={{ color: "#00A7DC" }}>Tracker</span>
               </Typography>
             </Box>
             <Box sx={styles.childBox1}>

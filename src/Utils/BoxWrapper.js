@@ -46,7 +46,7 @@ const BoxWrapper = ({
             height: "100%",
             transition: "all .85s ease-in-out",
             opacity: 0.92,
-            backgroundColor: "#000",
+            backgroundColor: "#797979",
           }}
         >
           <Container component="main" maxWidth={maxWidth} sx={{ pl: 1, pr: 1 }}>

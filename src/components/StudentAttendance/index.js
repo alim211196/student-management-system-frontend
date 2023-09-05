@@ -146,7 +146,7 @@ const AttendanceIndex = () => {
         <Container component="main" maxWidth="xl" sx={ContainerStyle}>
           <CssBaseline />
           <TitleBox
-            icon={<CalendarMonth sx={{ color: "#fff" }} />}
+            icon={<CalendarMonth />}
             text={"Manage Attendance"}
           />
           <Box sx={{ width: "100%", mt: 2 }}>

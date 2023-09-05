@@ -21,7 +21,7 @@ const DialogBox = ({ open, handleClose, handleChange,text }) => {
         keepMounted
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
-        sx={{ zIndex: 1000 }}
+        sx={{ zIndex: 1700 }}
       >
         <Box
           sx={{

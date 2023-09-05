@@ -38,7 +38,7 @@ export const HomeStyle = (cookies,matches) => {
       color: "#fff",
     },
     parentContainer = {
-      backgroundColor: cookies.theme === "dark" ? "#000C18" : "#FFF",
+      backgroundColor: cookies.theme === "dark" ? "#797979" : "#FFF",
       width: "100%",
       overflow: "scroll",
       overflowY: "auto",

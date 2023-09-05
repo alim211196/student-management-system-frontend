@@ -93,7 +93,7 @@ const Contact = ({ Home, cookies }) => {
 
   return (
     <CustomTheme>
-      <Container component="main" maxWidth="lg">
+      <Container component="main" maxWidth="lg" sx={{p:1}}>
         <CssBaseline />
         <Paper
           elevation={0}

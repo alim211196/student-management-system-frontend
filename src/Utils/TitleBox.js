@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import { Dark00FF, DarkFFF } from "./CommonCookies";
+import { DarkFFF } from "./CommonCookies";
 const TitleBox = ({ icon, text, data, fileName, id }) => {
   const { userData } = useSelector((state) => state.getUserProfile);
   const [cookies] = useCookies(["theme"]);
@@ -98,10 +98,9 @@ const TitleBox = ({ icon, text, data, fileName, id }) => {
     <Paper
       elevation={0}
       sx={{
-        p: "10px",
         mb: 2,
         mt: 1,
-        background: Dark00FF(cookies),
+        background: "rgb(0, 167, 220)",
         transition: "transform 500ms ease",
         "&:hover": {
           transform: `scale(1.01)`,
@@ -110,7 +109,6 @@ const TitleBox = ({ icon, text, data, fileName, id }) => {
     >
       <Grid
         container
-        spacing={2}
         direction="row"
         justifyContent="space-between"
         alignItems="center"
@@ -128,11 +126,15 @@ const TitleBox = ({ icon, text, data, fileName, id }) => {
         >
           <Box
             sx={{
+              p: "10px",
               display: "flex",
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "center",
-              color: DarkFFF(cookies),
+              background: "rgb(0 130 171)",
+              color: "#fff",
+              borderTopLeftRadius: "4px",
+              borderBottomLeftRadius: "4px",
             }}
           >
             {icon}
@@ -161,7 +163,7 @@ const TitleBox = ({ icon, text, data, fileName, id }) => {
                 aria-label="Back"
                 onClick={() => BackFunction()}
               >
-                <ArrowBackIcon />
+                <ArrowBackIcon sx={{color:"#fff"}}/>
               </IconButton>
             </Tooltip>
           </Grid>

@@ -31,7 +31,7 @@ const StudentsList = ({ cookies, data, id }) => {
   return (
     <PaperWrapper
       cookies={cookies}
-      boxBGColor={"#EC407A"}
+      boxBGColor={"#cddc39"}
       icon={<PeopleOutlineIcon />}
       text={"Students list"}
       setQuery={setQuery}

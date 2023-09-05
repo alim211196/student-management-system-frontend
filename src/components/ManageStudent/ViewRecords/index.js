@@ -146,7 +146,7 @@ const ViewRecords = () => {
         <Container component="main" maxWidth="xl" sx={ContainerStyle}>
           <CssBaseline />
           <TitleBox
-            icon={<PersonSearch sx={{ color: "#fff" }} />}
+            icon={<PersonSearch/>}
             text={"View Student"}
             id={id}
           />

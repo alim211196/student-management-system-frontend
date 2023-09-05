@@ -5,7 +5,7 @@ const CustomButton = ({ text, loading }) => {
  const commonStyle = {
     color: "#fff",
     borderColor: "#fff",
-    background: "#ED6A5E",
+    background: "#F5AB40",
   };
   return (
     <LoadingButton
@@ -18,10 +18,14 @@ const CustomButton = ({ text, loading }) => {
         minHeight: 38,
         ...commonStyle,
         "&:hover": {
-          ...commonStyle,
+          background: "transparent",
+          border: "1px solid #F5AB40",
+          color: "#F5AB40 !important",
         },
         "&:disabled": {
-          ...commonStyle,
+          background: "transparent",
+          border: "1px solid #F5AB40",
+          color: "#F5AB40 !important",
         },
       }}
       disabled={loading}

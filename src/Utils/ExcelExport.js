@@ -65,10 +65,22 @@ const ExcelExport = ({ userData, data, fileName }) => {
     writeFile(wb, `${fileName}.xlsx`);
   };
 
+  const pathArr = [
+    "/manage-departments",
+    "/manage-students-account",
+    "/manage-queries",
+    "/manage-students-attendance",
+  ];
+  const IconColor = () => {
+    if (pathArr.includes(window.location.pathname)) {
+      return "#FFF";
+    }
+  };
+
   return (
     <Tooltip title={"Export file"} placement="left">
       <IconButton color="primary" aria-label="export" onClick={exportToExcel}>
-        <FileDownloadIcon />
+        <FileDownloadIcon sx={{color:IconColor()}}/>
       </IconButton>
     </Tooltip>
   );

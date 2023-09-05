@@ -11,9 +11,7 @@ const LowerIcons = ({ icon, text, open, setDialogOpen, styles, cookies }) => {
   const IconColor = () => {
     if (cookies.theme === "dark") {
       return "#FFF";
-    } else {
-      return "#0063A5";
-    }
+    } 
   };
   return (
     <CustomTheme>

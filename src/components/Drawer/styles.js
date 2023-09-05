@@ -126,7 +126,7 @@ export const DrawerStyle = (cookies, matches, upDown, open) => {
       pb: 0,
     },
     appBar = {
-      background: cookies.theme === "dark" ? "#000" : "#0063A5",
+      background: cookies.theme === "dark" ? "#000" : "#fff",
       boxShadow: "none",
     },
     toolbarIconBtn = {
@@ -142,7 +142,7 @@ export const DrawerStyle = (cookies, matches, upDown, open) => {
       width: matches ? 30 : 24,
       height: matches ? 30 : 24,
 
-      color: "#FFF",
+      color: "#00A7DC",
     },
     innerBox3 = {
       width: "100%",
@@ -152,10 +152,9 @@ export const DrawerStyle = (cookies, matches, upDown, open) => {
       ml: !matches && 1,
     },
     titleTypo = {
-      color: "transparent",
+      color: "#F5AB40",
       fontSize: matches ? "32px" : "22px",
       fontWeight: 900,
-      WebkitTextStroke: "1px #FFF",
     },
     childBox1 = {
       display: "flex",
