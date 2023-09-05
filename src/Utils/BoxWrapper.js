@@ -46,7 +46,7 @@ const BoxWrapper = ({
             height: "100%",
             transition: "all .85s ease-in-out",
             opacity: 0.92,
-            backgroundColor: "#797979",
+            backgroundColor: "#dd4444",
           }}
         >
           <Container component="main" maxWidth={maxWidth} sx={{ pl: 1, pr: 1 }}>
@@ -87,11 +87,11 @@ const BoxWrapper = ({
               >
                 {children}
               </Box>
-                <Grid container maxWidth="xs" justifyContent={"center"}>
-                  <Grid item>
-                    <LinkComp text={linkText} path={path} cookies={cookies} />
-                  </Grid>
+              <Grid container maxWidth="xs" justifyContent={"center"}>
+                <Grid item>
+                  <LinkComp text={linkText} path={path} cookies={cookies} />
                 </Grid>
+              </Grid>
             </Paper>
           </Container>
         </Box>
