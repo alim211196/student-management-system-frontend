@@ -30,7 +30,6 @@ const BoxWrapper = ({
           background: `url(https://source.unsplash.com/random/?city,evening)`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
-          opacity: 0.92,
         }}
       >
         <Box
@@ -45,6 +44,7 @@ const BoxWrapper = ({
             right: 0,
             height: "100%",
             transition: "all .85s ease-in-out",
+            opacity: 0.7,
           }}
         >
           <Container component="main" maxWidth={maxWidth} sx={{ pl: 1, pr: 1 }}>
@@ -85,7 +85,12 @@ const BoxWrapper = ({
               >
                 {children}
               </Box>
-              <Grid container maxWidth="xs" justifyContent={"center"} sx={{mt:1}}>
+              <Grid
+                container
+                maxWidth="xs"
+                justifyContent={"center"}
+                sx={{ mt: 1 }}
+              >
                 <Grid item>
                   <LinkComp text={linkText} path={path} cookies={cookies} />
                 </Grid>

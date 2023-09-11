@@ -1,7 +1,7 @@
 import { CardBorder } from "../../Utils/CommonCookies";
 
 export const HomeStyle = (cookies,matches) => {
-  let Container = { margin: "60px 0px 0px 0px" },
+  let Container = { margin: "0px" },
     MainContainer = {
       transition: "0.3s",
       position: "relative",
@@ -14,7 +14,7 @@ export const HomeStyle = (cookies,matches) => {
     },
     innerBox = {
       textAlign: "left",
-      padding: "2rem",
+      padding: "6rem 2rem 2rem",
       background: "rgba(41, 41, 41, 0.5)",
       zIndex: 0,
       position: "relative",

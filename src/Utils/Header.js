@@ -65,6 +65,7 @@ const Header = () => {
     <AppBar
       position="fixed"
       sx={{
+        opacity: 0.7,
         background: cookies.theme === "dark" ? "#000" : "#fff",
         transform: scrollingUp ? "translateY(0)" : "translateY(-100%)", // Add this line
         transition: "transform 0.3s ease-in-out", // Add this line
