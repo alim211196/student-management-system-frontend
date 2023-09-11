@@ -3,10 +3,10 @@ import React, { memo } from "react";
 
 const CustomButton = ({ text, loading }) => {
  const commonStyle = {
-    color: "#fff",
-    borderColor: "#fff",
-    background: "#F5AB40",
-  };
+   color: "#fff",
+   borderColor: "#fff",
+   background: "#00A7DC",
+ };
   return (
     <LoadingButton
       type="submit"
@@ -18,14 +18,10 @@ const CustomButton = ({ text, loading }) => {
         minHeight: 38,
         ...commonStyle,
         "&:hover": {
-          background: "transparent",
-          border: "1px solid #F5AB40",
-          color: "#F5AB40 !important",
+          ...commonStyle,
         },
         "&:disabled": {
-          background: "transparent",
-          border: "1px solid #F5AB40",
-          color: "#F5AB40 !important",
+          ...commonStyle,
         },
       }}
       disabled={loading}
