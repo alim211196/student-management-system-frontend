@@ -100,7 +100,7 @@ const TitleBox = ({ icon, text, data, fileName, id }) => {
       sx={{
         mb: 2,
         mt: 1,
-        background: "rgb(0, 167, 220)",
+        background: cookies.theme === "dark" ? "#313131" : "rgb(0, 167, 220)",
         transition: "transform 500ms ease",
         "&:hover": {
           transform: `scale(1.01)`,
@@ -131,7 +131,8 @@ const TitleBox = ({ icon, text, data, fileName, id }) => {
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "center",
-              background: "rgb(0 130 171)",
+              background:
+                cookies.theme === "dark" ? "#161616" : "rgb(0 130 171)",
               color: "#fff",
               borderTopLeftRadius: "4px",
               borderBottomLeftRadius: "4px",
@@ -163,7 +164,7 @@ const TitleBox = ({ icon, text, data, fileName, id }) => {
                 aria-label="Back"
                 onClick={() => BackFunction()}
               >
-                <ArrowBackIcon sx={{color:"#fff"}}/>
+                <ArrowBackIcon sx={{ color: "#fff" }} />
               </IconButton>
             </Tooltip>
           </Grid>

@@ -108,7 +108,7 @@ const PersonalInfo = ({
               value={formData.email}
               setFormData={setFormData}
               type="email"
-              disabled={true}
+              disabled={false}
             />
           </Grid>
           <Grid item xs={12} sm={6} md={6}>
