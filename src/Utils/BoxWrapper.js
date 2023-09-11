@@ -46,7 +46,7 @@ const BoxWrapper = ({
             height: "100%",
             transition: "all .85s ease-in-out",
             opacity: 0.92,
-            backgroundColor: "#085f1e",
+            backgroundColor: "#292929",
           }}
         >
           <Container component="main" maxWidth={maxWidth} sx={{ pl: 1, pr: 1 }}>
@@ -59,7 +59,7 @@ const BoxWrapper = ({
                 alignItems: "center",
                 padding: "24px 16px",
                 boxShadow: "0px 0px 16px 9px rgba(0, 0, 0, 0.07)",
-                background: "rgba(255, 255, 255, .13)",
+                background: "#000",
                 opacity: 1,
                 transition: "transform 500ms ease",
                 "&:hover": {
@@ -87,7 +87,7 @@ const BoxWrapper = ({
               >
                 {children}
               </Box>
-              <Grid container maxWidth="xs" justifyContent={"center"}>
+              <Grid container maxWidth="xs" justifyContent={"center"} sx={{mt:1}}>
                 <Grid item>
                   <LinkComp text={linkText} path={path} cookies={cookies} />
                 </Grid>
