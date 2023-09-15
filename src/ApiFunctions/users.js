@@ -1,12 +1,12 @@
 import axios from "axios";
 import api from "../api";
 import AxiosConfig from "../axiosConfig";
-
+import apiUrl from "../Utils/apiConfig";
 //user login
 export const USER_LOGIN = (formData) => {
   return new Promise((resolve, reject) => {
     axios
-      .post(`${process.env.REACT_APP_API_URL}${api.login}`, formData)
+      .post(`${apiUrl}${api.login}`, formData)
       .then((res) => {
         if (res.status === 201) {
           resolve(res);
@@ -23,7 +23,7 @@ export const USER_LOGIN = (formData) => {
 export const REFRESH_TOKEN = (token) => {
   return new Promise((resolve, reject) => {
     return AxiosConfig(token)
-      .post(`${process.env.REACT_APP_API_URL}${api.refreshToken}`)
+      .post(`${apiUrl}${api.refreshToken}`)
       .then((res) => {
         if (res.status === 201) {
           resolve(res);
@@ -41,7 +41,7 @@ export const REFRESH_TOKEN = (token) => {
 export const GET_USERS = (token) => {
   return new Promise((resolve, reject) => {
   return AxiosConfig(token)
-    .get(`${process.env.REACT_APP_API_URL}${api.getUsers}`)
+    .get(`${apiUrl}${api.getUsers}`)
     .then((res) => {
       if (res.status === 200) {
         resolve(res);
@@ -59,7 +59,7 @@ export const GET_USERS = (token) => {
 export const USER_ACTIVATION = (id, active,token) => {
   return new Promise((resolve, reject) => {
      return AxiosConfig(token)
-       .patch(`${process.env.REACT_APP_API_URL}${api.userActivation}${id}`, {
+       .patch(`${apiUrl}${api.userActivation}${id}`, {
          active: active,
        })
        .then((res) => {
@@ -79,7 +79,7 @@ export const USER_ACTIVATION = (id, active,token) => {
 export const GET_USER = (id, token) => {
   return new Promise((resolve, reject) => {
     return AxiosConfig(token)
-      .get(`${process.env.REACT_APP_API_URL}${api.getUser}${id}`)
+      .get(`${apiUrl}${api.getUser}${id}`)
       .then((res) => {
         if (res.status === 200) {
           resolve(res);
@@ -97,7 +97,7 @@ export const GET_USER = (id, token) => {
 export const USER_REGISTER = (formData,token) => {
   return new Promise((resolve, reject) => {
      return AxiosConfig(token)
-       .post(`${process.env.REACT_APP_API_URL}${api.register}`, formData)
+       .post(`${apiUrl}${api.register}`, formData)
        .then((res) => {
          if (res.status === 201) {
            resolve(res);
@@ -115,7 +115,7 @@ export const USER_REGISTER = (formData,token) => {
 export const FORGOT_PASSWORD = (formData) => {
   return new Promise((resolve, reject) => {
     axios
-      .post(`${process.env.REACT_APP_API_URL}${api.forgotPassword}`, formData)
+      .post(`${apiUrl}${api.forgotPassword}`, formData)
       .then((res) => {
         if (res.status === 201) {
           resolve(res);
@@ -133,7 +133,7 @@ export const FORGOT_PASSWORD = (formData) => {
 export const RESET_PASSWORD = (id, password, otp) => {
   return new Promise((resolve, reject) => {
     axios
-      .patch(`${process.env.REACT_APP_API_URL}${api.resetPassword}${id}`, {
+      .patch(`${apiUrl}${api.resetPassword}${id}`, {
         new_password: password,
         otp: otp,
       })
@@ -155,7 +155,7 @@ export const UPDATE_USER = (id, formData,token) => {
   return new Promise((resolve, reject) => {
      return AxiosConfig(token)
        .patch(
-         `${process.env.REACT_APP_API_URL}${api.updateUser}${id}`,
+         `${apiUrl}${api.updateUser}${id}`,
          formData
        )
        .then((res) => {
@@ -176,7 +176,7 @@ export const UPDATE_PROFILE = (id, formData,token) => {
   return new Promise((resolve, reject) => {
      return AxiosConfig(token)
        .patch(
-         `${process.env.REACT_APP_API_URL}${api.updateProfile}${id}`,
+         `${apiUrl}${api.updateProfile}${id}`,
          formData
        )
        .then((res) => {
@@ -196,7 +196,7 @@ export const UPDATE_PROFILE = (id, formData,token) => {
 export const UPDATE_PASSWORD = (id, currentPassword, newPassword,token) => {
   return new Promise((resolve, reject) => {
      return AxiosConfig(token)
-       .patch(`${process.env.REACT_APP_API_URL}${api.updatePassword}${id}`, {
+       .patch(`${apiUrl}${api.updatePassword}${id}`, {
          currentPassword,
          newPassword,
        })
@@ -217,7 +217,7 @@ export const UPDATE_PASSWORD = (id, currentPassword, newPassword,token) => {
 export const SEND_WISHES = (id, formData,token) => {
   return new Promise((resolve, reject) => {
      return AxiosConfig(token)
-       .post(`${process.env.REACT_APP_API_URL}${api.sendWishes}${id}`, formData)
+       .post(`${apiUrl}${api.sendWishes}${id}`, formData)
        .then((res) => {
          if (res.status === 201) {
            resolve(res);

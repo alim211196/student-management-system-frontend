@@ -1,12 +1,12 @@
 import axios from "axios";
 import api from "../api";
 import AxiosConfig from "../axiosConfig";
-
+import apiUrl from "../Utils/apiConfig";
 //create student
 export const CREATE_STUDENT = (formData,token) => {
   return new Promise((resolve, reject) => {
        return AxiosConfig(token)
-         .post(`${process.env.REACT_APP_API_URL}${api.addStudent}`, formData)
+         .post(`${apiUrl}${api.addStudent}`, formData)
          .then((res) => {
            if (res.status === 201) {
              resolve(res.data);
@@ -24,7 +24,7 @@ export const CREATE_STUDENT = (formData,token) => {
 export const GET_STUDENTS = (token) => {
   return new Promise((resolve, reject) => {
     return AxiosConfig(token)
-      .get(`${process.env.REACT_APP_API_URL}${api.getStudents}`)
+      .get(`${apiUrl}${api.getStudents}`)
       .then((res) => {
         if (res.status === 200) {
           resolve(res);
@@ -42,7 +42,7 @@ export const GET_STUDENTS = (token) => {
 export const GET_STUDENT_BY_ID = (id,token) => {
   return new Promise((resolve, reject) => {
     return AxiosConfig(token)
-      .get(`${process.env.REACT_APP_API_URL}${api.getStudent}${id}`)
+      .get(`${apiUrl}${api.getStudent}${id}`)
       .then((res) => {
         if (res.status === 200) {
           resolve(res);
@@ -61,7 +61,7 @@ export const UPDATE_STUDENT = (id, formData,token) => {
   return new Promise((resolve, reject) => {
        return AxiosConfig(token)
          .patch(
-           `${process.env.REACT_APP_API_URL}${api.updateStudent}${id}`,
+           `${apiUrl}${api.updateStudent}${id}`,
            formData
          )
          .then((res) => {
@@ -82,7 +82,7 @@ export const STUDENT_RECORD_ACTIVATION = (id, active,token) => {
   return new Promise((resolve, reject) => {
        return AxiosConfig(token)
          .patch(
-           `${process.env.REACT_APP_API_URL}${api.studentActivation}${id}`,
+           `${apiUrl}${api.studentActivation}${id}`,
            {
              active: active,
            }
@@ -104,7 +104,7 @@ export const STUDENT_RECORD_ACTIVATION = (id, active,token) => {
 export const POST_COMMENT = (formData) => {
   return new Promise((resolve, reject) => {
     axios
-      .post(`${process.env.REACT_APP_API_URL}${api.addComment}`, formData)
+      .post(`${apiUrl}${api.addComment}`, formData)
       .then((res) => {
         if (res.status === 201) {
           resolve(res);
@@ -122,7 +122,7 @@ export const POST_COMMENT = (formData) => {
 export const SEND_REPLY = (formData,token) => {
   return new Promise((resolve, reject) => {
        return AxiosConfig(token)
-         .post(`${process.env.REACT_APP_API_URL}${api.sendReply}`, formData)
+         .post(`${apiUrl}${api.sendReply}`, formData)
          .then((res) => {
            if (res.status === 201) {
              resolve(res);
@@ -140,7 +140,7 @@ export const SEND_REPLY = (formData,token) => {
 export const GET_COMMENTS = (token) => {
   return new Promise((resolve, reject) => {
        return AxiosConfig(token)
-         .get(`${process.env.REACT_APP_API_URL}${api.getComments}`)
+         .get(`${apiUrl}${api.getComments}`)
          .then((res) => {
            if (res.status === 200) {
              resolve(res);
@@ -159,7 +159,7 @@ export const STUDENT_COMMENT_ACTIVATION = (id, active,token) => {
   return new Promise((resolve, reject) => {
        return AxiosConfig(token)
          .patch(
-           `${process.env.REACT_APP_API_URL}${api.commentActivation}${id}`,
+           `${apiUrl}${api.commentActivation}${id}`,
            {
              active: active,
            }
@@ -181,7 +181,7 @@ export const STUDENT_COMMENT_ACTIVATION = (id, active,token) => {
 export const GET_RESOURCE = (token) => {
   return new Promise((resolve, reject) => {
     return AxiosConfig(token)
-      .get(`${process.env.REACT_APP_API_URL}${api.getResources}`)
+      .get(`${apiUrl}${api.getResources}`)
       .then((res) => {
         if (res.status === 200) {
           resolve(res);
@@ -199,7 +199,7 @@ export const GET_RESOURCE = (token) => {
 export const GET_RECENT_ENTRY = (token) => {
   return new Promise((resolve, reject) => {
     return AxiosConfig(token)
-      .get(`${process.env.REACT_APP_API_URL}${api.getRecentEntry}`)
+      .get(`${apiUrl}${api.getRecentEntry}`)
       .then((res) => {
         if (res.status === 200) {
           resolve(res);
@@ -217,7 +217,7 @@ export const GET_RECENT_ENTRY = (token) => {
 export const GET_BIRTHDAY = (token) => {
   return new Promise((resolve, reject) => {
     return AxiosConfig(token)
-      .get(`${process.env.REACT_APP_API_URL}${api.getBirthday}`)
+      .get(`${apiUrl}${api.getBirthday}`)
       .then((res) => {
         if (res.status === 200) {
           resolve(res);

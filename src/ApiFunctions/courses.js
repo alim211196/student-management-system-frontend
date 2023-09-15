@@ -1,11 +1,12 @@
 import axios from "axios";
 import api from "../api";
 import AxiosConfig from "../axiosConfig";
+import apiUrl from "../Utils/apiConfig";
 //add attendance
 export const ADD_COURSE = (formData,token) => {
   return new Promise((resolve, reject) => {
        return AxiosConfig(token)
-         .post(`${process.env.REACT_APP_API_URL}${api.addCourse}`, formData)
+         .post(`${apiUrl}${api.addCourse}`, formData)
          .then((res) => {
            if (res.status === 201) {
              resolve(res);
@@ -24,7 +25,7 @@ export const ADD_COURSE = (formData,token) => {
 export const GET_COURSES = () => {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}${api.getCourses}`)
+      .get(`${apiUrl}${api.getCourses}`)
       .then((res) => {
         if (res.status === 200) {
           resolve(res);
@@ -43,7 +44,7 @@ export const UPDATE_COURSE = (id, formData,token) => {
   return new Promise((resolve, reject) => {
        return AxiosConfig(token)
          .patch(
-           `${process.env.REACT_APP_API_URL}${api.updateCourse}${id}`,
+           `${apiUrl}${api.updateCourse}${id}`,
            formData
          )
          .then((res) => {
@@ -64,7 +65,7 @@ export const COURSE_ACTIVATION = (id, active,token) => {
   return new Promise((resolve, reject) => {
        return AxiosConfig(token)
          .patch(
-           `${process.env.REACT_APP_API_URL}${api.courseActivation}${id}`,
+           `${apiUrl}${api.courseActivation}${id}`,
            {
              active: active,
            }
