@@ -27,7 +27,7 @@ const BoxWrapper = ({
           left: 0,
           right: 0,
           height: "100%",
-          background: `url(https://source.unsplash.com/random/?city,evening)`,
+          background: `url(https://picsum.photos/1920/1080?random)`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
         }}

@@ -1,6 +1,6 @@
 import { CardBorder } from "../../Utils/CommonCookies";
 
-export const HomeStyle = (cookies,matches) => {
+export const HomeStyle = (cookies, matches) => {
   let Container = { margin: "0px" },
     MainContainer = {
       transition: "0.3s",
@@ -8,7 +8,7 @@ export const HomeStyle = (cookies,matches) => {
       backgroundSize: "cover !important",
       backgroundRepeat: "no-repeat",
       backgroundPosition: "center",
-      background: `url(https://source.unsplash.com/random/?city,evening)`,
+      background: `url(https://picsum.photos/1920/1080?random)`,
       borderBottom: CardBorder(cookies, "#000"),
       marginTop: !matches && "-4px",
     },
